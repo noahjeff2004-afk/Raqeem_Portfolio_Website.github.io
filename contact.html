@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Let's talk. Tell Raqeem about your brand, your goals, and what you have in mind. Email, call, or send a project brief — we reply within one business day.">
+  <meta name="theme-color" content="#f5f3ec">
+  <title>Contact — Raqeem</title>
+  <link rel="icon" type="image/png" href="images/Raqeem-Advertising-Logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,450;9..40,500;9..40,550;9..40,600;9..40,650;9..40,700&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* =========================================================
+       RAQEEM — CONTACT PAGE
+       Tokens → base → components → contact-specific → responsive
+       ========================================================= */
+
+    :root{
+      --paper:#f5f3ec;
+      --paper-2:#efede3;
+      --paper-3:#e8ebdf;
+      --white:#fffefa;
+      --ink:#1a1c19;
+      --ink-2:#2c2f2a;
+      --muted:#6b6e63;
+      --muted-2:#85887c;
+      --orange:#d94426;
+      --orange-deep:#b5341a;
+      --green:#4d604d;
+      --line:#dedfd4;
+      --line-strong:#c9cbbc;
+      --display:'Space Grotesk',system-ui,sans-serif;
+      --body:'DM Sans',system-ui,sans-serif;
+      --serif:'Instrument Serif',Georgia,serif;
+      --ease:cubic-bezier(.22,1,.36,1);
+      --ease-out:cubic-bezier(.16,1,.3,1);
+      --radius:8px;
+      --shadow-sm:0 1px 2px rgba(26,28,25,.05),0 6px 16px rgba(26,28,25,.05);
+      --shadow-md:0 2px 6px rgba(26,28,25,.06),0 20px 44px rgba(26,28,25,.09);
+      --shadow-lg:0 4px 10px rgba(26,28,25,.07),0 38px 80px rgba(26,28,25,.14);
+      --gutter:96px;
+    }
+
+    *,*::before,*::after{box-sizing:border-box}
+
+    html{
+      scroll-behavior:smooth;
+      scroll-padding-top:110px;
+      -webkit-text-size-adjust:100%;
+      scrollbar-color:var(--line-strong) var(--paper-2);
+      scrollbar-width:thin;
+    }
+    ::-webkit-scrollbar{width:11px;height:11px}
+    ::-webkit-scrollbar-track{background:var(--paper-2)}
+    ::-webkit-scrollbar-thumb{
+      background:var(--line-strong);
+      border:3px solid var(--paper-2);
+      border-radius:8px;
+      transition:background .3s;
+    }
+    ::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+
+    body{
+      margin:0;
+      background:var(--paper);
+      color:var(--ink);
+      font-family:var(--body);
+      font-size:16px;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+    }
+    body.is-locked{overflow:hidden}
+
+    button,input,select,textarea{font:inherit;color:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    button{cursor:pointer;background:none;border:0}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    h1,h2,h3,h4,p,figure,dl,dd{margin:0}
+    ul{margin:0;padding:0;list-style:none}
+
+    h1,h2,h3,h4{
+      font-family:var(--display);
+      font-weight:500;
+      line-height:1.06;
+      letter-spacing:-.045em;
+      text-wrap:balance;
+    }
+    h2{font-size:clamp(34px,4.2vw,58px)}
+    h3{font-size:clamp(20px,2vw,26px);letter-spacing:-.035em}
+    p{text-wrap:pretty}
+
+    ::selection{background:#e4edb8;color:var(--ink)}
+
+    :focus-visible{
+      outline:2px solid var(--orange);
+      outline-offset:4px;
+      border-radius:2px;
+    }
+
+    [hidden]{display:none !important}
+
+    /* ---------- Layout primitives ---------- */
+
+    .wrap{
+      width:min(1320px,calc(100% - var(--gutter)));
+      margin-inline:auto;
+    }
+    .section{padding-block:clamp(72px,9vw,116px)}
+
+    /* ---------- Typographic details ---------- */
+
+    .eyebrow{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:11px;
+      letter-spacing:.16em;
+      font-weight:650;
+      text-transform:uppercase;
+      line-height:1.5;
+      color:var(--ink);
+    }
+    .eyebrow::before{
+      content:'';
+      width:7px;height:7px;
+      background:var(--orange);
+      border-radius:50%;
+      flex-shrink:0;
+      box-shadow:0 0 0 4px rgba(217,68,38,.12);
+    }
+    .muted{color:var(--muted)}
+
+    em{
+      font-style:normal;
+      color:var(--orange);
+    }
+    .serif-em{
+      font-family:var(--serif);
+      font-style:italic;
+      font-weight:400;
+      letter-spacing:-.01em;
+    }
+
+    .arrow{
+      display:inline-block;
+      font-size:1.1em;
+      line-height:1;
+      transition:transform .35s var(--ease);
+      will-change:transform;
+    }
+
+    /* ---------- Buttons & links ---------- */
+
+    .button{
+      --btn-bg:var(--ink);
+      --btn-fg:var(--white);
+      --btn-border:var(--ink);
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:24px;
+      min-height:54px;
+      padding:15px 26px;
+      background:var(--btn-bg);
+      color:var(--btn-fg);
+      border:1px solid var(--btn-border);
+      border-radius:6px;
+      font-size:13px;
+      font-weight:600;
+      letter-spacing:.005em;
+      overflow:hidden;
+      isolation:isolate;
+      transition:color .35s var(--ease),border-color .35s var(--ease),transform .4s var(--ease);
+      will-change:transform;
+    }
+    .button::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:var(--orange);
+      transform:translateY(101%);
+      transition:transform .45s var(--ease);
+      z-index:-1;
+    }
+    .button:hover{color:#fff;border-color:var(--orange)}
+    .button:hover::before{transform:translateY(0)}
+    .button:hover .arrow{transform:translate(3px,-3px)}
+    .button.orange{--btn-bg:var(--orange);--btn-fg:#fff;--btn-border:var(--orange)}
+    .button.orange::before{background:var(--orange-deep)}
+    .button.orange:hover{border-color:var(--orange-deep)}
+
+    .text-link{
+      display:inline-flex;
+      align-items:center;
+      gap:18px;
+      font-size:13px;
+      font-weight:600;
+      padding-block:9px;
+      border-bottom:1px solid currentColor;
+      transition:color .3s var(--ease),gap .3s var(--ease);
+    }
+    .text-link:hover{color:var(--orange);gap:23px}
+    .text-link:hover .arrow{transform:translate(2px,-2px)}
+
+    /* ---------- Ambient layers ---------- */
+
+    .grain{
+      position:fixed;inset:0;z-index:9997;pointer-events:none;
+      opacity:.05;
+      mix-blend-mode:multiply;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .ambient-orb{
+      position:fixed;
+      pointer-events:none;
+      z-index:-1;
+      border-radius:50%;
+      filter:blur(90px);
+      will-change:transform;
+    }
+    .ambient-orb-1{
+      width:520px;height:520px;
+      background:radial-gradient(circle,rgba(217,68,38,.14),transparent 70%);
+      top:15%;left:-160px;
+    }
+    .ambient-orb-2{
+      width:460px;height:460px;
+      background:radial-gradient(circle,rgba(77,96,77,.10),transparent 70%);
+      top:55%;right:-140px;
+    }
+
+    .progress-rail{
+      position:fixed;top:0;left:0;right:0;
+      height:2px;z-index:9996;
+      background:transparent;
+      pointer-events:none;
+    }
+    .progress-bar{
+      height:100%;
+      width:0%;
+      background:var(--orange);
+      transform-origin:left center;
+      transition:width .1s linear;
+    }
+
+    .cursor-dot,.cursor-ring{
+      position:fixed;top:0;left:0;
+      pointer-events:none;
+      z-index:9999;
+      border-radius:50%;
+      transform:translate(-50%,-50%);
+      opacity:0;
+      transition:opacity .3s var(--ease);
+    }
+    .cursor-dot{
+      width:7px;height:7px;
+      background:var(--orange);
+      transition:opacity .3s var(--ease),width .3s var(--ease),height .3s var(--ease);
+    }
+    .cursor-ring{
+      width:38px;height:38px;
+      border:1px solid rgba(26,28,25,.35);
+      transition:opacity .3s var(--ease),width .35s var(--ease),height .35s var(--ease),border-color .35s var(--ease),background .35s var(--ease);
+    }
+    body.cursor-on .cursor-dot,
+    body.cursor-on .cursor-ring{opacity:1}
+    body.cursor-hover .cursor-ring{
+      width:64px;height:64px;
+      border-color:rgba(217,68,38,.55);
+      background:rgba(217,68,38,.07);
+    }
+    body.cursor-hover .cursor-dot{width:0;height:0}
+    @media (hover:none),(pointer:coarse){
+      .cursor-dot,.cursor-ring{display:none}
+      body.cursor-on .cursor-dot,body.cursor-on .cursor-ring{opacity:0}
+    }
+
+    /* ---------- Scroll reveal ---------- */
+
+    html.js .reveal{
+      opacity:0;
+      transform:translateY(26px);
+      transition:opacity .9s var(--ease-out),transform .9s var(--ease-out);
+      transition-delay:calc(var(--i,0) * 70ms);
+    }
+    html.js .reveal.is-visible{opacity:1;transform:none}
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+
+    .site-header{
+      position:sticky;top:0;z-index:60;
+      background:rgba(245,243,236,.82);
+      border-bottom:1px solid transparent;
+      backdrop-filter:blur(18px) saturate(1.2);
+      -webkit-backdrop-filter:blur(18px) saturate(1.2);
+      transition:border-color .4s var(--ease),background .4s var(--ease);
+    }
+    .site-header.is-scrolled{
+      border-bottom-color:var(--line);
+      background:rgba(245,243,236,.94);
+    }
+    .header-inner{
+      height:92px;
+      display:flex;align-items:center;justify-content:space-between;gap:30px;
+      transition:height .4s var(--ease);
+    }
+    .site-header.is-scrolled .header-inner{height:76px}
+
+    .brand{
+      display:inline-flex;align-items:center;gap:11px;
+      flex-shrink:0;
+    }
+    .brand img{
+      width:46px;height:46px;object-fit:contain;
+      transition:transform .6s var(--ease);
+    }
+    .brand:hover img{transform:rotate(-8deg) scale(1.04)}
+    .brand-name{
+      display:block;
+      font-family:var(--display);
+      font-size:28px;line-height:1.02;
+      letter-spacing:-1.6px;font-weight:700;
+    }
+    .brand-name i{color:var(--orange);font-style:normal}
+    .brand-sub{
+      display:block;
+      font-size:8px;letter-spacing:.19em;
+      margin-top:5px;text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    /* ---------- Navigation ---------- */
+
+    .nav{display:flex;align-items:center;gap:32px}
+
+    /* Scoped to :not(.button) so the CTA keeps its own colour tokens.
+       Without this, `.nav > a` (0,1,1) would override `.button` (0,1,0)
+       and paint the button text the same dark ink as its background. */
+    .nav > a:not(.button){
+      font-size:12px;
+      font-weight:550;
+      position:relative;
+      padding-block:4px;
+      color:var(--ink);
+      touch-action:manipulation;
+      transition:color .3s var(--ease);
+    }
+
+    /* Text links get an animated underline; the CTA button never does. */
+    .nav > a:not(.button)::after{
+      content:'';
+      position:absolute;
+      bottom:-3px;
+      left:0;
+      width:0;
+      height:1.5px;
+      background:var(--orange);
+      transition:width .35s var(--ease);
+    }
+    .nav > a:not(.button):hover::after,
+    .nav > a:not(.button):focus-visible::after,
+    .nav > a:not(.button)[aria-current="page"]::after,
+    .nav > a:not(.button)[aria-current="location"]::after{width:100%}
+
+    .nav > a:not(.button):hover,
+    .nav > a:not(.button):focus-visible,
+    .nav > a:not(.button)[aria-current="page"],
+    .nav > a:not(.button)[aria-current="location"]{color:var(--orange)}
+
+    .nav > a:not(.button)[aria-current="page"],
+    .nav > a:not(.button)[aria-current="location"]{font-weight:650}
+
+    /* CTA button — keeps the dark background + white text from .button.
+       `color: var(--btn-fg)` is re-asserted so nothing in the nav can
+       accidentally inherit over it. */
+    .nav .button{
+      margin-left:10px;
+      min-height:44px;
+      padding:11px 20px;
+      color:var(--btn-fg);
+    }
+    .nav .button:hover{color:#fff}
+
+    /* When the CTA itself points to the page you're on, add a subtle ring
+       instead of changing text colour (which would break its contrast). */
+    .nav .button[aria-current="page"],
+    .nav .button[aria-current="location"]{
+      box-shadow:0 0 0 1px var(--orange);
+      color:var(--btn-fg);
+    }
+
+    .menu-toggle{
+      display:none;
+      border:1px solid var(--line);
+      background:none;
+      border-radius:5px;
+      min-width:48px;min-height:44px;
+      font-size:12px;font-weight:600;
+      transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease);
+    }
+    .menu-toggle[aria-expanded="true"]{
+      background:var(--ink);color:#fff;border-color:var(--ink);
+    }
+
+    /* =========================================================
+       HERO (video background — same treatment as index)
+       ========================================================= */
+
+    .hero{
+      padding:clamp(48px,6vw,80px) 0 40px;
+      overflow:hidden;
+      position:relative;
+      isolation:isolate;
+    }
+
+    .hero-video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      z-index:0;
+      pointer-events:none;
+      filter:saturate(.96) contrast(1.04) brightness(1.01);
+    }
+
+    .hero-video-scrim{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background:
+        linear-gradient(90deg,
+          rgba(245,243,236,.80) 0%,
+          rgba(245,243,236,.64) 30%,
+          rgba(245,243,236,.34) 58%,
+          rgba(245,243,236,.12) 84%,
+          rgba(245,243,236,.04) 100%),
+        linear-gradient(180deg,
+          rgba(245,243,236,.34) 0%,
+          rgba(245,243,236,.06) 36%,
+          rgba(245,243,236,.10) 72%,
+          rgba(245,243,236,.30) 100%);
+    }
+
+    .hero h1,
+    .hero-intro,
+    .hero-note,
+    .hero-copy > .eyebrow,
+    .hero-bottom{
+      text-shadow:
+        0 1px 1px rgba(245,243,236,.72),
+        0 0 22px rgba(245,243,236,.55);
+    }
+    .hero-actions .text-link{
+      text-shadow:
+        0 1px 1px rgba(245,243,236,.72),
+        0 0 18px rgba(245,243,236,.50);
+    }
+
+    .hero-grid,
+    .hero-bottom{
+      position:relative;
+      z-index:1;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.04fr 1fr;
+      align-items:center;
+      gap:clamp(16px,3vw,40px);
+      min-height:560px;
+    }
+
+    .hero h1{
+      font-size:clamp(46px,5.8vw,84px);
+      line-height:1.02;
+      letter-spacing:-.062em;
+      margin:26px 0 26px;
+      position:relative;z-index:2;
+    }
+    .hero h1 .line{
+      display:block;
+      overflow:hidden;
+      padding-bottom:.06em;
+    }
+    .hero h1 .line > span{display:block}
+    html.js .hero h1 .line > span{
+      transform:translateY(110%);
+      transition:transform 1.05s var(--ease-out);
+      transition-delay:calc(var(--l,0) * 110ms + 120ms);
+    }
+    html.js .hero.is-ready h1 .line > span{transform:translateY(0)}
+    .hero h1 em{
+      font-family:var(--serif);
+      font-style:italic;
+      font-weight:400;
+      color:var(--orange);
+      letter-spacing:-.015em;
+      font-size:1.02em;
+    }
+
+    .hero-intro{
+      max-width:520px;
+      font-size:clamp(17px,1.35vw,19.5px);
+      line-height:1.72;
+      color:var(--ink-2);
+      font-weight:400;
+      letter-spacing:-.005em;
+    }
+    .hero-actions{
+      display:flex;align-items:center;gap:28px;
+      margin-top:32px;
+      flex-wrap:wrap;
+    }
+    .hero-actions .text-link{
+      border:0;
+      font-size:16px;
+      font-weight:600;
+      gap:10px;
+      padding-block:12px;
+    }
+
+    .hero-note{
+      display:flex;
+      align-items:center;
+      gap:11px;
+      margin-top:34px;
+      font-size:clamp(13.5px,1.05vw,15px);
+      line-height:1.5;
+      font-weight:500;
+      letter-spacing:-.005em;
+      color:var(--ink-2);
+    }
+    .hero-note span{
+      width:8px;height:8px;background:var(--green);
+      border-radius:50%;
+      flex-shrink:0;
+      box-shadow:0 0 0 4px rgba(77,96,77,.14);
+      animation:pulse 2.8s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%,100%{box-shadow:0 0 0 3px rgba(77,96,77,.14)}
+      50%{box-shadow:0 0 0 7px rgba(77,96,77,.05)}
+    }
+
+    /* --- Hero composition (contact card stack) --- */
+
+    .hero-art{
+      height:560px;
+      position:relative;
+      perspective:1200px;
+    }
+    .art-orbit{
+      position:absolute;
+      inset:32px 6px 36px 14px;
+      border:1px solid var(--line-strong);
+      border-radius:50%;
+      transform:rotate(-22deg);
+      opacity:.9;
+    }
+    .art-orbit::before{
+      content:'';
+      position:absolute;inset:25px -22px;
+      border:1px solid var(--line-strong);
+      border-radius:50%;
+      opacity:.7;
+    }
+    .art-cross{
+      position:absolute;right:8px;top:2px;
+      font-size:76px;font-weight:400;
+      color:var(--orange);line-height:1;
+      transform:rotate(12deg);
+      animation:spinSlow 26s linear infinite;
+      transform-origin:center;
+    }
+    @keyframes spinSlow{to{transform:rotate(372deg)}}
+
+    .contact-card{
+      position:absolute;
+      background:var(--white);
+      border:1px solid #e6e7dd;
+      border-radius:10px;
+      box-shadow:var(--shadow-md);
+      transition:transform .65s var(--ease),box-shadow .65s var(--ease);
+      will-change:transform;
+    }
+
+    .contact-card-main{
+      left:2%;
+      top:7%;
+      width:78%;
+      padding:clamp(20px,2.2vw,28px);
+      transform:rotate(-5deg);
+      z-index:2;
+    }
+    .contact-card-main:hover{
+      transform:rotate(-2deg) translateY(-6px);
+      box-shadow:var(--shadow-lg);
+    }
+    .contact-card-main .eyebrow{
+      font-size:10px;
+      margin-bottom:10px;
+    }
+
+    .contact-line{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      padding:13px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .contact-line:last-child{border-bottom:0;padding-bottom:2px}
+    .contact-line > span{
+      font-size:9px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--muted-2);
+      font-weight:650;
+      flex-shrink:0;
+    }
+    .contact-line a,
+    .contact-line strong{
+      font-family:var(--display);
+      font-size:clamp(12.5px,1.1vw,15px);
+      font-weight:500;
+      letter-spacing:-.02em;
+      color:var(--ink);
+      text-align:right;
+      overflow-wrap:anywhere;
+      transition:color .3s var(--ease);
+    }
+    .contact-line a:hover{color:var(--orange)}
+
+    .contact-card-mini{
+      right:0;
+      bottom:2%;
+      width:56%;
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:16px 18px;
+      background:var(--ink);
+      color:var(--paper);
+      border-color:var(--ink);
+      transform:rotate(6deg);
+      z-index:3;
+      box-shadow:0 18px 44px rgba(26,28,25,.28);
+    }
+    .contact-card-mini:hover{
+      transform:rotate(2deg) translateY(-6px);
+      box-shadow:0 26px 60px rgba(26,28,25,.34);
+    }
+    .contact-card-mini strong{
+      display:block;
+      font-family:var(--display);
+      font-size:13px;
+      font-weight:500;
+      letter-spacing:-.02em;
+      color:#f5f3ec;
+    }
+    .contact-card-mini small{
+      display:block;
+      font-size:10px;
+      color:#a9ae9f;
+      margin-top:3px;
+      letter-spacing:.02em;
+    }
+    .pulse-dot{
+      width:9px;height:9px;
+      border-radius:50%;
+      background:#8fbb6b;
+      flex-shrink:0;
+      box-shadow:0 0 0 4px rgba(143,187,107,.18);
+      animation:pulseDot 2.8s ease-in-out infinite;
+    }
+    @keyframes pulseDot{
+      0%,100%{box-shadow:0 0 0 3px rgba(143,187,107,.20)}
+      50%{box-shadow:0 0 0 8px rgba(143,187,107,.05)}
+    }
+
+    .art-stamp{
+      position:absolute;left:-10px;bottom:-24px;
+      width:92px;height:92px;
+      background:var(--orange);
+      color:#fff;
+      border-radius:50%;
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      transform:rotate(-12deg);
+      font-size:8px;line-height:1.5;
+      text-align:center;letter-spacing:.09em;
+      text-transform:uppercase;
+      pointer-events:none;
+      box-shadow:0 12px 30px rgba(217,68,38,.28);
+    }
+    .art-stamp b{font-size:30px;font-weight:400;line-height:1.1;margin:1px 0}
+
+    /* --- Hero bottom strip --- */
+
+    .hero-bottom{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      border-top:1px solid var(--line);
+      padding-top:23px;
+      margin-top:clamp(32px,4vw,48px);
+      font-size:clamp(12.5px,0.95vw,14px);
+      font-weight:600;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--ink-2);
+      line-height:1.5;
+    }
+
+    .hero-bottom a{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      color:#ffffff;
+      background:var(--ink);
+      padding:10px 18px;
+      border-radius:999px;
+      text-shadow:none;
+      box-shadow:0 6px 18px rgba(26,28,25,.18);
+      transition:background .3s var(--ease),color .3s var(--ease),gap .3s var(--ease),transform .3s var(--ease);
+    }
+    .hero-bottom a:hover{
+      background:var(--orange);
+      color:#ffffff;
+      gap:14px;
+      transform:translateY(-2px);
+    }
+    .hero-bottom a .arrow{font-size:1em}
+
+    .hero-bottom .disciplines{
+      display:flex;
+      gap:25px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .hero-bottom .disciplines span+span::before{
+      content:'✳';
+      color:var(--orange);
+      margin-right:25px;
+      font-size:.95em;
+    }
+
+    /* Contact hero refinements */
+
+    .hero-contact{padding:clamp(44px,5.5vw,72px) 0 32px}
+    .hero-contact .hero-grid{min-height:520px}
+    .hero-contact .hero-art{height:520px}
+    .hero-contact .hero-bottom{
+      text-transform:none;
+      letter-spacing:.02em;
+      font-weight:550;
+    }
+    .hero-contact .hero-bottom .disciplines a{
+      transition:color .3s var(--ease);
+    }
+    .hero-contact .hero-bottom .disciplines a:hover{color:var(--orange)}
+
+    /* =========================================================
+       SECTION HEADER (shared)
+       ========================================================= */
+
+    .portfolio-header{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:clamp(24px,4vw,60px);
+      margin-bottom:clamp(36px,4.5vw,54px);
+    }
+    .portfolio-header-copy h2{margin-top:18px}
+    .portfolio-header-copy p:not(.eyebrow){
+      max-width:470px;
+      margin-top:14px;
+      font-size:14px;
+      line-height:1.75;
+      color:var(--muted);
+    }
+    .portfolio-header-link{
+      flex-shrink:0;
+      margin-bottom:6px;
+    }
+
+    /* =========================================================
+       CONTACT SECTION
+       ========================================================= */
+
+    .contact{
+      background:var(--paper-3);
+      border-top:1px solid #dde1d0;
+      border-bottom:1px solid #dde1d0;
+      padding:clamp(56px,8vw,88px) 0;
+      position:relative;
+      overflow:hidden;
+    }
+    .contact::after{
+      content:'';
+      position:absolute;
+      width:520px;height:520px;
+      left:-180px;bottom:-260px;
+      background:radial-gradient(circle,rgba(217,68,38,.10),transparent 65%);
+      pointer-events:none;
+    }
+    .contact-layout{
+      display:grid;grid-template-columns:1fr 1fr;
+      gap:clamp(40px,7vw,100px);
+      position:relative;
+      z-index:1;
+    }
+    .contact h2{
+      font-size:clamp(38px,5vw,66px);
+      margin:23px 0;
+    }
+    .contact h2 em{font-family:var(--serif);font-style:italic;font-weight:400}
+    .contact-copy{color:#5c6254;font-size:14px;max-width:350px}
+    .contact-email{
+      display:inline-block;
+      font-family:var(--display);
+      font-size:19px;letter-spacing:-.02em;
+      border-bottom:1px solid var(--ink);
+      margin-top:32px;
+      padding-bottom:2px;
+      overflow-wrap:anywhere;
+      transition:color .3s var(--ease),border-color .3s var(--ease);
+    }
+    .contact-email:hover{color:var(--orange);border-color:var(--orange)}
+
+    .contact-details{
+      margin-top:34px;
+      max-width:380px;
+      border-top:1px solid rgba(26,28,25,.14);
+    }
+    .contact-details li{
+      display:flex;
+      align-items:baseline;
+      justify-content:space-between;
+      gap:18px;
+      padding:13px 0;
+      border-bottom:1px solid rgba(26,28,25,.14);
+      font-size:12.5px;
+    }
+    .contact-details span{
+      font-size:9.5px;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+      color:#6b7263;
+      font-weight:650;
+      flex-shrink:0;
+    }
+    .contact-details strong{
+      font-weight:500;
+      text-align:right;
+      color:var(--ink);
+      letter-spacing:-.005em;
+    }
+
+    .contact-form{padding-top:5px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .field{
+      display:flex;flex-direction:column;gap:7px;
+      margin-bottom:18px;
+      position:relative;
+    }
+    .field label{font-size:11px;font-weight:600;letter-spacing:.02em}
+    .field input,.field select,.field textarea{
+      width:100%;
+      border:1px solid #c6ccba;
+      border-radius:5px;
+      color:var(--ink);
+      background:#f6f7f0;
+      padding:13px 14px;
+      font-size:12px;
+      min-height:48px;
+      transition:border-color .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);
+    }
+    .field textarea{resize:vertical;min-height:104px}
+    .field input:focus,.field select:focus,.field textarea:focus{
+      outline:none;
+      border-color:var(--orange);
+      background:#fff;
+      box-shadow:0 0 0 3px rgba(217,68,38,.10);
+    }
+    .field input::placeholder,.field textarea::placeholder{color:#a3a899}
+
+    .form-bottom{display:flex;align-items:center;gap:20px}
+    .form-bottom p{font-size:10px;color:#5c6254;max-width:190px;line-height:1.6}
+    .form-status{
+      font-size:12px;line-height:1.7;
+      margin-top:16px;color:#3b4e35;
+      min-height:1em;
+    }
+
+    /* =========================================================
+       REACH CARDS
+       ========================================================= */
+
+    .reach-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:clamp(14px,1.8vw,20px);
+    }
+    .reach-card{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      padding:clamp(22px,2.4vw,28px);
+      padding-right:clamp(52px,4vw,60px);
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:12px;
+      transition:border-color .4s var(--ease),transform .5s var(--ease),box-shadow .5s var(--ease);
+      will-change:transform;
+    }
+    .reach-card:hover{
+      border-color:var(--line-strong);
+      box-shadow:var(--shadow-md);
+      transform:translateY(-4px);
+    }
+    .reach-label{
+      font-size:9.5px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--muted-2);
+      font-weight:650;
+    }
+    .reach-card h3{
+      font-size:clamp(18px,1.7vw,21px);
+      letter-spacing:-.035em;
+      transition:color .3s var(--ease);
+    }
+    .reach-card:hover h3{color:var(--orange)}
+    .reach-card p{
+      font-size:12px;
+      line-height:1.75;
+      color:var(--muted);
+      flex:1;
+      margin:0;
+    }
+    .reach-arrow{
+      position:absolute;
+      right:18px;top:18px;
+      width:34px;height:34px;
+      border:1px solid var(--line);
+      border-radius:50%;
+      display:grid;place-items:center;
+      font-size:14px;line-height:1;
+      color:var(--ink);
+      transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease),transform .55s var(--ease);
+    }
+    .reach-card:hover .reach-arrow{
+      background:var(--orange);
+      color:#fff;
+      border-color:var(--orange);
+      transform:rotate(45deg) scale(1.05);
+    }
+
+    /* =========================================================
+       STEPS — "What happens next"
+       ========================================================= */
+
+    .steps-section{
+      background:linear-gradient(to bottom,var(--paper),var(--paper-2) 130%);
+      border-top:1px solid var(--line);
+    }
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:clamp(22px,3vw,34px);
+      border-top:1px solid var(--line);
+      padding-top:38px;
+    }
+    .step{
+      position:relative;
+      padding-top:4px;
+    }
+    .step::before{
+      content:'';
+      position:absolute;top:-39px;left:0;
+      width:0;height:1px;
+      background:var(--orange);
+      transition:width .8s var(--ease);
+    }
+    .step.is-visible::before{width:100%}
+    .step-num{
+      display:block;
+      font-size:10px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--orange);
+      font-weight:650;
+      margin-bottom:18px;
+    }
+    .step h3{font-size:clamp(19px,1.8vw,22px);margin-bottom:12px}
+    .step p{
+      font-size:12.5px;
+      line-height:1.8;
+      color:var(--muted);
+      max-width:250px;
+    }
+
+    /* =========================================================
+       FAQ
+       ========================================================= */
+
+    .faq-layout{
+      display:grid;
+      grid-template-columns:.78fr 1.22fr;
+      gap:clamp(40px,7vw,100px);
+    }
+    .faq-heading h2{margin-top:22px}
+    .faq-item{border-bottom:1px solid var(--line)}
+    .faq-item:first-child{border-top:1px solid var(--line)}
+    .faq-item summary{
+      list-style:none;
+      display:flex;justify-content:space-between;align-items:center;
+      gap:20px;
+      padding:24px 0;
+      font-size:14px;font-weight:550;
+      cursor:pointer;
+      transition:color .3s var(--ease);
+    }
+    summary::-webkit-details-marker{display:none}
+    .faq-item summary:hover{color:var(--orange)}
+    .faq-item summary::after{
+      content:'↗';
+      font-size:20px;flex-shrink:0;
+      transition:transform .4s var(--ease),color .3s var(--ease);
+    }
+    .faq-item[open] summary::after{content:'−';color:var(--orange);transform:rotate(180deg)}
+    .faq-item p{
+      font-size:13px;line-height:1.8;color:var(--muted);
+      padding:0 40px 24px 0;
+      animation:revealDown .45s var(--ease) both;
+    }
+    @keyframes revealDown{
+      from{opacity:0;transform:translateY(-8px)}
+      to{opacity:1;transform:none}
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    .site-footer{padding:56px 0 26px}
+    .footer-top{
+      display:grid;
+      grid-template-columns:1.2fr 1fr auto;
+      gap:clamp(24px,4vw,60px);
+      align-items:start;
+      padding-bottom:40px;
+      border-bottom:1px solid var(--line);
+    }
+    .footer-brand .brand{margin-bottom:14px}
+    .footer-tagline{font-size:12px;color:var(--muted);margin-top:4px}
+
+    .footer-links{
+      display:flex;
+      gap:clamp(24px,4vw,54px);
+      flex-wrap:wrap;
+    }
+    .footer-col h4{
+      font-family:var(--body);
+      font-size:10px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:650;
+      color:var(--muted-2);
+      margin-bottom:14px;
+    }
+    .footer-col nav{display:flex;flex-direction:column;gap:9px}
+    .footer-col a{
+      font-size:12px;
+      color:var(--ink);
+      position:relative;
+      width:fit-content;
+      transition:color .3s var(--ease);
+    }
+    .footer-col a:hover{color:var(--orange)}
+
+    .footer-newsletter{max-width:280px}
+    .footer-newsletter h4{
+      font-family:var(--body);
+      font-size:10px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:650;
+      color:var(--muted-2);
+      margin-bottom:14px;
+    }
+    .footer-newsletter p{
+      font-size:11px;
+      color:var(--muted);
+      margin-bottom:14px;
+      line-height:1.6;
+    }
+    .newsletter-form{
+      display:flex;
+      align-items:center;
+      gap:0;
+      border:1px solid var(--line);
+      border-radius:6px;
+      overflow:hidden;
+      background:var(--white);
+      transition:border-color .3s var(--ease),box-shadow .3s var(--ease);
+    }
+    .newsletter-form:focus-within{
+      border-color:var(--orange);
+      box-shadow:0 0 0 3px rgba(217,68,38,.10);
+    }
+    .newsletter-form input{
+      flex:1;
+      border:0;
+      background:transparent;
+      padding:11px 14px;
+      font-size:12px;
+      outline:none;
+      color:var(--ink);
+      min-width:0;
+    }
+    .newsletter-form input::placeholder{color:var(--muted-2)}
+    .newsletter-form button{
+      background:var(--ink);
+      color:#fff;
+      padding:11px 16px;
+      font-size:11px;
+      font-weight:600;
+      border:0;
+      transition:background .3s var(--ease);
+    }
+    .newsletter-form button:hover{background:var(--orange)}
+
+    .footer-bottom{
+      padding-top:24px;
+      display:flex;justify-content:space-between;gap:24px;
+      font-size:10px;color:var(--muted);
+    }
+    .footer-bottom a{
+      display:inline-flex;align-items:center;gap:8px;
+      transition:color .3s var(--ease),gap .3s var(--ease);
+    }
+    .footer-bottom a:hover{color:var(--orange);gap:12px}
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    @media (min-width:1500px){
+      .hero-grid{min-height:600px}
+      .hero-contact .hero-art{height:560px}
+    }
+
+    @media (max-width:1100px){
+      :root{--gutter:64px}
+      .nav{gap:22px}
+      .hero h1{font-size:64px}
+      .hero-art{height:490px}
+      .hero-contact .hero-art{height:470px}
+      .contact-card-main{width:80%}
+      .hero-actions{gap:20px}
+      .contact-layout{gap:60px}
+      .reach-grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media (max-width:900px){
+      .header-inner{height:78px}
+      .site-header.is-scrolled .header-inner{height:70px}
+      .nav{gap:17px}
+      .nav .button{margin-left:0;padding:10px 14px;gap:12px}
+      .brand-name{font-size:25px}
+      .brand img{width:40px;height:40px}
+
+      .hero{padding-top:44px}
+      .hero h1{font-size:54px}
+      .hero-contact .hero-grid{min-height:0}
+      .hero-contact .hero-art{height:450px}
+
+      .hero-intro{font-size:17.5px;max-width:500px;line-height:1.7}
+      .hero-note{font-size:14px}
+      .hero-bottom{font-size:12.5px;letter-spacing:.09em}
+      .hero-bottom .disciplines{gap:18px}
+      .hero-bottom .disciplines span+span::before{margin-right:18px}
+      .hero-bottom a{padding:9px 15px}
+      .hero-actions{gap:14px}
+      .hero-actions .button{padding:13px 18px;gap:16px}
+      .hero-actions .text-link{gap:10px;font-size:15px}
+
+      .section{padding-block:76px}
+
+      .portfolio-header{flex-direction:column;align-items:flex-start;gap:20px}
+      .portfolio-header-link{margin-bottom:0}
+
+      .contact-layout{gap:44px}
+      .form-row{grid-template-columns:1fr;gap:0}
+      .form-bottom{align-items:flex-start;flex-direction:column;gap:12px}
+      .form-bottom p{max-width:none}
+
+      .faq-layout{grid-template-columns:.85fr 1.15fr;gap:40px}
+
+      .steps{grid-template-columns:repeat(2,1fr);gap:34px 26px}
+      .step p{max-width:none}
+
+      .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+      .footer-newsletter{grid-column:1 / -1;max-width:none}
+    }
+
+    @media (max-width:760px){
+      :root{--gutter:40px}
+      .menu-toggle{display:block}
+
+      .header-inner{
+        height:auto;min-height:77px;
+        flex-wrap:wrap;gap:0;
+        position:relative;
+      }
+      .brand{min-height:77px}
+
+      .js .nav{
+        position:fixed;
+        inset:0;
+        z-index:-1;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:flex-start;
+        gap:6px;
+        padding:110px var(--gutter) 60px;
+        background:var(--paper);
+        opacity:0;
+        visibility:hidden;
+        transform:translateY(-12px);
+        transition:opacity .45s var(--ease),transform .55s var(--ease),visibility .45s;
+        pointer-events:none;
+      }
+      .js .nav.is-open{
+        opacity:1;
+        visibility:visible;
+        transform:none;
+        pointer-events:auto;
+      }
+      .js .nav > a{
+        font-family:var(--display);
+        font-size:clamp(28px,7vw,38px);
+        font-weight:500;
+        letter-spacing:-.04em;
+        padding:10px 0;
+        opacity:0;
+        transform:translateY(18px);
+        transition:opacity .5s var(--ease),transform .5s var(--ease),color .3s;
+      }
+      .js .nav.is-open > a{opacity:1;transform:none}
+      .js .nav.is-open > a:nth-child(1){transition-delay:.08s}
+      .js .nav.is-open > a:nth-child(2){transition-delay:.14s}
+      .js .nav.is-open > a:nth-child(3){transition-delay:.20s}
+      .js .nav.is-open > a:nth-child(4){transition-delay:.26s}
+      .js .nav .button{
+        margin-top:22px;
+        font-size:13px;
+        font-family:var(--body);
+        letter-spacing:0;
+        padding:15px 24px;
+        min-height:54px;
+        color:var(--btn-fg);
+      }
+      .js .nav > a::after{display:none}
+
+      .hero{padding:38px 0 25px}
+
+      .hero-video-scrim{
+        background:
+          linear-gradient(90deg,
+            rgba(245,243,236,.70) 0%,
+            rgba(245,243,236,.44) 60%,
+            rgba(245,243,236,.20) 100%),
+          linear-gradient(180deg,
+            rgba(245,243,236,.78) 0%,
+            rgba(245,243,236,.62) 45%,
+            rgba(245,243,236,.82) 100%);
+      }
+
+      .hero-grid{grid-template-columns:1fr;gap:20px;min-height:0}
+      .hero h1{
+        font-size:clamp(48px,11.4vw,76px);
+        margin-top:22px;
+        max-width:620px;
+      }
+      .hero-intro{max-width:560px;font-size:17.5px;line-height:1.7}
+      .hero-note{font-size:14.5px;margin-top:22px}
+      .hero-actions{gap:25px;margin-top:28px}
+      .hero-actions .button{padding:15px 22px;gap:24px}
+
+      .hero-contact .hero-art{
+        width:min(460px,100%);
+        height:440px;
+        margin:14px auto 0;
+      }
+      .contact-card-main{left:4%;top:4%;width:80%}
+      .contact-card-mini{width:54%;bottom:0}
+      .art-stamp{bottom:-20px;left:0;width:84px;height:84px}
+      .art-cross{font-size:66px;right:9px;top:8px}
+
+      .hero-bottom{
+        margin-top:36px;
+        padding-top:20px;
+        font-size:11.5px;
+        letter-spacing:.05em;
+        gap:12px;
+      }
+      .hero-bottom > a{display:none}
+      .hero-bottom .disciplines{
+        width:100%;
+        justify-content:flex-start;
+        gap:10px;
+        font-size:11.5px;
+        letter-spacing:.03em;
+      }
+      .hero-bottom .disciplines span+span::before{margin-right:10px}
+
+      .section{padding-block:64px}
+
+      .contact{padding:58px 0}
+      .contact-layout{grid-template-columns:1fr;gap:36px}
+      .contact h2{font-size:52px}
+      .contact-email{margin-top:24px}
+      .form-row{grid-template-columns:1fr 1fr;gap:15px}
+      .form-bottom{flex-direction:row;align-items:center;gap:20px}
+      .form-bottom p{max-width:160px}
+
+      .reach-grid{grid-template-columns:1fr 1fr;gap:14px}
+      .reach-card{padding:20px;padding-right:52px}
+
+      .steps{grid-template-columns:1fr 1fr;gap:30px 22px;padding-top:28px}
+      .step::before{display:none}
+      .step-num{margin-bottom:12px}
+
+      .faq-layout{grid-template-columns:1fr;gap:36px}
+
+      .footer-top{grid-template-columns:1fr;gap:28px;padding-bottom:32px}
+      .site-footer{padding-top:40px}
+      .footer-links{gap:32px}
+      .footer-bottom{font-size:9px;gap:15px;flex-wrap:wrap}
+    }
+
+    @media (max-width:420px){
+      .hero h1{font-size:clamp(34px,10.6vw,46px)}
+      .hero-intro{font-size:16px;line-height:1.7;max-width:none}
+      .hero-note{font-size:14px}
+      .hero-actions{gap:18px}
+      .hero-actions .button{font-size:12px;padding:15px 17px;gap:18px;white-space:nowrap}
+      .hero-actions .text-link{font-size:14px;white-space:nowrap}
+      .hero-bottom{font-size:10.5px;letter-spacing:.04em}
+      .hero-bottom .disciplines{font-size:10.5px;gap:6px}
+      .hero-bottom .disciplines span+span::before{margin-right:6px}
+
+      .hero-contact .hero-art{height:390px}
+      .contact-card-main{left:0;width:86%;padding:18px}
+      .contact-line{padding:10px 0}
+      .contact-card-mini{width:60%;padding:13px 14px;gap:9px}
+      .contact-card-mini strong{font-size:12px}
+      .contact-card-mini small{font-size:9px}
+      .art-stamp{width:78px;height:78px;font-size:7px;bottom:-16px}
+      .art-cross{font-size:56px}
+
+      .form-row{grid-template-columns:1fr;gap:0}
+      .contact h2{font-size:44px}
+      .reach-grid{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr;gap:26px}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{
+        animation-duration:.001ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.001ms !important;
+        scroll-behavior:auto !important;
+      }
+      html.js .reveal{opacity:1;transform:none}
+      html.js .hero h1 .line > span{transform:none}
+      .hero-video,
+      .hero-video-scrim{display:none}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient layers -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="ambient-orb ambient-orb-1" aria-hidden="true"></div>
+  <div class="ambient-orb ambient-orb-2" aria-hidden="true"></div>
+  <div class="progress-rail" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <header class="site-header" id="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="Raqeem home" data-cursor>
+        <img src="images/Raqeem-Advertising-Logo.png" alt="" width="46" height="46">
+        <span>
+          <span class="brand-name">Raqeem<i></i></span>
+          <span class="brand-sub">Advertising Services</span>
+        </span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" hidden>Menu</button>
+
+      <nav class="nav" id="main-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="our work.html">Our work</a>
+        <a href="our clients.html">Our clients</a>
+        <a class="button" href="contact.html" aria-current="page" data-magnetic>
+          Let's talk <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero hero-contact" id="top" aria-labelledby="hero-title">
+      <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260912_104303_0c6d60b2-9353-408e-9449-585108a22fb5.mp4" type="video/mp4">
+      </video>
+      <div class="hero-video-scrim" aria-hidden="true"></div>
+
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Let's talk · Dubai, UAE</p>
+            <h1 id="hero-title">
+              <span class="line" style="--l:0"><span>Let's make</span></span>
+              <span class="line" style="--l:1"><span><em>something</em></span></span>
+              <span class="line" style="--l:2"><span>matter.</span></span>
+            </h1>
+            <p class="hero-intro">Tell us where your brand is now and where you want it to go. A full identity, a campaign, or one very good idea — we'll help you find the next step.</p>
+            <div class="hero-actions">
+              <a class="button orange" href="#contact" data-magnetic>
+                Start a project <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+              <a class="text-link" href="mailto:info@raqeemuae.com">
+                info@raqeemuae.com <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <p class="hero-note"><span aria-hidden="true"></span>We reply to every enquiry within one business day.</p>
+          </div>
+
+          <div class="hero-art" id="hero-art">
+            <div class="art-orbit" aria-hidden="true"></div>
+            <span class="art-cross" aria-hidden="true">✳</span>
+
+            <div class="contact-card contact-card-main">
+              <p class="eyebrow">Direct line</p>
+              <div class="contact-line">
+                <span>Email</span>
+                <a href="mailto:info@raqeemuae.com">info@raqeemuae.com</a>
+              </div>
+              <div class="contact-line">
+                <span>Phone</span>
+                <!-- TODO: replace with the real studio number -->
+                <a href="tel:+971 56 467 7800">+971 56 467 7800</a>
+              </div>
+              <div class="contact-line">
+                <span>Studio</span>
+                <strong>Dubai, UAE</strong>
+              </div>
+            </div>
+
+            <div class="contact-card contact-card-mini">
+              <span class="pulse-dot" aria-hidden="true"></span>
+              <div>
+                <strong>Open for new projects</strong>
+                <small>Mon – Fri · 9:00 – 18:00 GST</small>
+              </div>
+            </div>
+
+            <div class="art-stamp" aria-hidden="true">
+              <span>Say</span><b>✳</b><span>Hello</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-bottom">
+          <div class="disciplines">
+            <span><a href="mailto:info@raqeemuae.com">info@raqeemuae.com</a></span>
+            <span><a href="tel:+971 56 467 7800">+971 56 467 7800</a></span>
+            <span>Dubai, United Arab Emirates</span>
+          </div>
+          <a href="#contact">Start your brief <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap contact-layout">
+        <div class="reveal">
+          <p class="eyebrow">Your next big thing starts here</p>
+          <h2 id="contact-title">Tell us what<br><em>you have in mind.</em></h2>
+          <p class="contact-copy">A new idea, a fresh start, or a brand ready for more. Share a few details and we'll come back with the right questions and a clear next step.</p>
+          <a class="contact-email" href="mailto:info@raqeemuae.com">info@raqeemuae.com ↗</a>
+
+          <ul class="contact-details">
+            <li><span>Studio</span><strong>Dubai, United Arab Emirates</strong></li>
+            <li><span>Hours</span><strong>Mon – Fri · 9:00 – 18:00 GST</strong></li>
+            <li><span>Response</span><strong>Within one business day</strong></li>
+          </ul>
+        </div>
+
+        <form class="contact-form reveal" id="contact-form" style="--i:1">
+          <div class="form-row">
+            <div class="field">
+              <label for="contact-name">Your name *</label>
+              <input id="contact-name" name="name" autocomplete="name" placeholder="Alex Morgan" required maxlength="100">
+            </div>
+            <div class="field">
+              <label for="contact-email">Email address *</label>
+              <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="alex@yourcompany.com" required maxlength="180">
+            </div>
+          </div>
+          <div class="field">
+            <label for="contact-service">What can we help with?</label>
+            <select id="contact-service" name="service">
+              <option value="A new project">Let's explore the possibilities</option>
+              <option value="Digital & social marketing">Digital &amp; social marketing</option>
+              <option value="Brand strategy & identity">Brand strategy &amp; identity</option>
+              <option value="Creative design & content">Creative design &amp; content</option>
+              <option value="Advertising & media">Advertising &amp; media</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="contact-message">A little about your project *</label>
+            <textarea id="contact-message" name="message" placeholder="Tell us about your brand, your goals, and what you have in mind…" required maxlength="1500" rows="3"></textarea>
+          </div>
+          <div class="form-bottom">
+            <button class="button orange" type="submit" data-magnetic>
+              Prepare my email <span class="arrow" aria-hidden="true">↗</span>
+            </button>
+            <p>Opens your email app with a draft for you to review and send.</p>
+          </div>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============ OTHER WAYS TO REACH US ============ -->
+    <section class="section" id="reach" aria-labelledby="reach-title">
+      <div class="wrap">
+        <div class="portfolio-header reveal">
+          <div class="portfolio-header-copy">
+            <p class="eyebrow">Other ways to reach us</p>
+            <h2 id="reach-title">Pick the door that suits you.</h2>
+            <p>Email is fastest, but there's more than one way to start the conversation. Choose whichever feels closest to how you already work.</p>
+          </div>
+          <a class="text-link portfolio-header-link" href="mailto:info@raqeemuae.com">
+            Email us directly <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <div class="reach-grid">
+          <a class="reach-card reveal" style="--i:0" href="mailto:info@raqeemuae.com">
+            <span class="reach-label">01 / Email</span>
+            <h3>Write to us</h3>
+            <p>Send a brief, a rough idea, or three sentences and a deadline. We'll read it properly and reply with real thoughts.</p>
+            <span class="reach-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="reach-card reveal" style="--i:1" href="tel:+97140000000">
+            <span class="reach-label">02 / Phone</span>
+            <h3>Give us a call</h3>
+            <p>Prefer talking it through? Call during studio hours and we'll point you to the right person straight away.</p>
+            <span class="reach-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="reach-card reveal" style="--i:2" href="https://maps.google.com/?q=Dubai,United+Arab+Emirates" target="_blank" rel="noopener">
+            <span class="reach-label">03 / Studio</span>
+            <h3>Come say hello</h3>
+            <p>We're based in Dubai and always happy to meet in person. Send a note first and we'll set a time.</p>
+            <span class="reach-arrow" aria-hidden="true">↗</span>
+          </a>
+
+          <a class="reach-card reveal" style="--i:3" href="#contact">
+            <span class="reach-label">04 / Brief</span>
+            <h3>Use the form</h3>
+            <p>Fill in the brief above and we'll turn it into an email draft. Nothing sends until you say so.</p>
+            <span class="reach-arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHAT HAPPENS NEXT ============ -->
+    <section class="section steps-section" aria-labelledby="steps-title">
+      <div class="wrap">
+        <div class="portfolio-header reveal">
+          <div class="portfolio-header-copy">
+            <p class="eyebrow">What happens next</p>
+            <h2 id="steps-title">From hello to kickoff.</h2>
+            <p>No long questionnaires and no guesswork. Here's how a first message turns into work we're both proud of.</p>
+          </div>
+        </div>
+
+        <div class="steps">
+          <article class="step reveal" style="--i:0">
+            <span class="step-num">01 / You write</span>
+            <h3>Send the brief.</h3>
+            <p>A few lines about your business, what you're planning, and any timing you already have in mind.</p>
+          </article>
+          <article class="step reveal" style="--i:1">
+            <span class="step-num">02 / We reply</span>
+            <h3>First response.</h3>
+            <p>Within one business day you'll hear from a real person — with initial thoughts and the questions we need answered.</p>
+          </article>
+          <article class="step reveal" style="--i:2">
+            <span class="step-num">03 / We talk</span>
+            <h3>A proper conversation.</h3>
+            <p>A short call or meeting to understand your goals and shape the scope together, honestly.</p>
+          </article>
+          <article class="step reveal" style="--i:3">
+            <span class="step-num">04 / We propose</span>
+            <h3>Clear next steps.</h3>
+            <p>A written approach with deliverables, timeline, and pricing — everything you need to decide comfortably.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section" aria-labelledby="faq-title">
+      <div class="wrap faq-layout">
+        <div class="faq-heading reveal">
+          <p class="eyebrow">Before you send that message</p>
+          <h2 id="faq-title">Good questions.<br>Clear answers.</h2>
+        </div>
+        <div class="reveal" style="--i:1">
+          <details class="faq-item" open>
+            <summary>How quickly will we hear back?</summary>
+            <p>Every enquiry gets a reply within one business day, usually sooner. If your timeline is tight, say so in your message and we'll prioritise it.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What should we include in our first message?</summary>
+            <p>A sentence about your business, what you'd like to achieve, any deadline you're working towards, and a rough budget range if you have one. That's enough for a useful first reply — we'll ask for anything else we need.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do you work with clients outside the UAE?</summary>
+            <p>Yes. We work with brands across the region and further afield. Most collaboration happens over calls and shared documents, with in-person sessions when it makes sense.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can we meet in person?</summary>
+            <p>Of course. We're based in Dubai and happy to host you at the studio or come to you. Mention it in your message and we'll arrange a time.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="index.html" aria-label="Raqeem home">
+            <img src="images/Raqeem-Advertising-Logo.png" alt="" width="46" height="46">
+            <span>
+              <span class="brand-name">raqeem<i>.</i></span>
+              <span class="brand-sub">Advertisement Services</span>
+            </span>
+          </a>
+          <p class="footer-tagline">Ideas that connect. Brands that grow.</p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <nav aria-label="Explore">
+              <a href="index.html">Home</a>
+               <a href="our work.html">Our Works</a>
+              <a href="our clients.html">Our clients</a>
+            </nav>
+          </div>
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <nav aria-label="Connect">
+              <a href="#contact">Get in touch ↗</a>
+              <a href="mailto:info@raqeemuae.com">info@raqeemuae.com</a>
+               <a href="tel:+971 56 467 7800">+971 56 467 7800</a>
+              <a href="#top">Back to top ↑</a>
+            </nav>
+          </div>
+        </div>
+
+        <div class="footer-newsletter">
+          <h4>Newsletter</h4>
+          <p>Occasional notes on brand, design, and the work we make.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('input').value=''; this.querySelector('button').textContent='Thanks!';">
+            <input type="email" placeholder="you@company.com" aria-label="Email address" required>
+            <button type="submit">Join</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year">2026</span> Raqeem Advertisement Services. All rights reserved.</p>
+        <a href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const root = document.documentElement;
+      root.classList.add('js');
+
+      const $  = (sel, ctx = document) => ctx.querySelector(sel);
+      const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+      $('#year').textContent = new Date().getFullYear();
+
+      /* ---------------------------------------------------------
+         0. Hero background video
+         --------------------------------------------------------- */
+      const heroVideo = $('.hero-video');
+      if (heroVideo) {
+        if (prefersReduced) {
+          heroVideo.removeAttribute('autoplay');
+          heroVideo.pause();
+        } else if ('IntersectionObserver' in window) {
+          const videoObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const p = heroVideo.play();
+                if (p && typeof p.catch === 'function') p.catch(() => {});
+              } else {
+                heroVideo.pause();
+              }
+            });
+          }, { threshold: 0.05 });
+          videoObserver.observe(heroVideo);
+        }
+      }
+
+      /* ---------------------------------------------------------
+         1. Hero reveal
+         --------------------------------------------------------- */
+      const hero = $('.hero');
+      if (hero) {
+        requestAnimationFrame(() => setTimeout(() => hero.classList.add('is-ready'), 120));
+      }
+
+      /* ---------------------------------------------------------
+         2. Scroll progress + sticky header
+         --------------------------------------------------------- */
+      const progressBar = $('#progress-bar');
+      const header = $('#site-header');
+      let scrollQueued = false;
+
+      function onScroll() {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+        if (progressBar) progressBar.style.width = pct + '%';
+        if (header) header.classList.toggle('is-scrolled', window.scrollY > 12);
+        scrollQueued = false;
+      }
+      window.addEventListener('scroll', () => {
+        if (!scrollQueued) {
+          scrollQueued = true;
+          requestAnimationFrame(onScroll);
+        }
+      }, { passive: true });
+      onScroll();
+
+      /* ---------------------------------------------------------
+         3. Custom cursor + magnetic + hero parallax
+         --------------------------------------------------------- */
+      if (finePointer && !prefersReduced) {
+        const dot = $('.cursor-dot');
+        const ring = $('.cursor-ring');
+        let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+        let rx = mx, ry = my;
+        let raf = null;
+
+        const tick = () => {
+          rx += (mx - rx) * 0.16;
+          ry += (my - ry) * 0.16;
+          ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+          raf = requestAnimationFrame(tick);
+        };
+
+        window.addEventListener('pointermove', e => {
+          mx = e.clientX; my = e.clientY;
+          dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+          if (!raf) raf = requestAnimationFrame(tick);
+          document.body.classList.add('cursor-on');
+        }, { passive: true });
+
+        document.addEventListener('pointerleave', () => {
+          document.body.classList.remove('cursor-on');
+          if (raf) { cancelAnimationFrame(raf); raf = null; }
+        });
+
+        const hoverTargets = 'a, button, [data-cursor], summary, .contact-card, .reach-card';
+        document.addEventListener('pointerover', e => {
+          if (e.target.closest(hoverTargets)) document.body.classList.add('cursor-hover');
+        });
+        document.addEventListener('pointerout', e => {
+          if (e.target.closest(hoverTargets)) document.body.classList.remove('cursor-hover');
+        });
+
+        // Magnetic buttons
+        $$('[data-magnetic]').forEach(el => {
+          el.addEventListener('pointermove', e => {
+            const r = el.getBoundingClientRect();
+            const relX = e.clientX - (r.left + r.width / 2);
+            const relY = e.clientY - (r.top + r.height / 2);
+            el.style.transform = `translate(${relX * 0.16}px, ${relY * 0.22}px)`;
+          });
+          el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+        });
+
+        // Hero card stack parallax
+        const art = $('#hero-art');
+        if (art) {
+          const main = art.querySelector('.contact-card-main');
+          const mini = art.querySelector('.contact-card-mini');
+          art.addEventListener('pointermove', e => {
+            const r = art.getBoundingClientRect();
+            const px = (e.clientX - r.left) / r.width - 0.5;
+            const py = (e.clientY - r.top) / r.height - 0.5;
+            if (main) main.style.transform = `rotate(${-5 + px * 3}deg) translate(${px * 10}px, ${py * 8}px)`;
+            if (mini) mini.style.transform = `rotate(${6 + px * 3}deg) translate(${px * -8}px, ${py * -6}px)`;
+          });
+          art.addEventListener('pointerleave', () => {
+            if (main) main.style.transform = '';
+            if (mini) mini.style.transform = '';
+          });
+        }
+      }
+
+      /* ---------------------------------------------------------
+         4. Scroll reveal
+         --------------------------------------------------------- */
+      if ('IntersectionObserver' in window && !prefersReduced) {
+        const revealObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+        $$('.reveal').forEach(el => revealObserver.observe(el));
+      } else {
+        $$('.reveal').forEach(el => el.classList.add('is-visible'));
+      }
+
+      /* ---------------------------------------------------------
+         5. Mobile navigation
+         --------------------------------------------------------- */
+      const menu = $('.menu-toggle');
+      const nav = $('#main-nav');
+      if (menu && nav) {
+        menu.hidden = false;
+
+        function closeMenu(returnFocus = false) {
+          if (!nav.classList.contains('is-open')) return;
+          nav.classList.remove('is-open');
+          menu.setAttribute('aria-expanded', 'false');
+          menu.textContent = 'Menu';
+          document.body.classList.remove('is-locked');
+          if (returnFocus) menu.focus({ preventScroll: true });
+        }
+        function openMenu() {
+          nav.classList.add('is-open');
+          menu.setAttribute('aria-expanded', 'true');
+          menu.textContent = 'Close';
+          document.body.classList.add('is-locked');
+        }
+        menu.addEventListener('click', () => {
+          if (nav.classList.contains('is-open')) closeMenu();
+          else openMenu();
+        });
+        nav.addEventListener('click', e => {
+          if (e.target.closest('a')) closeMenu();
+        });
+        document.addEventListener('keydown', e => {
+          if (e.key === 'Escape') closeMenu(true);
+        });
+        window.matchMedia('(min-width: 761px)').addEventListener('change', e => {
+          if (e.matches) closeMenu();
+        });
+      }
+
+      /* ---------------------------------------------------------
+         6. Contact form → mailto draft
+         --------------------------------------------------------- */
+      const form = $('#contact-form');
+      if (form) {
+        form.addEventListener('submit', event => {
+          event.preventDefault();
+          const data = new FormData(form);
+          const name = String(data.get('name') || '').trim();
+          const message = String(data.get('message') || '').trim();
+          const status = $('#form-status');
+
+          if (!name || !message) {
+            status.textContent = 'Please add your name and a short description of your project.';
+            $(!name ? '#contact-name' : '#contact-message').focus();
+            return;
+          }
+
+          const subject = `Project enquiry: ${data.get('service')}`;
+          const body =
+            `Hello Raqeem,\n\n${message}\n\n` +
+            `Interested in: ${data.get('service')}\n` +
+            `Name: ${name}\nEmail: ${data.get('email')}\n\n` +
+            `Looking forward to connecting.`;
+
+          status.textContent =
+            'Your email draft is ready. If your email app does not open, send your brief directly to info@raqeemuae.com. Nothing has been sent yet.';
+
+          window.location.href =
+            `mailto:info@raqeemuae.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        });
+      }
+
+      /* ---------------------------------------------------------
+         7. Steps underline reveal
+         --------------------------------------------------------- */
+      if ('IntersectionObserver' in window && !prefersReduced) {
+        const stepObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              stepObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.4 });
+        $$('.step').forEach(s => stepObserver.observe(s));
+      } else {
+        $$('.step').forEach(s => s.classList.add('is-visible'));
+      }
+
+    })();
+  </script>
+</body>
+</html> 

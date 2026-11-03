@@ -1,0 +1,2696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore Raqeem's digital marketing, brand design, and creative campaigns. Meet our clients, discover our work, and let's build your brand's next chapter.">
+  <meta name="theme-color" content="#f5f3ec">
+  <title>Raqeem — Ideas that connect. Brands that grow.</title>
+  <link rel="icon" type="image/png" href="images/Raqeem-Advertising-Logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,450;9..40,500;9..40,550;9..40,600;9..40,650;9..40,700&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* =========================================================
+       RAQEEM — PREMIUM BUILD
+       Design tokens → base → components → responsive
+       ========================================================= */
+
+    :root{
+      --paper:#f5f3ec;
+      --paper-2:#efede3;
+      --paper-3:#e8ebdf;
+      --white:#fffefa;
+      --ink:#1a1c19;
+      --ink-2:#2c2f2a;
+      --muted:#6b6e63;
+      --muted-2:#85887c;
+      --orange:#d94426;
+      --orange-deep:#b5341a;
+      --green:#4d604d;
+      --line:#dedfd4;
+      --line-strong:#c9cbbc;
+      --display:'Space Grotesk',system-ui,sans-serif;
+      --body:'DM Sans',system-ui,sans-serif;
+      --serif:'Instrument Serif',Georgia,serif;
+      --ease:cubic-bezier(.22,1,.36,1);
+      --ease-out:cubic-bezier(.16,1,.3,1);
+      --radius:8px;
+      --shadow-sm:0 1px 2px rgba(26,28,25,.05),0 6px 16px rgba(26,28,25,.05);
+      --shadow-md:0 2px 6px rgba(26,28,25,.06),0 20px 44px rgba(26,28,25,.09);
+      --shadow-lg:0 4px 10px rgba(26,28,25,.07),0 38px 80px rgba(26,28,25,.14);
+      --gutter:96px;
+    }
+
+    *,*::before,*::after{box-sizing:border-box}
+
+    /* Premium scrollbar */
+    html{
+      scroll-behavior:smooth;
+      scroll-padding-top:110px;
+      -webkit-text-size-adjust:100%;
+      scrollbar-color:var(--line-strong) var(--paper-2);
+      scrollbar-width:thin;
+    }
+    ::-webkit-scrollbar{width:11px;height:11px}
+    ::-webkit-scrollbar-track{background:var(--paper-2)}
+    ::-webkit-scrollbar-thumb{
+      background:var(--line-strong);
+      border:3px solid var(--paper-2);
+      border-radius:8px;
+      transition:background .3s;
+    }
+    ::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+
+    body{
+      margin:0;
+      background:var(--paper);
+      color:var(--ink);
+      font-family:var(--body);
+      font-size:16px;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+    }
+    body.modal-open{overflow:hidden}
+    body.is-locked{overflow:hidden}
+
+    button,input,select,textarea{font:inherit;color:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    button{cursor:pointer;background:none;border:0}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    h1,h2,h3,h4,p,figure,dl,dd{margin:0}
+    ul{margin:0;padding:0;list-style:none}
+
+    h1,h2,h3,h4{
+      font-family:var(--display);
+      font-weight:500;
+      line-height:1.06;
+      letter-spacing:-.045em;
+      text-wrap:balance;
+    }
+    h2{font-size:clamp(34px,4.2vw,58px)}
+    h3{font-size:clamp(20px,2vw,26px);letter-spacing:-.035em}
+    p{text-wrap:pretty}
+
+    ::selection{background:#e4edb8;color:var(--ink)}
+
+    :focus-visible{
+      outline:2px solid var(--orange);
+      outline-offset:4px;
+      border-radius:2px;
+    }
+
+    [hidden]{display:none !important}
+
+    /* ---------- Layout primitives ---------- */
+
+    .wrap{
+      width:min(1320px,calc(100% - var(--gutter)));
+      margin-inline:auto;
+    }
+    .section{padding-block:clamp(72px,9vw,116px)}
+
+    /* ---------- Typographic details ---------- */
+
+    .eyebrow{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:11px;
+      letter-spacing:.16em;
+      font-weight:650;
+      text-transform:uppercase;
+      line-height:1.5;
+      color:var(--ink);
+    }
+    .eyebrow::before{
+      content:'';
+      width:7px;height:7px;
+      background:var(--orange);
+      border-radius:50%;
+      flex-shrink:0;
+      box-shadow:0 0 0 4px rgba(217,68,38,.12);
+    }
+    .muted{color:var(--muted)}
+
+    em{
+      font-style:normal;
+      color:var(--orange);
+    }
+    .serif-em{
+      font-family:var(--serif);
+      font-style:italic;
+      font-weight:400;
+      letter-spacing:-.01em;
+    }
+
+    .arrow{
+      display:inline-block;
+      font-size:1.1em;
+      line-height:1;
+      transition:transform .35s var(--ease);
+      will-change:transform;
+    }
+
+    /* ---------- Buttons & links ---------- */
+
+    .button{
+      --btn-bg:var(--ink);
+      --btn-fg:var(--white);
+      --btn-border:var(--ink);
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:24px;
+      min-height:54px;
+      padding:15px 26px;
+      background:var(--btn-bg);
+      color:var(--btn-fg);
+      border:1px solid var(--btn-border);
+      border-radius:6px;
+      font-size:13px;
+      font-weight:600;
+      letter-spacing:.005em;
+      overflow:hidden;
+      isolation:isolate;
+      transition:color .35s var(--ease),border-color .35s var(--ease),transform .4s var(--ease);
+      will-change:transform;
+    }
+    .button::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:var(--orange);
+      transform:translateY(101%);
+      transition:transform .45s var(--ease);
+      z-index:-1;
+    }
+    .button:hover{color:#fff;border-color:var(--orange)}
+    .button:hover::before{transform:translateY(0)}
+    .button:hover .arrow{transform:translate(3px,-3px)}
+    .button.orange{--btn-bg:var(--orange);--btn-fg:#fff;--btn-border:var(--orange)}
+    .button.orange::before{background:var(--orange-deep)}
+    .button.orange:hover{border-color:var(--orange-deep)}
+
+    .text-link{
+      display:inline-flex;
+      align-items:center;
+      gap:18px;
+      font-size:13px;
+      font-weight:600;
+      padding-block:9px;
+      border-bottom:1px solid currentColor;
+      transition:color .3s var(--ease),gap .3s var(--ease);
+    }
+    .text-link:hover{color:var(--orange);gap:23px}
+    .text-link:hover .arrow{transform:translate(2px,-2px)}
+
+    /* ---------- Accessibility ---------- */
+
+    .skip-link{
+      position:fixed;top:10px;left:10px;z-index:1000;
+      background:var(--ink);color:#fff;
+      padding:10px 20px;border-radius:4px;
+      transform:translateY(-180%);
+      transition:transform .25s var(--ease);
+    }
+    .skip-link:focus{transform:none}
+
+    /* ---------- Ambient layers ---------- */
+
+    .grain{
+      position:fixed;inset:0;z-index:9997;pointer-events:none;
+      opacity:.05;
+      mix-blend-mode:multiply;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .ambient-orb{
+      position:fixed;
+      pointer-events:none;
+      z-index:-1;
+      border-radius:50%;
+      filter:blur(90px);
+      will-change:transform;
+    }
+    .ambient-orb-1{
+      width:520px;height:520px;
+      background:radial-gradient(circle,rgba(217,68,38,.14),transparent 70%);
+      top:15%;left:-160px;
+    }
+    .ambient-orb-2{
+      width:460px;height:460px;
+      background:radial-gradient(circle,rgba(77,96,77,.10),transparent 70%);
+      top:55%;right:-140px;
+    }
+
+    .progress-rail{
+      position:fixed;top:0;left:0;right:0;
+      height:2px;z-index:9996;
+      background:transparent;
+      pointer-events:none;
+    }
+    .progress-bar{
+      height:100%;
+      width:0%;
+      background:var(--orange);
+      transform-origin:left center;
+      transition:width .1s linear;
+    }
+
+    .cursor-dot,.cursor-ring{
+      position:fixed;top:0;left:0;
+      pointer-events:none;
+      z-index:9999;
+      border-radius:50%;
+      transform:translate(-50%,-50%);
+      opacity:0;
+      transition:opacity .3s var(--ease);
+    }
+    .cursor-dot{
+      width:7px;height:7px;
+      background:var(--orange);
+      transition:opacity .3s var(--ease),width .3s var(--ease),height .3s var(--ease);
+    }
+    .cursor-ring{
+      width:38px;height:38px;
+      border:1px solid rgba(26,28,25,.35);
+      transition:opacity .3s var(--ease),width .35s var(--ease),height .35s var(--ease),border-color .35s var(--ease),background .35s var(--ease);
+    }
+    body.cursor-on .cursor-dot,
+    body.cursor-on .cursor-ring{opacity:1}
+    body.cursor-hover .cursor-ring{
+      width:64px;height:64px;
+      border-color:rgba(217,68,38,.55);
+      background:rgba(217,68,38,.07);
+    }
+    body.cursor-hover .cursor-dot{width:0;height:0}
+    @media (hover:none),(pointer:coarse){
+      .cursor-dot,.cursor-ring{display:none}
+      body.cursor-on .cursor-dot,body.cursor-on .cursor-ring{opacity:0}
+    }
+
+    /* ---------- Page loader (video) ---------- */
+
+    .loader{
+      position:fixed;
+      inset:0;
+      z-index:10000;
+      background:var(--paper);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      transition:opacity .7s var(--ease),visibility .7s;
+    }
+    .loader.is-done{
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+    }
+    .loader-video{
+      width:100%;
+      height:100%;
+      object-fit:cover;      /* switch to 'contain' if you don't want to crop */
+      display:block;
+      background:var(--paper);
+    }
+
+    /* ---------- Scroll reveal ---------- */
+
+    html.js .reveal{
+      opacity:0;
+      transform:translateY(26px);
+      transition:opacity .9s var(--ease-out),transform .9s var(--ease-out);
+      transition-delay:calc(var(--i,0) * 70ms);
+    }
+    html.js .reveal.is-visible{opacity:1;transform:none}
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+
+    .site-header{
+      position:sticky;top:0;z-index:60;
+      background:rgba(245,243,236,.82);
+      border-bottom:1px solid transparent;
+      backdrop-filter:blur(18px) saturate(1.2);
+      -webkit-backdrop-filter:blur(18px) saturate(1.2);
+      transition:border-color .4s var(--ease),background .4s var(--ease);
+    }
+    .site-header.is-scrolled{
+      border-bottom-color:var(--line);
+      background:rgba(245,243,236,.94);
+    }
+    .header-inner{
+      height:92px;
+      display:flex;align-items:center;justify-content:space-between;gap:30px;
+      transition:height .4s var(--ease);
+    }
+    .site-header.is-scrolled .header-inner{height:76px}
+
+    .brand{
+      display:inline-flex;align-items:center;gap:11px;
+      flex-shrink:0;
+    }
+    .brand img{
+      width:46px;height:46px;object-fit:contain;
+      transition:transform .6s var(--ease);
+    }
+    .brand:hover img{transform:rotate(-8deg) scale(1.04)}
+    .brand-name{
+      display:block;
+      font-family:var(--display);
+      font-size:28px;line-height:1.02;
+      letter-spacing:-1.6px;font-weight:700;
+    }
+    .brand-name i{color:var(--orange);font-style:normal}
+    .brand-sub{
+      display:block;
+      font-size:8px;letter-spacing:.19em;
+      margin-top:5px;text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    .nav{display:flex;align-items:center;gap:32px}
+    .nav > a{
+      font-size:12px;font-weight:550;
+      position:relative;
+      padding-block:4px;
+    }
+    .nav > a:not(.button)::after{
+      content:'';
+      position:absolute;bottom:-3px;left:0;
+      width:0;height:1.5px;
+      background:var(--orange);
+      transition:width .35s var(--ease);
+    }
+    .nav > a:hover::after,
+    .nav > a[aria-current="location"]::after{width:100%}
+    .nav > a[aria-current="location"]{color:var(--orange)}
+    .nav .button{margin-left:10px;min-height:44px;padding:11px 20px}
+
+    .menu-toggle{
+      display:none;
+      border:1px solid var(--line);
+      background:none;
+      border-radius:5px;
+      min-width:48px;min-height:44px;
+      font-size:12px;font-weight:600;
+      transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease);
+    }
+    .menu-toggle[aria-expanded="true"]{
+      background:var(--ink);color:#fff;border-color:var(--ink);
+    }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    .hero{
+      padding:clamp(48px,6vw,80px) 0 40px;
+      overflow:hidden;
+      position:relative;
+      isolation:isolate;
+    }
+
+    /* --- Hero video background --- */
+
+    .hero-video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      z-index:0;
+      pointer-events:none;
+      filter:saturate(.96) contrast(1.04) brightness(1.01);
+    }
+
+    /* Light paper veil: strong enough to protect the copy on the left,
+       almost clear on the right so the footage reads as motion and texture. */
+    .hero-video-scrim{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background:
+        linear-gradient(90deg,
+          rgba(245,243,236,.80) 0%,
+          rgba(245,243,236,.64) 30%,
+          rgba(245,243,236,.34) 58%,
+          rgba(245,243,236,.12) 84%,
+          rgba(245,243,236,.04) 100%),
+        linear-gradient(180deg,
+          rgba(245,243,236,.34) 0%,
+          rgba(245,243,236,.06) 36%,
+          rgba(245,243,236,.10) 72%,
+          rgba(245,243,236,.30) 100%);
+    }
+
+    /* Guarantees crisp type even where the footage shows through */
+    .hero h1,
+    .hero-intro,
+    .hero-note,
+    .hero-copy > .eyebrow,
+    .hero-bottom{
+      text-shadow:
+        0 1px 1px rgba(245,243,236,.72),
+        0 0 22px rgba(245,243,236,.55);
+    }
+    .hero-actions .text-link{
+      text-shadow:
+        0 1px 1px rgba(245,243,236,.72),
+        0 0 18px rgba(245,243,236,.50);
+    }
+
+    /* Hero content sits above the video layer */
+    .hero-grid,
+    .hero-bottom{
+      position:relative;
+      z-index:1;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.04fr 1fr;
+      align-items:center;
+      gap:clamp(16px,3vw,40px);
+      min-height:560px;
+    }
+
+    .hero h1{
+      font-size:clamp(46px,5.8vw,84px);
+      line-height:1.02;
+      letter-spacing:-.062em;
+      margin:26px 0 26px;
+      position:relative;z-index:2;
+    }
+    .hero h1 .line{
+      display:block;
+      overflow:hidden;
+      padding-bottom:.06em;
+    }
+    .hero h1 .line > span{
+      display:block;
+    }
+    html.js .hero h1 .line > span{
+      transform:translateY(110%);
+      transition:transform 1.05s var(--ease-out);
+      transition-delay:calc(var(--l,0) * 110ms + 120ms);
+    }
+    html.js .hero.is-ready h1 .line > span{transform:translateY(0)}
+    .hero h1 em{
+      font-family:var(--serif);
+      font-style:italic;
+      font-weight:400;
+      color:var(--orange);
+      letter-spacing:-.015em;
+      font-size:1.02em;
+    }
+
+    /* ✅ Enlarged hero description for better legibility */
+    .hero-intro{
+      max-width:520px;
+      font-size:clamp(17px,1.35vw,19.5px);
+      line-height:1.72;
+      color:var(--ink-2);
+      font-weight:400;
+      letter-spacing:-.005em;
+    }
+    .hero-actions{
+      display:flex;align-items:center;gap:28px;
+      margin-top:32px;
+    }
+    /* ✅ Larger, clearly clickable "Let's talk" link */
+    .hero-actions .text-link{
+      border:0;
+      font-size:16px;
+      font-weight:600;
+      gap:10px;
+      padding-block:12px;
+    }
+
+    /* ✅ Enlarged hero note — "Your next chapter..." */
+    .hero-note{
+      display:flex;
+      align-items:center;
+      gap:11px;
+      margin-top:34px;
+      font-size:clamp(13.5px,1.05vw,15px);
+      line-height:1.5;
+      font-weight:500;
+      letter-spacing:-.005em;
+      color:var(--ink-2);
+    }
+    .hero-note span{
+      width:8px;height:8px;background:var(--green);
+      border-radius:50%;
+      flex-shrink:0;
+      box-shadow:0 0 0 4px rgba(77,96,77,.14);
+      animation:pulse 2.8s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%,100%{box-shadow:0 0 0 3px rgba(77,96,77,.14)}
+      50%{box-shadow:0 0 0 7px rgba(77,96,77,.05)}
+    }
+
+    /* --- Hero art composition --- */
+
+    .hero-art{
+      height:560px;
+      position:relative;
+      perspective:1200px;
+    }
+    .art-orbit{
+      position:absolute;
+      inset:32px 6px 36px 14px;
+      border:1px solid var(--line-strong);
+      border-radius:50%;
+      transform:rotate(-22deg);
+      opacity:.9;
+    }
+    .art-orbit::before{
+      content:'';
+      position:absolute;inset:25px -22px;
+      border:1px solid var(--line-strong);
+      border-radius:50%;
+      opacity:.7;
+    }
+    .art-cross{
+      position:absolute;right:8px;top:2px;
+      font-size:76px;font-weight:400;
+      color:var(--orange);line-height:1;
+      transform:rotate(12deg);
+      animation:spinSlow 26s linear infinite;
+      transform-origin:center;
+    }
+    @keyframes spinSlow{to{transform:rotate(372deg)}}
+
+    .hero-project{
+      position:absolute;left:22px;top:34px;
+      width:76%;
+      padding:12px;
+      background:var(--white);
+      border:1px solid #e6e7dd;
+      border-radius:8px;
+      transform:rotate(-7deg);
+      box-shadow:var(--shadow-md);
+      transition:transform .65s var(--ease),box-shadow .65s var(--ease);
+      text-align:left;
+      color:var(--ink);
+      will-change:transform;
+    }
+    .hero-project:hover{
+      transform:rotate(-3.5deg) translateY(-6px);
+      box-shadow:var(--shadow-lg);
+    }
+    .hero-project img{
+      width:100%;height:340px;
+      object-fit:cover;border-radius:4px;
+    }
+    .hero-project-caption{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:15px 4px 5px;
+    }
+    .hero-project-caption strong{
+      display:block;
+      font-family:var(--display);
+      font-size:19px;font-weight:500;letter-spacing:-.02em;
+    }
+    .hero-project-caption small{font-size:10px;color:var(--muted)}
+
+    .mini-project{
+      position:absolute;right:0;bottom:17px;
+      width:39%;
+      padding:8px;
+      background:var(--white);
+      border:1px solid #e6e7dd;
+      box-shadow:var(--shadow-md);
+      border-radius:7px;
+      transform:rotate(9deg);
+      transition:transform .55s var(--ease),box-shadow .55s var(--ease);
+      text-align:left;
+      color:var(--ink);
+      will-change:transform;
+    }
+    .mini-project:hover{
+      transform:rotate(4deg) translateY(-6px);
+      box-shadow:var(--shadow-lg);
+    }
+    .mini-project img{
+      width:100%;height:205px;
+      object-fit:cover;border-radius:4px;
+    }
+    .mini-project span{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:11px 4px 3px;
+      font-size:11px;font-weight:600;
+    }
+
+    .art-stamp{
+      position:absolute;left:-10px;bottom:-24px;
+      width:92px;height:92px;
+      background:var(--orange);
+      color:#fff;
+      border-radius:50%;
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      transform:rotate(-12deg);
+      font-size:8px;line-height:1.5;
+      text-align:center;letter-spacing:.09em;
+      text-transform:uppercase;
+      pointer-events:none;
+      box-shadow:0 12px 30px rgba(217,68,38,.28);
+    }
+    .art-stamp b{font-size:30px;font-weight:400;line-height:1.1;margin:1px 0}
+
+    /* ✅ Enlarged hero bottom strip — disciplines + scroll cue */
+    .hero-bottom{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      border-top:1px solid var(--line);
+      padding-top:23px;
+      margin-top:clamp(32px,4vw,48px);
+      font-size:clamp(12.5px,0.95vw,14px);
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--ink-2);
+      line-height:1.5;
+    }
+
+    /* ✅ "Scroll to discover ↓" — white text on an ink pill so it
+       stays clearly visible over the light paper scrim and the video. */
+    .hero-bottom a{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      color:#ffffff;
+      background:var(--ink);
+      padding:10px 18px;
+      border-radius:999px;
+      text-shadow:none;
+      box-shadow:0 6px 18px rgba(26,28,25,.18);
+      transition:background .3s var(--ease),color .3s var(--ease),gap .3s var(--ease),transform .3s var(--ease);
+    }
+    .hero-bottom a:hover{
+      background:var(--orange);
+      color:#ffffff;
+      gap:14px;
+      transform:translateY(-2px);
+    }
+    .hero-bottom a .arrow{font-size:1em}
+
+    .hero-bottom .disciplines{
+      display:flex;
+      gap:25px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .hero-bottom .disciplines span+span::before{
+      content:'✳';
+      color:var(--orange);
+      margin-right:25px;
+      font-size:.95em;
+    }
+
+    /* =========================================================
+       PORTFOLIO — PREMIUM CARDS
+       ========================================================= */
+
+    .portfolio-header{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:clamp(24px,4vw,60px);
+      margin-bottom:clamp(36px,4.5vw,54px);
+    }
+    .portfolio-header-copy h2{margin-top:18px}
+    .portfolio-header-copy p:not(.eyebrow){
+      max-width:470px;
+      margin-top:14px;
+      font-size:14px;
+      line-height:1.75;
+      color:var(--muted);
+    }
+    .portfolio-header-link{
+      flex-shrink:0;
+      margin-bottom:6px;
+    }
+
+    .portfolio-intro{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:clamp(18px,2.4vw,28px);
+      margin-bottom:clamp(42px,5vw,60px);
+    }
+
+    .portfolio-card{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:12px;
+      overflow:hidden;
+      transition:border-color .4s var(--ease),transform .6s var(--ease),box-shadow .6s var(--ease);
+      transform-style:preserve-3d;
+      will-change:transform;
+    }
+    .portfolio-card:hover{
+      border-color:var(--line-strong);
+      box-shadow:var(--shadow-md);
+    }
+
+    .portfolio-card-media{
+      position:relative;
+      aspect-ratio:4/3;
+      overflow:hidden;
+      background:#e2e3d8;
+      border-bottom:1px solid var(--line);
+    }
+    .portfolio-card-media img{
+      width:100%;height:100%;
+      object-fit:cover;
+      transition:transform 1.1s var(--ease),filter 1.1s var(--ease);
+      will-change:transform;
+    }
+    .portfolio-card:hover .portfolio-card-media img{
+      transform:scale(1.06);
+      filter:saturate(1.08);
+    }
+    .portfolio-card-media-fade{
+      position:absolute;inset:0;
+      background:linear-gradient(to top,rgba(26,28,25,.32),transparent 42%);
+      pointer-events:none;
+    }
+
+    .portfolio-card-num{
+      position:absolute;
+      left:16px;top:16px;
+      background:rgba(255,254,250,.94);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      padding:5px 12px;
+      border-radius:30px;
+      font-family:var(--display);
+      font-size:11px;
+      font-weight:600;
+      letter-spacing:.02em;
+      color:var(--ink);
+      transition:background .35s var(--ease),color .35s var(--ease);
+      z-index:1;
+    }
+    .portfolio-card:hover .portfolio-card-num{
+      background:var(--orange);
+      color:#fff;
+    }
+
+    .portfolio-card-icon{
+      position:absolute;
+      right:16px;bottom:16px;
+      width:44px;height:44px;
+      background:rgba(255,254,250,.94);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      border-radius:50%;
+      display:grid;place-items:center;
+      font-size:20px;line-height:1;
+      color:var(--ink);
+      transition:background .35s var(--ease),color .35s var(--ease),transform .55s var(--ease);
+      z-index:1;
+    }
+    .portfolio-card:hover .portfolio-card-icon{
+      background:var(--orange);
+      color:#fff;
+      transform:rotate(45deg) scale(1.05);
+    }
+
+    .portfolio-card-content{
+      padding:clamp(22px,2.4vw,30px);
+      display:flex;
+      flex-direction:column;
+      flex:1;
+    }
+    .portfolio-card-content h3{
+      font-size:clamp(19px,1.8vw,22px);
+      letter-spacing:-.035em;
+      margin-bottom:11px;
+      transition:color .3s var(--ease);
+    }
+    .portfolio-card:hover .portfolio-card-content h3{color:var(--orange)}
+    .portfolio-card-content p{
+      font-size:13px;
+      line-height:1.75;
+      color:var(--muted);
+      flex:1;
+    }
+
+    .portfolio-card-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-top:22px;
+      padding-top:18px;
+      border-top:1px solid var(--line);
+      list-style:none;
+    }
+    .portfolio-card-tags li{
+      font-size:10px;
+      letter-spacing:.02em;
+      padding:5px 10px;
+      border:1px solid var(--line);
+      border-radius:4px;
+      color:var(--muted);
+      transition:border-color .3s var(--ease),color .3s var(--ease),background .3s var(--ease);
+    }
+    .portfolio-card:hover .portfolio-card-tags li{
+      border-color:var(--line-strong);
+      color:var(--ink);
+    }
+
+    /* =========================================================
+       PORTFOLIO SECTION BACKDROP — WARM PREMIUM THEME
+       Soft cream → peach → terracotta wash with gentle orange
+       and sage glows. No watermark. Faint grid for texture.
+       ========================================================= */
+
+    .work{
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:
+        radial-gradient(1000px 600px at 92% -8%, rgba(217,68,38,.16), transparent 60%),
+        radial-gradient(900px 550px at -5% 105%, rgba(77,96,77,.13), transparent 62%),
+        radial-gradient(700px 500px at 50% 55%, rgba(228,237,184,.10), transparent 70%),
+        linear-gradient(180deg, #fbf8f0 0%, #f6efe1 38%, #f1e7d4 68%, #ebdfc9 100%);
+    }
+
+    .work::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      background-image:
+        linear-gradient(to right, rgba(26,28,25,.028) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(26,28,25,.028) 1px, transparent 1px);
+      background-size:88px 88px;
+      -webkit-mask-image:radial-gradient(70% 60% at 50% 40%, #000, transparent 78%);
+      mask-image:radial-gradient(70% 60% at 50% 40%, #000, transparent 78%);
+    }
+
+    /* Lift the white cards so they pop against the warm wash */
+    .work .portfolio-card{
+      box-shadow:0 2px 4px rgba(122,74,32,.06),0 14px 34px rgba(122,74,32,.10);
+      background:var(--white);
+    }
+    .work .portfolio-card:hover{
+      box-shadow:0 4px 10px rgba(122,74,32,.08),0 28px 60px rgba(122,74,32,.16);
+    }
+
+    /* Stats strip adapts to the warm backdrop */
+    .work .portfolio-stats{
+      background:rgba(201,140,90,.20);
+      border-color:rgba(122,74,32,.14);
+    }
+    .work .stat{
+      background:rgba(255,254,250,.55);
+      backdrop-filter:blur(6px);
+      -webkit-backdrop-filter:blur(6px);
+    }
+    .work .stat:hover{background:var(--white)}
+
+    /* ---------- Animated stats strip ---------- */
+
+    .portfolio-stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:1px;
+      background:var(--line);
+      border:1px solid var(--line);
+      border-radius:12px;
+      overflow:hidden;
+      margin-top:clamp(42px,5vw,64px);
+    }
+    .stat{
+      background:var(--paper);
+      padding:clamp(26px,3vw,38px) clamp(22px,2.4vw,30px);
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      transition:background .4s var(--ease);
+    }
+    .stat:hover{background:var(--white)}
+    .stat-value{
+      font-family:var(--display);
+      font-size:clamp(34px,3.6vw,46px);
+      font-weight:500;
+      letter-spacing:-.05em;
+      line-height:1;
+      color:var(--ink);
+      display:flex;
+      align-items:baseline;
+      font-variant-numeric:tabular-nums;
+    }
+    .stat-value .suffix{
+      color:var(--orange);
+      font-size:.55em;
+      margin-left:2px;
+      transform:translateY(-.12em);
+    }
+    .stat-label{
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--muted);
+      font-weight:550;
+    }
+
+    @media (max-width:900px){
+      .portfolio-header{flex-direction:column;align-items:flex-start;gap:20px}
+      .portfolio-header-link{margin-bottom:0}
+      .portfolio-intro{grid-template-columns:repeat(2,1fr);gap:16px}
+      .portfolio-intro .portfolio-card:nth-child(3){grid-column:1 / -1}
+      .portfolio-stats{grid-template-columns:repeat(2,1fr)}
+      .work::before{background-size:72px 72px}
+    }
+    @media (max-width:760px){
+      .portfolio-intro{grid-template-columns:1fr;gap:16px}
+      .portfolio-intro .portfolio-card:nth-child(3){grid-column:auto}
+      .portfolio-card-content h3{font-size:20px}
+      .portfolio-card-tags{margin-top:18px;padding-top:16px}
+      .portfolio-stats{grid-template-columns:repeat(2,1fr);border-radius:10px}
+      .stat{padding:22px 20px;gap:6px}
+      .stat-label{font-size:9px}
+      .work::before{background-size:64px 64px;opacity:.6}
+    }
+    @media (max-width:420px){
+      .portfolio-stats{grid-template-columns:1fr 1fr}
+      .stat-value{font-size:30px}
+    }
+
+    /* =========================================================
+       CLIENTS
+       ========================================================= */
+
+    .clients{
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      padding:70px 0 0;
+      background:linear-gradient(to bottom,var(--paper),var(--paper-2) 120%);
+      overflow:hidden;
+    }
+    .clients-heading{
+      display:flex;align-items:flex-end;justify-content:space-between;
+      gap:24px;
+    }
+    .clients-heading h2{font-size:clamp(24px,2.4vw,31px);letter-spacing:-.035em}
+    .clients-heading p{font-size:12px;color:var(--muted);margin-top:9px;max-width:420px}
+
+    .marquee{
+      position:relative;
+      margin-top:46px;
+      padding-block:26px 44px;
+      overflow:hidden;
+      mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent);
+      -webkit-mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent);
+    }
+    .marquee-track{
+      display:flex;
+      width:max-content;
+      animation:marquee 44s linear infinite;
+      gap:0;
+    }
+    .marquee:hover .marquee-track{animation-play-state:paused}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+
+    .client-wordmark{
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      min-width:210px;
+      min-height:70px;
+      padding-inline:36px;
+      border-right:1px solid var(--line);
+      text-align:center;
+      font-family:var(--display);
+      font-size:22px;font-weight:600;
+      letter-spacing:-.8px;line-height:1.1;
+      color:#565c50;
+      transition:color .35s var(--ease);
+    }
+    .client-wordmark:hover{color:var(--orange)}
+    .client-wordmark small{
+      display:block;
+      font-family:var(--body);
+      font-size:8px;letter-spacing:.19em;
+      font-weight:500;margin-top:7px;
+      text-transform:uppercase;
+      color:var(--muted-2);
+    }
+    .client-wordmark.serif{font-family:Georgia,serif;font-weight:bold;font-size:25px}
+    .client-wordmark.italic{font-style:italic;font-size:27px}
+    .client-wordmark.outline{
+      font-size:19px;letter-spacing:0;
+      text-transform:uppercase;
+      -webkit-text-stroke:.6px #565c50;
+      color:transparent;
+    }
+
+    /* =========================================================
+       SERVICES
+       ========================================================= */
+
+    .services-layout{
+      display:grid;
+      grid-template-columns:.78fr 1.22fr;
+      gap:clamp(40px,7vw,100px);
+    }
+    .services-intro h2{margin:23px 0}
+    .services-intro > p:not(.eyebrow){
+      font-size:14px;color:var(--muted);max-width:320px;
+    }
+    .services-intro .text-link{margin-top:26px}
+
+    .service{
+      border-top:1px solid var(--line);
+      position:relative;
+    }
+    .service:last-child{border-bottom:1px solid var(--line)}
+    .service summary{
+      list-style:none;
+      display:flex;align-items:center;gap:24px;
+      cursor:pointer;
+      padding:26px 0;
+      transition:padding .4s var(--ease);
+    }
+    summary::-webkit-details-marker{display:none}
+    .service-number{
+      font-size:10px;color:var(--muted-2);
+      font-variant-numeric:tabular-nums;
+      transition:color .3s var(--ease);
+    }
+    .service h3{
+      font-size:clamp(21px,2vw,25px);
+      letter-spacing:-.04em;
+      flex:1;
+      transition:color .35s var(--ease),transform .45s var(--ease);
+    }
+    .service summary::after{
+      content:'+';
+      font-size:24px;font-weight:400;color:var(--muted);
+      transition:transform .4s var(--ease),color .3s var(--ease);
+      line-height:1;
+    }
+    .service[open] summary::after{content:'−';color:var(--orange);transform:rotate(180deg)}
+    .service[open] h3{color:var(--orange);transform:translateX(4px)}
+    .service[open] .service-number{color:var(--orange)}
+    .service:hover summary{padding-left:6px}
+
+    .service-body{
+      padding:0 25px 30px 40px;
+      color:var(--muted);
+      font-size:13px;
+      max-width:560px;
+      animation:revealDown .5s var(--ease) both;
+    }
+    @keyframes revealDown{
+      from{opacity:0;transform:translateY(-8px)}
+      to{opacity:1;transform:none}
+    }
+    .service-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+    .service-tags span{
+      font-size:9px;
+      border:1px solid var(--line-strong);
+      border-radius:4px;
+      padding:5px 9px;
+      color:var(--ink);
+      letter-spacing:.03em;
+      transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease);
+    }
+    .service-tags span:hover{
+      background:var(--ink);color:#fff;border-color:var(--ink);
+    }
+
+    /* =========================================================
+       ABOUT
+       ========================================================= */
+
+    .about{
+      background:var(--ink);
+      color:var(--paper);
+      padding:clamp(60px,8vw,96px) 0;
+      position:relative;
+      overflow:hidden;
+    }
+    .about::before{
+      content:'';
+      position:absolute;
+      width:640px;height:640px;
+      right:-220px;top:-260px;
+      background:radial-gradient(circle,rgba(217,68,38,.14),transparent 62%);
+      pointer-events:none;
+    }
+    .about-top{
+      display:grid;
+      grid-template-columns:.7fr 1.3fr;
+      gap:clamp(30px,6vw,72px);
+      align-items:start;
+      position:relative;
+    }
+    .about .eyebrow{margin-top:10px;color:#d8dbcd}
+    .about h2{
+      font-size:clamp(30px,3.8vw,50px);
+      line-height:1.16;
+      max-width:760px;
+    }
+    .about h2 .serif-em{color:#b8c7a1}
+    .about-copy{
+      display:grid;grid-template-columns:1fr 1fr;gap:34px;
+      margin-top:26px;
+      color:#b8bcb1;font-size:13px;line-height:1.8;
+    }
+    .process{
+      display:grid;grid-template-columns:repeat(4,1fr);
+      gap:clamp(20px,3vw,34px);
+      margin-top:clamp(42px,6vw,70px);
+      border-top:1px solid #3a3e34;
+      padding-top:36px;
+      position:relative;
+    }
+    .process article{
+      position:relative;
+      padding-top:4px;
+    }
+    .process article::before{
+      content:'';
+      position:absolute;top:-37px;left:0;
+      width:0;height:1px;
+      background:var(--orange);
+      transition:width .8s var(--ease);
+    }
+    .process article.is-visible::before{width:100%}
+    .process-number{
+      font-size:10px;color:#c1caaa;
+      margin-bottom:20px;display:block;
+      letter-spacing:.14em;
+    }
+    .process h3{font-size:21px;margin-bottom:12px;color:#f5f3ec}
+    .process p{font-size:12px;color:#a7ac9f;max-width:230px;line-height:1.8}
+
+    /* =========================================================
+       FAQ
+       ========================================================= */
+
+    .faq-layout{
+      display:grid;
+      grid-template-columns:.78fr 1.22fr;
+      gap:clamp(40px,7vw,100px);
+    }
+    .faq-heading h2{margin-top:22px}
+    .faq-item{border-bottom:1px solid var(--line)}
+    .faq-item:first-child{border-top:1px solid var(--line)}
+    .faq-item summary{
+      list-style:none;
+      display:flex;justify-content:space-between;align-items:center;
+      gap:20px;
+      padding:24px 0;
+      font-size:14px;font-weight:550;
+      cursor:pointer;
+      transition:color .3s var(--ease);
+    }
+    .faq-item summary:hover{color:var(--orange)}
+    .faq-item summary::after{
+      content:'↗';
+      font-size:20px;flex-shrink:0;
+      transition:transform .4s var(--ease),color .3s var(--ease);
+    }
+    .faq-item[open] summary::after{content:'−';color:var(--orange);transform:rotate(180deg)}
+    .faq-item p{
+      font-size:13px;line-height:1.8;color:var(--muted);
+      padding:0 40px 24px 0;
+      animation:revealDown .45s var(--ease) both;
+    }
+
+    /* =========================================================
+       CONTACT
+       ========================================================= */
+
+    .contact{
+      background:var(--paper-3);
+      border-top:1px solid #dde1d0;
+      padding:clamp(56px,8vw,88px) 0;
+      position:relative;
+      overflow:hidden;
+    }
+    .contact::after{
+      content:'';
+      position:absolute;
+      width:520px;height:520px;
+      left:-180px;bottom:-260px;
+      background:radial-gradient(circle,rgba(217,68,38,.10),transparent 65%);
+      pointer-events:none;
+    }
+    .contact-layout{
+      display:grid;grid-template-columns:1fr 1fr;
+      gap:clamp(40px,7vw,100px);
+      position:relative;
+    }
+    .contact h2{
+      font-size:clamp(38px,5vw,66px);
+      margin:23px 0;
+    }
+    .contact h2 em{font-family:var(--serif);font-style:italic;font-weight:400}
+    .contact-copy{color:#5c6254;font-size:14px;max-width:350px}
+    .contact-email{
+      display:inline-block;
+      font-family:var(--display);
+      font-size:19px;letter-spacing:-.02em;
+      border-bottom:1px solid var(--ink);
+      margin-top:32px;
+      padding-bottom:2px;
+      overflow-wrap:anywhere;
+      transition:color .3s var(--ease),border-color .3s var(--ease);
+    }
+    .contact-email:hover{color:var(--orange);border-color:var(--orange)}
+
+    .contact-form{padding-top:5px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .field{
+      display:flex;flex-direction:column;gap:7px;
+      margin-bottom:18px;
+      position:relative;
+    }
+    .field label{font-size:11px;font-weight:600;letter-spacing:.02em}
+    .field input,.field select,.field textarea{
+      width:100%;
+      border:1px solid #c6ccba;
+      border-radius:5px;
+      color:var(--ink);
+      background:#f6f7f0;
+      padding:13px 14px;
+      font-size:12px;
+      min-height:48px;
+      transition:border-color .3s var(--ease),background .3s var(--ease),box-shadow .3s var(--ease);
+    }
+    .field textarea{resize:vertical;min-height:104px}
+    .field input:focus,.field select:focus,.field textarea:focus{
+      outline:none;
+      border-color:var(--orange);
+      background:#fff;
+      box-shadow:0 0 0 3px rgba(217,68,38,.10);
+    }
+    .field input::placeholder,.field textarea::placeholder{color:#a3a899}
+
+    .form-bottom{display:flex;align-items:center;gap:20px}
+    .form-bottom p{font-size:10px;color:#5c6254;max-width:190px;line-height:1.6}
+    .form-status{
+      font-size:12px;line-height:1.7;
+      margin-top:16px;color:#3b4e35;
+      min-height:1em;
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    .site-footer{padding:56px 0 26px}
+    .footer-top{
+      display:grid;
+      grid-template-columns:1.2fr 1fr auto;
+      gap:clamp(24px,4vw,60px);
+      align-items:start;
+      padding-bottom:40px;
+      border-bottom:1px solid var(--line);
+    }
+    .footer-brand .brand{margin-bottom:14px}
+    .footer-tagline{font-size:12px;color:var(--muted);margin-top:4px}
+
+    .footer-links{
+      display:flex;
+      gap:clamp(24px,4vw,54px);
+      flex-wrap:wrap;
+    }
+    .footer-col h4{
+      font-family:var(--body);
+      font-size:10px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:650;
+      color:var(--muted-2);
+      margin-bottom:14px;
+    }
+    .footer-col nav{display:flex;flex-direction:column;gap:9px}
+    .footer-col a{
+      font-size:12px;
+      color:var(--ink);
+      position:relative;
+      width:fit-content;
+      transition:color .3s var(--ease);
+    }
+    .footer-col a:hover{color:var(--orange)}
+
+    .footer-newsletter{max-width:280px}
+    .footer-newsletter h4{
+      font-family:var(--body);
+      font-size:10px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:650;
+      color:var(--muted-2);
+      margin-bottom:14px;
+    }
+    .footer-newsletter p{
+      font-size:11px;
+      color:var(--muted);
+      margin-bottom:14px;
+      line-height:1.6;
+    }
+    .newsletter-form{
+      display:flex;
+      align-items:center;
+      gap:0;
+      border:1px solid var(--line);
+      border-radius:6px;
+      overflow:hidden;
+      background:var(--white);
+      transition:border-color .3s var(--ease),box-shadow .3s var(--ease);
+    }
+    .newsletter-form:focus-within{
+      border-color:var(--orange);
+      box-shadow:0 0 0 3px rgba(217,68,38,.10);
+    }
+    .newsletter-form input{
+      flex:1;
+      border:0;
+      background:transparent;
+      padding:11px 14px;
+      font-size:12px;
+      outline:none;
+      color:var(--ink);
+      min-width:0;
+    }
+    .newsletter-form input::placeholder{color:var(--muted-2)}
+    .newsletter-form button{
+      background:var(--ink);
+      color:#fff;
+      padding:11px 16px;
+      font-size:11px;
+      font-weight:600;
+      border:0;
+      transition:background .3s var(--ease);
+    }
+    .newsletter-form button:hover{background:var(--orange)}
+
+    .footer-bottom{
+      padding-top:24px;
+      display:flex;justify-content:space-between;gap:24px;
+      font-size:10px;color:var(--muted);
+    }
+    .footer-bottom a{
+      display:inline-flex;align-items:center;gap:8px;
+      transition:color .3s var(--ease),gap .3s var(--ease);
+    }
+    .footer-bottom a:hover{color:var(--orange);gap:12px}
+
+    @media (max-width:900px){
+      .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+      .footer-newsletter{grid-column:1 / -1;max-width:none}
+    }
+    @media (max-width:760px){
+      .footer-top{grid-template-columns:1fr;gap:28px;padding-bottom:32px}
+      .site-footer{padding-top:40px}
+      .footer-links{gap:32px}
+      .footer-bottom{font-size:9px;gap:15px;flex-wrap:wrap}
+    }
+
+    /* =========================================================
+       PROJECT DIALOG
+       ========================================================= */
+
+    .project-dialog{
+      padding:0;border:0;
+      border-radius:10px;
+      width:min(1020px,calc(100% - 40px));
+      max-height:88vh;
+      max-height:88dvh;
+      background:var(--paper);
+      color:var(--ink);
+      overflow:auto;
+      box-shadow:var(--shadow-lg);
+    }
+    .project-dialog[open]{animation:dialogIn .5s var(--ease)}
+    @keyframes dialogIn{
+      from{opacity:0;transform:translateY(18px) scale(.985)}
+      to{opacity:1;transform:none}
+    }
+    .project-dialog::backdrop{
+      background:rgba(18,21,17,.78);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+    }
+    .dialog-top{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:25px;
+      padding:20px 28px;
+      border-bottom:1px solid var(--line);
+      position:sticky;top:0;
+      background:rgba(245,243,236,.94);
+      backdrop-filter:blur(14px);
+      z-index:2;
+    }
+    .dialog-top h2{font-size:25px}
+    .dialog-close{
+      width:44px;height:44px;
+      border:1px solid var(--line);
+      background:transparent;
+      border-radius:50%;
+      font-size:23px;line-height:1;
+      flex-shrink:0;
+      display:grid;place-items:center;
+      transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease),transform .4s var(--ease);
+    }
+    .dialog-close:hover{
+      background:var(--ink);color:#fff;border-color:var(--ink);
+      transform:rotate(90deg);
+    }
+    .dialog-content{display:grid;grid-template-columns:1.2fr 1fr}
+    .dialog-image-wrap{
+      background:#e0e2d7;
+      display:grid;place-items:center;
+      padding:20px;
+    }
+    .dialog-image-wrap img{
+      max-height:65vh;
+      width:100%;object-fit:contain;
+      border-radius:4px;
+    }
+    .dialog-description{padding:38px;align-self:center}
+    .dialog-description h3{font-size:28px;margin:18px 0}
+    .dialog-description > p:not(.eyebrow){font-size:14px;color:var(--muted)}
+    .dialog-description dl{margin:28px 0;font-size:12px}
+    .dialog-description dt{font-weight:600;margin-top:16px}
+    .dialog-description dd{margin:4px 0;color:var(--muted)}
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    @media (min-width:1500px){
+      .hero-grid{min-height:600px}
+      .hero-art{height:590px}
+      .hero-project img{height:370px}
+    }
+
+    @media (max-width:1100px){
+      :root{--gutter:64px}
+      .nav{gap:22px}
+      .hero h1{font-size:64px}
+      .hero-art{height:490px}
+      .hero-project img{height:300px}
+      .mini-project img{height:172px}
+      .hero-actions{gap:20px}
+      .services-layout,.faq-layout{gap:50px}
+      .contact-layout{gap:60px}
+      .client-wordmark{min-width:180px;font-size:19px}
+      .client-wordmark.serif{font-size:22px}
+      .client-wordmark.italic{font-size:24px}
+    }
+
+    @media (max-width:900px){
+      .header-inner{height:78px}
+      .site-header.is-scrolled .header-inner{height:70px}
+      .nav{gap:17px}
+      .nav .button{margin-left:0;padding:10px 14px;gap:12px}
+      .brand-name{font-size:25px}
+      .brand img{width:40px;height:40px}
+      .hero{padding-top:44px}
+      .hero h1{font-size:54px}
+      .hero-art{height:430px}
+      .hero-project{left:8px;width:82%}
+      .hero-project img{height:255px}
+      .mini-project{width:42%;bottom:0}
+      .mini-project img{height:152px}
+      .art-stamp{width:84px;height:84px;bottom:-18px;left:-4px}
+      /* ✅ keep description large on tablets */
+      .hero-intro{font-size:17.5px;max-width:500px;line-height:1.7}
+      .hero-note{font-size:14px}
+      /* ✅ keep the bottom strip readable on tablets */
+      .hero-bottom{font-size:12.5px;letter-spacing:.09em}
+      .hero-bottom .disciplines{gap:18px}
+      .hero-bottom .disciplines span+span::before{margin-right:18px}
+      .hero-bottom a{padding:9px 15px}
+      .hero-actions{gap:14px}
+      .hero-actions .button{padding:13px 18px;gap:16px}
+      .hero-actions .text-link{gap:10px;font-size:15px}
+      .section{padding-block:76px}
+      .services-layout,.faq-layout{grid-template-columns:.85fr 1.15fr;gap:40px}
+      .service h3{font-size:21px}
+      .about-top{gap:35px;grid-template-columns:.6fr 1.4fr}
+      .contact-layout{gap:44px}
+      .form-row{grid-template-columns:1fr;gap:0}
+      .form-bottom{align-items:flex-start;flex-direction:column;gap:12px}
+      .form-bottom p{max-width:none}
+      .client-wordmark{min-width:160px;padding-inline:26px}
+    }
+
+    @media (max-width:760px){
+      :root{--gutter:40px}
+      .menu-toggle{display:block}
+
+      .header-inner{
+        height:auto;min-height:77px;
+        flex-wrap:wrap;gap:0;
+        position:relative;
+      }
+      .brand{min-height:77px}
+
+      .js .nav{
+        position:fixed;
+        inset:0;
+        z-index:-1;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:flex-start;
+        gap:6px;
+        padding:110px var(--gutter) 60px;
+        background:var(--paper);
+        opacity:0;
+        visibility:hidden;
+        transform:translateY(-12px);
+        transition:opacity .45s var(--ease),transform .55s var(--ease),visibility .45s;
+        pointer-events:none;
+      }
+      .js .nav.is-open{
+        opacity:1;
+        visibility:visible;
+        transform:none;
+        pointer-events:auto;
+      }
+      .js .nav > a{
+        font-family:var(--display);
+        font-size:clamp(28px,7vw,38px);
+        font-weight:500;
+        letter-spacing:-.04em;
+        padding:10px 0;
+        opacity:0;
+        transform:translateY(18px);
+        transition:opacity .5s var(--ease),transform .5s var(--ease),color .3s;
+      }
+      .js .nav.is-open > a{
+        opacity:1;
+        transform:none;
+      }
+      .js .nav.is-open > a:nth-child(1){transition-delay:.08s}
+      .js .nav.is-open > a:nth-child(2){transition-delay:.14s}
+      .js .nav.is-open > a:nth-child(3){transition-delay:.20s}
+      .js .nav.is-open > a:nth-child(4){transition-delay:.26s}
+      .js .nav .button{
+        margin-top:22px;
+        font-size:13px;
+        font-family:var(--body);
+        letter-spacing:0;
+        padding:15px 24px;
+        min-height:54px;
+      }
+      .js .nav > a::after{display:none}
+
+      .hero{padding:38px 0 25px}
+
+      /* Stacked layout spans full width, so the veil moves vertical */
+      .hero-video-scrim{
+        background:
+          linear-gradient(90deg,
+            rgba(245,243,236,.70) 0%,
+            rgba(245,243,236,.44) 60%,
+            rgba(245,243,236,.20) 100%),
+          linear-gradient(180deg,
+            rgba(245,243,236,.78) 0%,
+            rgba(245,243,236,.62) 45%,
+            rgba(245,243,236,.82) 100%);
+      }
+
+      .hero-grid{grid-template-columns:1fr;gap:20px;min-height:0}
+      .hero h1{
+        font-size:clamp(48px,11.4vw,76px);
+        margin-top:22px;
+        max-width:620px;
+      }
+      /* ✅ full-width stack: let the description breathe */
+      .hero-intro{max-width:560px;font-size:17.5px;line-height:1.7}
+      .hero-note{font-size:14.5px;margin-top:22px}
+      .hero-actions{gap:25px;margin-top:28px}
+      .hero-actions .button{padding:15px 22px;gap:24px}
+      .hero-art{width:min(460px,100%);height:460px;margin:8px auto 0}
+      .hero-project{left:15px;width:77%;top:30px}
+      .hero-project img{height:288px}
+      .mini-project{bottom:0;width:38%;right:3px}
+      .mini-project img{height:172px}
+      .art-stamp{bottom:-20px;left:0;width:84px;height:84px}
+      .art-cross{font-size:66px;right:9px;top:8px}
+      .hero-bottom{
+        margin-top:36px;
+        padding-top:20px;
+        font-size:11.5px;
+        letter-spacing:.05em;
+        gap:12px;
+      }
+      .hero-bottom > a{display:none}
+      .hero-bottom .disciplines{
+        width:100%;justify-content:space-between;
+        gap:10px;
+        font-size:11.5px;
+        letter-spacing:.05em;
+      }
+      .hero-bottom .disciplines span+span::before{margin-right:10px}
+
+      .section{padding-block:64px}
+
+      .clients{padding:50px 0 0}
+      .clients-heading{align-items:flex-start;flex-direction:column;gap:16px}
+      .clients-heading h2{font-size:28px}
+      .marquee{margin-top:30px;padding-block:22px 36px}
+      .client-wordmark{min-width:150px;font-size:17px;padding-inline:22px;min-height:60px}
+      .client-wordmark.serif{font-size:20px}
+      .client-wordmark.italic{font-size:22px}
+      .client-wordmark small{font-size:7px}
+
+      .services-layout,.faq-layout{grid-template-columns:1fr;gap:36px}
+      .services-intro > p:not(.eyebrow){max-width:460px}
+      .service summary{padding:22px 0}
+      .service h3{font-size:23px}
+      .service-body{padding:0 20px 26px 38px}
+
+      .about{padding:58px 0}
+      .about-top{grid-template-columns:1fr;gap:26px}
+      .about-copy{gap:22px}
+      .process{grid-template-columns:1fr 1fr;gap:32px 24px;margin-top:40px;padding-top:28px}
+      .process article::before{display:none}
+      .process-number{margin-bottom:12px}
+      .process h3{font-size:20px}
+      .process p{font-size:12px}
+
+      .contact{padding:58px 0}
+      .contact-layout{grid-template-columns:1fr;gap:36px}
+      .contact h2{font-size:52px}
+      .contact-email{margin-top:24px}
+      .form-row{grid-template-columns:1fr 1fr;gap:15px}
+      .form-bottom{flex-direction:row;align-items:center;gap:20px}
+      .form-bottom p{max-width:160px}
+
+      .dialog-content{grid-template-columns:1fr}
+      .dialog-top{padding:14px 20px}
+      .dialog-top h2{font-size:21px}
+      .dialog-image-wrap img{max-height:45vh}
+      .dialog-description{padding:26px}
+      .project-dialog{width:calc(100% - 24px)}
+    }
+
+    @media (max-width:420px){
+      .hero h1{font-size:clamp(34px,10.6vw,46px)}
+      /* ✅ still comfortably readable on small phones */
+      .hero-intro{font-size:16px;line-height:1.7;max-width:none}
+      .hero-note{font-size:14px}
+      .hero-art{height:400px}
+      .hero-project img{height:248px}
+      .hero-project-caption strong{font-size:17px}
+      .hero-project-caption small{font-size:9px}
+      .mini-project img{height:144px}
+      .art-stamp{width:78px;height:78px;font-size:7px;bottom:-16px}
+      .mini-project span{font-size:9px}
+      .art-cross{font-size:56px}
+      .hero-bottom{font-size:10.5px;letter-spacing:.04em}
+      .hero-bottom .disciplines{font-size:10.5px;letter-spacing:.04em;gap:6px}
+      .hero-bottom .disciplines span+span::before{margin-right:6px}
+      .hero-actions{gap:18px}
+      .hero-actions .button{font-size:12px;padding:15px 17px;gap:18px;white-space:nowrap}
+      .hero-actions .text-link{font-size:14px;white-space:nowrap}
+      .form-row{grid-template-columns:1fr;gap:0}
+      .about-copy{grid-template-columns:1fr;gap:16px}
+      .contact h2{font-size:48px}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{
+        animation-duration:.001ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.001ms !important;
+        scroll-behavior:auto !important;
+      }
+      html.js .reveal{opacity:1;transform:none}
+      html.js .hero h1 .line > span{transform:none}
+      .hero-video,
+      .hero-video-scrim{display:none}
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Ambient layers -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="ambient-orb ambient-orb-1" aria-hidden="true"></div>
+  <div class="ambient-orb ambient-orb-2" aria-hidden="true"></div>
+  <div class="progress-rail" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+    <header class="site-header" id="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="Raqeem home" data-cursor>
+        <img src="images/Raqeem-Advertising-Logo.png" alt="" width="46" height="46">
+        <span>
+          <span class="brand-name">Raqeem<i></i></span>
+          <span class="brand-sub">Advertising Services</span>
+        </span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav" hidden>Menu</button>
+
+      <nav class="nav" id="main-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="our work.html">Our work</a>
+        <a href="our clients.html">Our clients</a>
+        <a class="button" href="contact.html" data-magnetic>
+          Let's talk <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260912_104303_0c6d60b2-9353-408e-9449-585108a22fb5.mp4" type="video/mp4">
+      </video>
+      <div class="hero-video-scrim" aria-hidden="true"></div>
+
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Creative minds. Digital impact.</p>
+            <h1 id="hero-title">
+              <span class="line" style="--l:0"><span>We turn brands</span></span>
+              <span class="line" style="--l:1"><span>into <em>something</em></span></span>
+              <span class="line" style="--l:2"><span><em>worth noticing.</em></span></span>
+            </h1>
+            <p class="hero-intro">Strategy, design, and digital marketing that connect your brand with the right people. Thoughtfully created. Made to make a difference.</p>
+            <div class="hero-actions">
+              <a class="button orange" href="#work" data-magnetic>
+                Explore our work <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+              <a class="text-link" href="#contact">Let's talk <span class="arrow" aria-hidden="true">↗</span></a>
+            </div>
+            <p class="hero-note"><span aria-hidden="true"></span>Your next chapter starts with a conversation.</p>
+          </div>
+
+          <div class="hero-art" aria-label="Featured creative projects" id="hero-art">
+            <div class="art-orbit" aria-hidden="true"></div>
+            <span class="art-cross" aria-hidden="true">✳</span>
+
+            <button class="hero-project" type="button" data-project="aqua" data-cursor aria-label="Explore Aqua Dropa brand and product visuals">
+              <img src="posters%20images/Aqua-Dropa-Water-Bottle-Mockup-02.jpg" alt="Aqua Dropa water bottle with a yellow label, floating against a sunlit background" width="3508" height="2480" fetchpriority="high">
+              <span class="hero-project-caption">
+                <span><strong>A fresh perspective.</strong><small>Aqua Dropa · Product creative</small></span>
+                <span class="arrow" aria-hidden="true">↗</span>
+              </span>
+            </button>
+
+            <button class="mini-project" type="button" data-project="creme" data-cursor aria-label="Explore Crème and Co packaging design">
+              <img src="posters%20images/Coffee-Cup-Mockup.jpg" alt="Crème and Co café branding on a takeaway coffee cup" width="4900" height="7000">
+              <span>Made to be remembered <b aria-hidden="true">↗</b></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-bottom">
+          <div class="disciplines">
+            <span>Strategy</span><span>Creativity</span><span>Digital experiences</span>
+          </div>
+          <a href="#work">Scroll to discover <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PORTFOLIO ============ -->
+    <section class="section work" id="work" aria-labelledby="work-title">
+      <div class="wrap">
+        <div class="portfolio-header reveal">
+          <div class="portfolio-header-copy">
+            <p class="eyebrow">Our Portfolio</p>
+            <h2 id="work-title">Work that moves brands forward.</h2>
+            <p>From identity systems to campaign creative and product visuals — a look at how Raqeem brings ideas to life for ambitious businesses across the UAE and beyond.</p>
+          </div>
+          <a class="text-link portfolio-header-link" href="our%20work.html">
+            See the full portfolio <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+
+        <!-- 3-column premium portfolio grid -->
+        <div class="portfolio-intro">
+          <article class="portfolio-card reveal" style="--i:0" data-tilt>
+            <div class="portfolio-card-media">
+              <img src="posters images/Coffee-Cup-Mockup.jpg" alt="Crème &amp; Co brand identity applied to a takeaway coffee cup" loading="lazy" decoding="async">
+              <div class="portfolio-card-media-fade" aria-hidden="true"></div>
+              <span class="portfolio-card-num">01</span>
+              <span class="portfolio-card-icon" aria-hidden="true">↗</span>
+            </div>
+            <div class="portfolio-card-content">
+              <h3>Brand Identity Systems</h3>
+              <p>Logos, palettes, typography, and guidelines that give your business a recognisable, consistent presence — from the first business card to the last social post.</p>
+              <ul class="portfolio-card-tags">
+                <li>Visual identity</li>
+                <li>Brand guidelines</li>
+                <li>Art direction</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="portfolio-card reveal" style="--i:1" data-tilt>
+            <div class="portfolio-card-media">
+              <img src="posters images/Social-Media-Poster-01.jpg" alt="Al Barq real estate campaign poster" loading="lazy" decoding="async">
+              <div class="portfolio-card-media-fade" aria-hidden="true"></div>
+              <span class="portfolio-card-num">02</span>
+              <span class="portfolio-card-icon" aria-hidden="true">↗</span>
+            </div>
+            <div class="portfolio-card-content">
+              <h3>Campaign Creative</h3>
+              <p>Campaign concepts, social media artwork, and content systems built around a single, clear idea — from real estate launches to seasonal brand activations.</p>
+              <ul class="portfolio-card-tags">
+                <li>Social media</li>
+                <li>Campaign design</li>
+                <li>Content strategy</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="portfolio-card reveal" style="--i:2" data-tilt>
+            <div class="portfolio-card-media">
+              <img src="posters images/Aqua-Dropa-Water-Bottle-Mockup-02.jpg" alt="Aqua Dropa water bottle product packaging" loading="lazy" decoding="async">
+              <div class="portfolio-card-media-fade" aria-hidden="true"></div>
+              <span class="portfolio-card-num">03</span>
+              <span class="portfolio-card-icon" aria-hidden="true">↗</span>
+            </div>
+            <div class="portfolio-card-content">
+              <h3>Product &amp; Packaging</h3>
+              <p>Product mockups, packaging systems, and advertising visuals that make everyday essentials worth stopping for — from bottled water to takeaway cups.</p>
+              <ul class="portfolio-card-tags">
+                <li>Product visuals</li>
+                <li>Packaging</li>
+                <li>Mockups</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <!-- Animated stats -->
+        <div class="portfolio-stats reveal" aria-label="Raqeem in numbers">
+          <div class="stat">
+            <div class="stat-value" data-count="120">0<span class="suffix">+</span></div>
+            <div class="stat-label">Projects delivered</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" data-count="40">0<span class="suffix">+</span></div>
+            <div class="stat-label">Brands partnered</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" data-count="12">0</div>
+            <div class="stat-label">Industries served</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" data-count="8">0<span class="suffix">+</span></div>
+            <div class="stat-label">Years of craft</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CLIENTS ============ -->
+    <section class="clients" id="clients" aria-labelledby="clients-title">
+      <div class="wrap">
+        <div class="clients-heading reveal">
+          <div>
+            <h2 id="clients-title">Good company. Great collaborations.</h2>
+            <p>Different industries. Shared ambition. Meet some of the brands in our client community.</p>
+          </div>
+          <a class="text-link" href="our clients.html">Meet our clients <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <div class="marquee" aria-label="Selected clients">
+        <div class="marquee-track">
+          <div class="client-wordmark">Aboriginal<small>Energy</small></div>
+          <div class="client-wordmark serif">Lighthouse<small>Mind &amp; Soul</small></div>
+          <div class="client-wordmark italic">Fillmore<small>Burger</small></div>
+          <div class="client-wordmark">UpperRoom<small>Community</small></div>
+          <div class="client-wordmark outline">FlashPoint<small>Fire &amp; Safety</small></div>
+          <div class="client-wordmark serif">Al Noor<small>Mall</small></div>
+
+          <div class="client-wordmark" aria-hidden="true">Aboriginal<small>Energy</small></div>
+          <div class="client-wordmark serif" aria-hidden="true">Lighthouse<small>Mind &amp; Soul</small></div>
+          <div class="client-wordmark italic" aria-hidden="true">Fillmore<small>Burger</small></div>
+          <div class="client-wordmark" aria-hidden="true">UpperRoom<small>Community</small></div>
+          <div class="client-wordmark outline" aria-hidden="true">FlashPoint<small>Fire &amp; Safety</small></div>
+          <div class="client-wordmark serif" aria-hidden="true">Al Noor<small>Mall</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICES ============ -->
+    <section class="section" id="services" aria-labelledby="services-title">
+      <div class="wrap services-layout">
+        <div class="services-intro reveal">
+          <p class="eyebrow">02 / What we do</p>
+          <h2 id="services-title">The right ideas.<br>The right channels.</h2>
+          <p>From the first impression to the next conversation, we help your brand show up with purpose.</p>
+          <a class="text-link" href="#contact">Find your next move <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+
+        <div class="service-list">
+          <details class="service reveal" open style="--i:1">
+            <summary>
+              <span class="service-number">01</span>
+              <h3>Digital &amp; social marketing</h3>
+            </summary>
+            <div class="service-body">
+              <p>Give people a reason to stop, connect, and come back. We bring a consistent voice and a clear creative direction to your digital presence.</p>
+              <div class="service-tags">
+                <span>Content strategy</span><span>Social media creative</span><span>Campaign planning</span>
+              </div>
+            </div>
+          </details>
+
+          <details class="service reveal" style="--i:2">
+            <summary>
+              <span class="service-number">02</span>
+              <h3>Brand strategy &amp; identity</h3>
+            </summary>
+            <div class="service-body">
+              <p>Build a brand that feels like you and speaks to your audience. We connect positioning, messaging, and visual identity into one recognisable story.</p>
+              <div class="service-tags">
+                <span>Brand positioning</span><span>Visual identity</span><span>Brand guidelines</span>
+              </div>
+            </div>
+          </details>
+
+          <details class="service reveal" style="--i:3">
+            <summary>
+              <span class="service-number">03</span>
+              <h3>Creative design &amp; content</h3>
+            </summary>
+            <div class="service-body">
+              <p>Turn a good idea into something people can see and feel. From product visuals to campaign artwork, we make every touchpoint part of the same story.</p>
+              <div class="service-tags">
+                <span>Art direction</span><span>Product visuals</span><span>Packaging &amp; print</span>
+              </div>
+            </div>
+          </details>
+
+          <details class="service reveal" style="--i:4">
+            <summary>
+              <span class="service-number">04</span>
+              <h3>Advertising &amp; media</h3>
+            </summary>
+            <div class="service-body">
+              <p>Put your message where it matters. We connect creative work with media planning across digital, outdoor, and print to support your campaign objectives.</p>
+              <div class="service-tags">
+                <span>Media planning</span><span>Media buying</span><span>Outdoor advertising</span>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="wrap">
+        <div class="about-top">
+          <p class="eyebrow reveal">03 / The people behind the ideas</p>
+          <div>
+            <h2 id="about-title" class="reveal" style="--i:1">
+              A creative partner for your brand.<br>
+              <span class="serif-em">From "what if" to what's next.</span>
+            </h2>
+            <div class="about-copy reveal" style="--i:2">
+              <p>We're Raqeem Advertisement Services. We bring strategy, design, and marketing together to help businesses tell their story with confidence.</p>
+              <p>Our approach is simple: understand your world, find the right idea, and give every detail the attention it deserves. Here's how we get there.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="process">
+          <article class="reveal" style="--i:1">
+            <span class="process-number">01 / DISCOVER</span>
+            <h3>First, we listen.</h3>
+            <p>Your business, your audience, your ambition. We start by asking the right questions.</p>
+          </article>
+          <article class="reveal" style="--i:2">
+            <span class="process-number">02 / DEFINE</span>
+            <h3>Find the direction.</h3>
+            <p>A clear strategy connects your goals to the message, creative, and channels.</p>
+          </article>
+          <article class="reveal" style="--i:3">
+            <span class="process-number">03 / CREATE</span>
+            <h3>Make it matter.</h3>
+            <p>We turn the direction into thoughtful design and content, shaped with your feedback.</p>
+          </article>
+          <article class="reveal" style="--i:4">
+            <span class="process-number">04 / LAUNCH</span>
+            <h3>Keep moving forward.</h3>
+            <p>Bring the work to your audience, review what we learn, and plan the next step.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section" aria-labelledby="faq-title">
+      <div class="wrap faq-layout">
+        <div class="faq-heading reveal">
+          <p class="eyebrow">A few things you might be wondering</p>
+          <h2 id="faq-title">Good questions.<br>Clear answers.</h2>
+        </div>
+        <div class="reveal" style="--i:1">
+          <details class="faq-item">
+            <summary>What can we work on together?</summary>
+            <p>A brand identity, a social campaign, product visuals, or a broader marketing brief. Tell us where you are now and what you want to achieve, and we'll help define the right scope.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Can you work with our existing brand?</summary>
+            <p>Yes. Share your brand guidelines and current materials so we can build on what's already working and create a consistent experience across your campaigns.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How do we get started?</summary>
+            <p>Send us a short introduction to your business, the work you have in mind, and any timing or budget considerations. We'll use that to discuss the brief and agree on next steps.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How are timelines and pricing decided?</summary>
+            <p>Every brief is different. Deliverables, creative scope, and production needs all shape the schedule and cost. We agree on these with you before the project starts.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap contact-layout">
+        <div class="reveal">
+          <p class="eyebrow">Your next big thing starts here</p>
+          <h2 id="contact-title">Let's make<br><em>something matter.</em></h2>
+          <p class="contact-copy">A new idea, a fresh start, or a brand ready for more. We'd love to hear what you have in mind.</p>
+          <a class="contact-email" href="mailto:info@raqeemuae.com">info@raqeemuae.com ↗</a>
+        </div>
+
+        <form class="contact-form reveal" id="contact-form" style="--i:1" hidden>
+          <div class="form-row">
+            <div class="field">
+              <label for="contact-name">Your name *</label>
+              <input id="contact-name" name="name" autocomplete="name" placeholder="Alex Morgan" required maxlength="100">
+            </div>
+            <div class="field">
+              <label for="contact-email">Email address *</label>
+              <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="alex@yourcompany.com" required maxlength="180">
+            </div>
+          </div>
+          <div class="field">
+            <label for="contact-service">What can we help with?</label>
+            <select id="contact-service" name="service">
+              <option value="A new project">Let's explore the possibilities</option>
+              <option value="Digital & social marketing">Digital &amp; social marketing</option>
+              <option value="Brand strategy & identity">Brand strategy &amp; identity</option>
+              <option value="Creative design & content">Creative design &amp; content</option>
+              <option value="Advertising & media">Advertising &amp; media</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="contact-message">A little about your project *</label>
+            <textarea id="contact-message" name="message" placeholder="Tell us about your brand, your goals, and what you have in mind…" required maxlength="1500" rows="3"></textarea>
+          </div>
+          <div class="form-bottom">
+            <button class="button orange" type="submit" data-magnetic>
+              Prepare my email <span class="arrow" aria-hidden="true">↗</span>
+            </button>
+            <p>Opens your email app with a draft for you to review and send.</p>
+          </div>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="#home" aria-label="Raqeem home">
+            <img src="images/Raqeem-Advertising-Logo.png" alt="" width="46" height="46">
+            <span>
+              <span class="brand-name">raqeem<i>.</i></span>
+              <span class="brand-sub">Advertisement Services</span>
+            </span>
+          </a>
+          <p class="footer-tagline">Ideas that connect. Brands that grow.</p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <nav aria-label="Explore">
+              <a href="#work">Our work</a>
+              <a href="#clients">Our clients</a>
+              <a href="#services">Services</a>
+              <a href="#about">About us</a>
+            </nav>
+          </div>
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <nav aria-label="Connect">
+              <a href="#contact">Get in touch ↗</a>
+              <a href="mailto:info@raqeemuae.com">info@raqeemuae.com</a>
+              <a href="#home">Back to top ↑</a>
+            </nav>
+          </div>
+        </div>
+
+        <div class="footer-newsletter">
+          <h4>Newsletter</h4>
+          <p>Occasional notes on brand, design, and the work we make.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('input').value=''; this.querySelector('button').textContent='Thanks!';">
+            <input type="email" placeholder="you@company.com" aria-label="Email address" required>
+            <button type="submit">Join</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year">2026</span> Raqeem Advertisement Services. All rights reserved.</p>
+        <a href="#home">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ PROJECT DIALOG ============ -->
+  <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-top">
+      <h2 id="dialog-title">Project preview</h2>
+      <button class="dialog-close" type="button" aria-label="Close project preview" autofocus>×</button>
+    </div>
+    <div class="dialog-content">
+      <div class="dialog-image-wrap"><img id="dialog-image" alt=""></div>
+      <div class="dialog-description">
+        <p class="eyebrow" id="dialog-category"></p>
+        <h3 id="dialog-heading"></h3>
+        <p id="dialog-copy"></p>
+        <dl>
+          <dt>Creative focus</dt><dd id="dialog-focus"></dd>
+          <dt>In the portfolio</dt><dd id="dialog-deliverables"></dd>
+        </dl>
+        <a class="button" href="#contact" id="dialog-contact" data-magnetic>
+          Discuss a similar project <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const root = document.documentElement;
+      root.classList.add('js');
+
+      const $  = (sel, ctx = document) => ctx.querySelector(sel);
+      const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+      $('#year').textContent = new Date().getFullYear();
+
+      /* ---------------------------------------------------------
+         0. Hero background video
+         Pause for reduced-motion users, and only play while the
+         hero is on screen to save bandwidth/battery.
+         --------------------------------------------------------- */
+      const heroVideo = $('.hero-video');
+      if (heroVideo) {
+        if (prefersReduced) {
+          heroVideo.removeAttribute('autoplay');
+          heroVideo.pause();
+        } else if ('IntersectionObserver' in window) {
+          const videoObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const p = heroVideo.play();
+                if (p && typeof p.catch === 'function') p.catch(() => {});
+              } else {
+                heroVideo.pause();
+              }
+            });
+          }, { threshold: 0.05 });
+          videoObserver.observe(heroVideo);
+        }
+      }
+
+      /* ---------------------------------------------------------
+         1. Loader (video)
+         --------------------------------------------------------- */
+      const loader      = $('#loader');
+      const loaderVideo = $('.loader-video');
+
+      let loaderHidden = false;
+      const hideLoader = () => {
+        if (loaderHidden) return;
+        loaderHidden = true;
+        if (loaderVideo) {
+          try { loaderVideo.pause(); } catch (e) { /* noop */ }
+        }
+        loader.classList.add('is-done');
+        // Free up the element after the fade-out completes
+        setTimeout(() => { loader.style.display = 'none'; }, 800);
+      };
+
+      if (prefersReduced) {
+        // Respect reduced-motion: don't force a looping video on the visitor.
+        hideLoader();
+      } else if (loaderVideo) {
+        // Minimum display time so the animation reads even on fast connections
+        const startedAt = performance.now();
+        const minShow = 1200;
+        const scheduleHide = () => {
+          const remaining = Math.max(0, minShow - (performance.now() - startedAt));
+          setTimeout(hideLoader, remaining);
+        };
+
+        if (loaderVideo.readyState >= 3) {
+          scheduleHide();                                    // already buffered
+        } else {
+          loaderVideo.addEventListener('canplaythrough', scheduleHide, { once: true });
+          loaderVideo.addEventListener('error', () => {      // file missing / codec issue
+            console.warn('Loader video failed to load — hiding loader.');
+            scheduleHide();
+          }, { once: true });
+          // Autoplay blocked (unmuted environments)? Just hide on load.
+          const p = loaderVideo.play();
+          if (p && typeof p.catch === 'function') p.catch(() => {});
+        }
+      } else {
+        // No video element at all — hide as before
+        window.addEventListener('load', () => setTimeout(hideLoader, 900));
+      }
+
+      // Safety net: never trap the visitor behind the loader
+      setTimeout(hideLoader, 6000);
+
+      /* ---------------------------------------------------------
+         2. Hero reveal
+         --------------------------------------------------------- */
+      const hero = $('.hero');
+      requestAnimationFrame(() => setTimeout(() => hero.classList.add('is-ready'), 120));
+
+      /* ---------------------------------------------------------
+         3. Scroll progress + sticky header
+         --------------------------------------------------------- */
+      const progressBar = $('#progress-bar');
+      const header = $('#site-header');
+      let scrollQueued = false;
+
+      function onScroll() {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+        progressBar.style.width = pct + '%';
+        header.classList.toggle('is-scrolled', window.scrollY > 12);
+        scrollQueued = false;
+      }
+      window.addEventListener('scroll', () => {
+        if (!scrollQueued) {
+          scrollQueued = true;
+          requestAnimationFrame(onScroll);
+        }
+      }, { passive: true });
+      onScroll();
+
+      /* ---------------------------------------------------------
+         4. Custom cursor + magnetic + parallax
+         --------------------------------------------------------- */
+      if (finePointer && !prefersReduced) {
+        const dot = $('.cursor-dot');
+        const ring = $('.cursor-ring');
+        let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+        let rx = mx, ry = my;
+        let raf = null;
+
+        const tick = () => {
+          rx += (mx - rx) * 0.16;
+          ry += (my - ry) * 0.16;
+          ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+          raf = requestAnimationFrame(tick);
+        };
+
+        window.addEventListener('pointermove', e => {
+          mx = e.clientX; my = e.clientY;
+          dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+          if (!raf) raf = requestAnimationFrame(tick);
+          document.body.classList.add('cursor-on');
+        }, { passive: true });
+
+        document.addEventListener('pointerleave', () => {
+          document.body.classList.remove('cursor-on');
+          if (raf) { cancelAnimationFrame(raf); raf = null; }
+        });
+
+        const hoverTargets = 'a, button, [data-cursor], [data-tilt], summary, .client-wordmark, .portfolio-card';
+        document.addEventListener('pointerover', e => {
+          if (e.target.closest(hoverTargets)) document.body.classList.add('cursor-hover');
+        });
+        document.addEventListener('pointerout', e => {
+          if (e.target.closest(hoverTargets)) document.body.classList.remove('cursor-hover');
+        });
+
+        // Magnetic buttons
+        $$('[data-magnetic]').forEach(el => {
+          el.addEventListener('pointermove', e => {
+            const r = el.getBoundingClientRect();
+            const relX = e.clientX - (r.left + r.width / 2);
+            const relY = e.clientY - (r.top + r.height / 2);
+            el.style.transform = `translate(${relX * 0.16}px, ${relY * 0.22}px)`;
+          });
+          el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+        });
+
+        // 3D tilt on portfolio cards
+        $$('[data-tilt]').forEach(card => {
+          card.addEventListener('pointermove', e => {
+            const r = card.getBoundingClientRect();
+            const px = (e.clientX - r.left) / r.width - 0.5;
+            const py = (e.clientY - r.top) / r.height - 0.5;
+            card.style.transform =
+              `perspective(1100px) rotateY(${px * 4}deg) rotateX(${-py * 4}deg) translateY(-4px)`;
+          });
+          card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+        });
+
+        // Hero composition parallax
+        const art = $('#hero-art');
+        if (art) {
+          art.addEventListener('pointermove', e => {
+            const r = art.getBoundingClientRect();
+            const px = (e.clientX - r.left) / r.width - 0.5;
+            const py = (e.clientY - r.top) / r.height - 0.5;
+            const big = art.querySelector('.hero-project');
+            const mini = art.querySelector('.mini-project');
+            if (big) big.style.transform = `rotate(${-7 + px * 3}deg) translate(${px * 10}px, ${py * 8}px)`;
+            if (mini) mini.style.transform = `rotate(${9 + px * 3}deg) translate(${px * -8}px, ${py * -6}px)`;
+          });
+          art.addEventListener('pointerleave', () => {
+            const big = art.querySelector('.hero-project');
+            const mini = art.querySelector('.mini-project');
+            if (big) big.style.transform = '';
+            if (mini) mini.style.transform = '';
+          });
+        }
+      }
+
+      /* ---------------------------------------------------------
+         5. Scroll reveal
+         --------------------------------------------------------- */
+      if ('IntersectionObserver' in window && !prefersReduced) {
+        const revealObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+        $$('.reveal').forEach(el => revealObserver.observe(el));
+      } else {
+        $$('.reveal').forEach(el => el.classList.add('is-visible'));
+      }
+
+      /* ---------------------------------------------------------
+         6. Animated counters
+         --------------------------------------------------------- */
+      if ('IntersectionObserver' in window && !prefersReduced) {
+        const counters = $$('[data-count]');
+        const counterObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const target = +el.dataset.count;
+            const suffixEl = el.querySelector('.suffix');
+            const suffixHTML = suffixEl ? suffixEl.outerHTML : '';
+            const duration = 1600;
+            const start = performance.now();
+            const ease = t => 1 - Math.pow(1 - t, 3);
+
+            function step(now) {
+              const t = Math.min((now - start) / duration, 1);
+              const value = Math.round(ease(t) * target);
+              el.innerHTML = value + suffixHTML;
+              if (t < 1) requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+            counterObserver.unobserve(el);
+          });
+        }, { threshold: 0.5 });
+
+        counters.forEach(el => counterObserver.observe(el));
+      } else {
+        $$('[data-count]').forEach(el => {
+          const target = +el.dataset.count;
+          const suffixEl = el.querySelector('.suffix');
+          el.textContent = target;
+          if (suffixEl) el.appendChild(suffixEl);
+        });
+      }
+
+      /* ---------------------------------------------------------
+         7. Mobile navigation
+         --------------------------------------------------------- */
+      const menu = $('.menu-toggle');
+      const nav = $('#main-nav');
+      menu.hidden = false;
+
+      function closeMenu(returnFocus = false) {
+        if (!nav.classList.contains('is-open')) return;
+        nav.classList.remove('is-open');
+        menu.setAttribute('aria-expanded', 'false');
+        menu.textContent = 'Menu';
+        document.body.classList.remove('is-locked');
+        if (returnFocus) menu.focus({ preventScroll: true });
+      }
+      function openMenu() {
+        nav.classList.add('is-open');
+        menu.setAttribute('aria-expanded', 'true');
+        menu.textContent = 'Close';
+        document.body.classList.add('is-locked');
+      }
+      menu.addEventListener('click', () => {
+        if (nav.classList.contains('is-open')) closeMenu();
+        else openMenu();
+      });
+      nav.addEventListener('click', e => {
+        if (e.target.closest('a')) closeMenu();
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeMenu(true);
+      });
+      window.matchMedia('(min-width: 761px)').addEventListener('change', e => {
+        if (e.matches) closeMenu();
+      });
+
+      /* ---------------------------------------------------------
+         8. Project dialog
+         --------------------------------------------------------- */
+      const projects = {
+        aqua: {
+          title: 'Aqua Dropa',
+          category: 'Branding / Product visuals',
+          heading: 'A fresh perspective.',
+          image: 'posters images/Aqua-Dropa-Water-Bottle-Mockup-02.jpg',
+          alt: 'Aqua Dropa water bottle with a yellow label against a warm, sunlit backdrop',
+          copy: 'A product presentation built around a bright yellow accent, a clean label, and a floating bottle composition. The everyday water bottle becomes the centre of attention.',
+          focus: 'Packaging presentation, colour, and product composition.',
+          deliverables: 'Water bottle mockups and product advertising visuals.'
+        },
+        albarq: {
+          title: 'Al Barq',
+          category: 'Social media / Campaign creative',
+          heading: 'A place in the picture.',
+          image: 'posters images/Social-Media-Poster-01.jpg.jpeg',
+          alt: 'Al Barq residential campaign poster showing apartments and property information',
+          copy: 'Architectural imagery and a clear information hierarchy bring a residential offer into focus. A coordinated colour palette connects the property and its campaign message.',
+          focus: 'Campaign layout, property imagery, and visual hierarchy.',
+          deliverables: 'Real estate promotional artwork and social media posters.'
+        },
+        creme: {
+          title: 'Crème & Co',
+          category: 'Branding / Packaging',
+          heading: 'Character in every cup.',
+          image: 'posters images/Coffee-Cup-Mockup.jpg',
+          alt: 'Crème and Co branded takeaway coffee cup on a dark tiled background',
+          copy: 'Refined typography and delicate botanical details give an everyday café touchpoint its own personality. A restrained palette keeps the identity at the heart of the presentation.',
+          focus: 'Brand expression, typography, and packaging presentation.',
+          deliverables: 'Coffee cup and takeaway packaging mockups.'
+        },
+        residence: {
+          title: 'Al Barq Residence',
+          category: 'Social media / Visual design',
+          heading: 'A story worth coming home to.',
+          image: 'posters images/Social-Media-Poster-03.jpg.jpeg',
+          alt: 'Al Barq Residence promotional artwork',
+          copy: 'A property campaign designed to give the residence a recognisable presence. Architecture, brand elements, and the campaign message come together in a single visual.',
+          focus: 'Property campaign design and visual consistency.',
+          deliverables: 'Residential promotional artwork for social media.'
+        }
+      };
+
+      const dialog = $('#project-dialog');
+      const dialogImage = $('#dialog-image');
+      let projectTrigger = null;
+
+      $$('[data-project]').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          if (typeof dialog.showModal !== 'function') {
+            window.location.href = 'our%20work.html#gallery';
+            return;
+          }
+          const project = projects[trigger.dataset.project];
+          if (!project) return;
+
+          projectTrigger = trigger;
+          $('#dialog-title').textContent = project.title;
+          $('#dialog-category').textContent = project.category;
+          $('#dialog-heading').textContent = project.heading;
+          $('#dialog-copy').textContent = project.copy;
+          $('#dialog-focus').textContent = project.focus;
+          $('#dialog-deliverables').textContent = project.deliverables;
+          dialogImage.src = project.image;
+          dialogImage.alt = project.alt;
+
+          dialog.showModal();
+          dialog.scrollTop = 0;
+          document.body.classList.add('modal-open');
+        });
+      });
+
+      $('.dialog-close').addEventListener('click', () => dialog.close());
+
+      dialog.addEventListener('click', event => {
+        if (event.target !== dialog) return;
+        const bounds = dialog.getBoundingClientRect();
+        if (
+          event.clientX < bounds.left || event.clientX > bounds.right ||
+          event.clientY < bounds.top  || event.clientY > bounds.bottom
+        ) dialog.close();
+      });
+
+      dialog.addEventListener('close', () => {
+        document.body.classList.remove('modal-open');
+        if (projectTrigger) projectTrigger.focus({ preventScroll: true });
+      });
+
+      $('#dialog-contact').addEventListener('click', () => {
+        projectTrigger = null;
+        dialog.close();
+        setTimeout(() => $('#contact-name').focus({ preventScroll: true }), 60);
+      });
+
+      /* ---------------------------------------------------------
+         9. Services accordion
+         --------------------------------------------------------- */
+      const services = $$('.service');
+      services.forEach(service => {
+        service.addEventListener('toggle', () => {
+          if (service.open) {
+            services.forEach(other => { if (other !== service) other.open = false; });
+          }
+        });
+      });
+
+      /* ---------------------------------------------------------
+         10. Contact form → mailto draft
+         --------------------------------------------------------- */
+      const form = $('#contact-form');
+      form.hidden = false;
+
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        const data = new FormData(form);
+        const name = String(data.get('name') || '').trim();
+        const message = String(data.get('message') || '').trim();
+        const status = $('#form-status');
+
+        if (!name || !message) {
+          status.textContent = 'Please add your name and a short description of your project.';
+          $(!name ? '#contact-name' : '#contact-message').focus();
+          return;
+        }
+
+        const subject = `Project enquiry: ${data.get('service')}`;
+        const body =
+          `Hello Raqeem,\n\n${message}\n\n` +
+          `Interested in: ${data.get('service')}\n` +
+          `Name: ${name}\nEmail: ${data.get('email')}\n\n` +
+          `Looking forward to connecting.`;
+
+        status.textContent =
+          'Your email draft is ready. If your email app does not open, send your brief directly to info@raqeemuae.com. Nothing has been sent yet.';
+
+        window.location.href =
+          `mailto:info@raqeemuae.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      });
+
+      /* ---------------------------------------------------------
+         11. Active nav link
+         --------------------------------------------------------- */
+      if ('IntersectionObserver' in window) {
+        const navObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            const link = nav.querySelector(`a[href="#${entry.target.id}"]`);
+            if (!link) return;
+            if (entry.isIntersecting) link.setAttribute('aria-current', 'location');
+            else link.removeAttribute('aria-current');
+          });
+        }, { rootMargin: '-20% 0px -60% 0px' });
+
+        ['work', 'clients', 'services', 'about', 'contact']
+          .forEach(id => {
+            const section = document.getElementById(id);
+            if (section) navObserver.observe(section);
+          });
+      }
+
+      /* ---------------------------------------------------------
+         12. About process underline reveal
+         --------------------------------------------------------- */
+      if ('IntersectionObserver' in window && !prefersReduced) {
+        const procObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              procObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.4 });
+        $$('.process article').forEach(a => procObserver.observe(a));
+      }
+
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,3812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore Raqeem's portfolio — live websites and brand platforms built for clients across energy, wellbeing, food & beverage, community, safety and hospitality.">
+  <meta name="theme-color" content="#f5f3ec">
+  <title>Our work — Raqeem</title>
+  <link rel="icon" type="image/png" href="images/Raqeem-Advertising-Logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,450;9..40,500;9..40,550;9..40,600;9..40,650;9..40,700&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* =========================================================
+       RAQEEM — WORK PAGE
+       Design tokens → base → header → hero → work → footer
+       ========================================================= */
+
+    :root{
+      --paper:#f5f3ec;
+      --paper-2:#efede3;
+      --paper-3:#e8ebdf;
+      --white:#fffefa;
+      --ink:#1a1c19;
+      --ink-2:#2c2f2a;
+      --muted:#6b6e63;
+      --muted-2:#85887c;
+      --orange:#d94426;
+      --orange-deep:#b5341a;
+      --green:#4d604d;
+      --line:#dedfd4;
+      --line-strong:#c9cbbc;
+      --display:'Space Grotesk',system-ui,sans-serif;
+      --body:'DM Sans',system-ui,sans-serif;
+      --serif:'Instrument Serif',Georgia,serif;
+      --ease:cubic-bezier(.22,1,.36,1);
+      --ease-out:cubic-bezier(.16,1,.3,1);
+      --radius:8px;
+      --shadow-sm:0 1px 2px rgba(26,28,25,.05),0 6px 16px rgba(26,28,25,.05);
+      --shadow-md:0 2px 6px rgba(26,28,25,.06),0 20px 44px rgba(26,28,25,.09);
+      --shadow-lg:0 4px 10px rgba(26,28,25,.07),0 38px 80px rgba(26,28,25,.14);
+      --gutter:96px;
+    }
+
+    *,*::before,*::after{box-sizing:border-box}
+
+    html{
+      scroll-behavior:smooth;
+      scroll-padding-top:110px;
+      -webkit-text-size-adjust:100%;
+      scrollbar-color:var(--line-strong) var(--paper-2);
+      scrollbar-width:thin;
+    }
+    ::-webkit-scrollbar{width:11px;height:11px}
+    ::-webkit-scrollbar-track{background:var(--paper-2)}
+    ::-webkit-scrollbar-thumb{
+      background:var(--line-strong);
+      border:3px solid var(--paper-2);
+      border-radius:8px;
+      transition:background .3s;
+    }
+    ::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+
+    body{
+      margin:0;
+      background:var(--paper);
+      color:var(--ink);
+      font-family:var(--body);
+      font-size:16px;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+    }
+    body.modal-open{overflow:hidden}
+    body.is-locked{overflow:hidden}
+
+    button,input,select,textarea{font:inherit;color:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    button{cursor:pointer;background:none;border:0}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    h1,h2,h3,h4,p,figure,dl,dd{margin:0}
+    ul{margin:0;padding:0;list-style:none}
+
+    h1,h2,h3,h4{
+      font-family:var(--display);
+      font-weight:500;
+      line-height:1.06;
+      letter-spacing:-.045em;
+      text-wrap:balance;
+    }
+    h2{font-size:clamp(34px,4.2vw,58px)}
+    h3{font-size:clamp(20px,2vw,26px);letter-spacing:-.035em}
+    p{text-wrap:pretty}
+
+    ::selection{background:#e4edb8;color:var(--ink)}
+
+    :focus-visible{
+      outline:2px solid var(--orange);
+      outline-offset:4px;
+      border-radius:2px;
+    }
+
+    [hidden]{display:none !important}
+
+    /* ---------- Layout primitives ---------- */
+
+    .wrap{
+      width:min(1320px,calc(100% - var(--gutter)));
+      margin-inline:auto;
+    }
+    .section{padding-block:clamp(72px,9vw,116px)}
+
+    /* ---------- Typographic details ---------- */
+
+    .eyebrow{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:11px;
+      letter-spacing:.16em;
+      font-weight:650;
+      text-transform:uppercase;
+      line-height:1.5;
+      color:var(--ink);
+    }
+    .eyebrow::before{
+      content:'';
+      width:7px;height:7px;
+      background:var(--orange);
+      border-radius:50%;
+      flex-shrink:0;
+      box-shadow:0 0 0 4px rgba(217,68,38,.12);
+    }
+    .muted{color:var(--muted)}
+
+    em{font-style:normal;color:var(--orange)}
+    .serif-em{
+      font-family:var(--serif);
+      font-style:italic;
+      font-weight:400;
+      letter-spacing:-.01em;
+    }
+
+    .arrow{
+      display:inline-block;
+      font-size:1.1em;
+      line-height:1;
+      transition:transform .35s var(--ease);
+      will-change:transform;
+    }
+
+    /* ---------- Buttons & links ---------- */
+
+    .button{
+      --btn-bg:var(--ink);
+      --btn-fg:var(--white);
+      --btn-border:var(--ink);
+      position:relative;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:24px;
+      min-height:54px;
+      padding:15px 26px;
+      background:var(--btn-bg);
+      color:var(--btn-fg);
+      border:1px solid var(--btn-border);
+      border-radius:6px;
+      font-size:13px;
+      font-weight:600;
+      letter-spacing:.005em;
+      overflow:hidden;
+      isolation:isolate;
+      transition:color .35s var(--ease),border-color .35s var(--ease),transform .4s var(--ease);
+      will-change:transform;
+    }
+    .button::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:var(--orange);
+      transform:translateY(101%);
+      transition:transform .45s var(--ease);
+      z-index:-1;
+    }
+    .button:hover{color:#fff;border-color:var(--orange)}
+    .button:hover::before{transform:translateY(0)}
+    .button:hover .arrow{transform:translate(3px,-3px)}
+    .button.orange{--btn-bg:var(--orange);--btn-fg:#fff;--btn-border:var(--orange)}
+    .button.orange::before{background:var(--orange-deep)}
+    .button.orange:hover{border-color:var(--orange-deep)}
+
+    .text-link{
+      display:inline-flex;
+      align-items:center;
+      gap:18px;
+      font-size:13px;
+      font-weight:600;
+      padding-block:9px;
+      border-bottom:1px solid currentColor;
+      transition:color .3s var(--ease),gap .3s var(--ease);
+    }
+    .text-link:hover{color:var(--orange);gap:23px}
+    .text-link:hover .arrow{transform:translate(2px,-2px)}
+
+    /* ---------- Accessibility ---------- */
+
+    .skip-link{
+      position:fixed;top:10px;left:10px;z-index:1000;
+      background:var(--ink);color:#fff;
+      padding:10px 20px;border-radius:4px;
+      transform:translateY(-180%);
+      transition:transform .25s var(--ease);
+    }
+    .skip-link:focus{transform:none}
+
+    /* ---------- Ambient layers ---------- */
+
+    .grain{
+      position:fixed;inset:0;z-index:9997;pointer-events:none;
+      opacity:.05;
+      mix-blend-mode:multiply;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .ambient-orb{
+      position:fixed;
+      pointer-events:none;
+      z-index:-1;
+      border-radius:50%;
+      filter:blur(90px);
+      will-change:transform;
+    }
+    .ambient-orb-1{
+      width:520px;height:520px;
+      background:radial-gradient(circle,rgba(217,68,38,.14),transparent 70%);
+      top:15%;left:-160px;
+    }
+    .ambient-orb-2{
+      width:460px;height:460px;
+      background:radial-gradient(circle,rgba(77,96,77,.10),transparent 70%);
+      top:55%;right:-140px;
+    }
+
+    .progress-rail{
+      position:fixed;top:0;left:0;right:0;
+      height:2px;z-index:9996;
+      background:transparent;
+      pointer-events:none;
+    }
+    .progress-bar{
+      height:100%;
+      width:0%;
+      background:var(--orange);
+      transform-origin:left center;
+      transition:width .1s linear;
+    }
+
+    .cursor-dot,.cursor-ring{
+      position:fixed;top:0;left:0;
+      pointer-events:none;
+      z-index:9999;
+      border-radius:50%;
+      transform:translate(-50%,-50%);
+      opacity:0;
+      transition:opacity .3s var(--ease);
+    }
+    .cursor-dot{
+      width:7px;height:7px;
+      background:var(--orange);
+      transition:opacity .3s var(--ease),width .3s var(--ease),height .3s var(--ease);
+    }
+    .cursor-ring{
+      width:38px;height:38px;
+      border:1px solid rgba(26,28,25,.35);
+      transition:opacity .3s var(--ease),width .35s var(--ease),height .35s var(--ease),border-color .35s var(--ease),background .35s var(--ease);
+    }
+    body.cursor-on .cursor-dot,
+    body.cursor-on .cursor-ring{opacity:1}
+    body.cursor-hover .cursor-ring{
+      width:64px;height:64px;
+      border-color:rgba(217,68,38,.55);
+      background:rgba(217,68,38,.07);
+    }
+    body.cursor-hover .cursor-dot{width:0;height:0}
+    @media (hover:none),(pointer:coarse){
+      .cursor-dot,.cursor-ring{display:none}
+      body.cursor-on .cursor-dot,body.cursor-on .cursor-ring{opacity:0}
+    }
+
+    /* ---------- Scroll reveal ---------- */
+
+    html.js .reveal{
+      opacity:0;
+      transform:translateY(26px);
+      transition:opacity .9s var(--ease-out),transform .9s var(--ease-out);
+      transition-delay:calc(var(--i,0) * 70ms);
+    }
+    html.js .reveal.is-visible{opacity:1;transform:none}
+
+    /* =========================================================
+       HEADER
+       ========================================================= */
+
+    .site-header{
+      position:sticky;top:0;z-index:60;
+      background:rgba(245,243,236,.82);
+      border-bottom:1px solid transparent;
+      backdrop-filter:blur(18px) saturate(1.2);
+      -webkit-backdrop-filter:blur(18px) saturate(1.2);
+      transition:border-color .4s var(--ease),background .4s var(--ease);
+    }
+    .site-header.is-scrolled{
+      border-bottom-color:var(--line);
+      background:rgba(245,243,236,.94);
+    }
+    .header-inner{
+      height:92px;
+      display:flex;align-items:center;justify-content:space-between;gap:30px;
+      transition:height .4s var(--ease);
+    }
+    .site-header.is-scrolled .header-inner{height:76px}
+
+    .brand{
+      display:inline-flex;align-items:center;gap:11px;
+      flex-shrink:0;
+    }
+    .brand img{
+      width:46px;height:46px;object-fit:contain;
+      transition:transform .6s var(--ease);
+    }
+    .brand:hover img{transform:rotate(-8deg) scale(1.04)}
+    .brand-name{
+      display:block;
+      font-family:var(--display);
+      font-size:28px;line-height:1.02;
+      letter-spacing:-1.6px;font-weight:700;
+    }
+    .brand-name i{color:var(--orange);font-style:normal}
+    .brand-sub{
+      display:block;
+      font-size:8px;letter-spacing:.19em;
+      margin-top:5px;text-transform:uppercase;
+      color:var(--muted);
+    }
+
+    .nav{display:flex;align-items:center;gap:32px}
+    .nav > a{
+      font-size:12px;font-weight:550;
+      position:relative;
+      padding-block:4px;
+    }
+    .nav > a:not(.button)::after{
+      content:'';
+      position:absolute;bottom:-3px;left:0;
+      width:0;height:1.5px;
+      background:var(--orange);
+      transition:width .35s var(--ease);
+    }
+    .nav > a:hover::after,
+    .nav > a[aria-current="location"]::after,
+    .nav > a[aria-current="page"]::after{width:100%}
+    .nav > a[aria-current="location"],
+    .nav > a[aria-current="page"]{color:var(--orange)}
+    .nav .button{margin-left:10px;min-height:44px;padding:11px 20px}
+
+    .menu-toggle{
+      display:none;
+      border:1px solid var(--line);
+      background:none;
+      border-radius:5px;
+      min-width:48px;min-height:44px;
+      font-size:12px;font-weight:600;
+      transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease);
+    }
+    .menu-toggle[aria-expanded="true"]{
+      background:var(--ink);color:#fff;border-color:var(--ink);
+    }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+
+    .hero{
+      padding:clamp(48px,6vw,80px) 0 40px;
+      overflow:hidden;
+      position:relative;
+      isolation:isolate;
+    }
+
+    .hero-video{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      z-index:0;
+      pointer-events:none;
+      filter:saturate(.96) contrast(1.04) brightness(1.01);
+    }
+
+    .hero-video-scrim{
+      position:absolute;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      background:
+        linear-gradient(90deg,
+          rgba(245,243,236,.80) 0%,
+          rgba(245,243,236,.64) 30%,
+          rgba(245,243,236,.34) 58%,
+          rgba(245,243,236,.12) 84%,
+          rgba(245,243,236,.04) 100%),
+        linear-gradient(180deg,
+          rgba(245,243,236,.34) 0%,
+          rgba(245,243,236,.06) 36%,
+          rgba(245,243,236,.10) 72%,
+          rgba(245,243,236,.30) 100%);
+    }
+
+    .hero h1,
+    .hero-intro,
+    .hero-note,
+    .hero-copy > .eyebrow,
+    .hero-bottom{
+      text-shadow:
+        0 1px 1px rgba(245,243,236,.72),
+        0 0 22px rgba(245,243,236,.55);
+    }
+    .hero-actions .text-link{
+      text-shadow:
+        0 1px 1px rgba(245,243,236,.72),
+        0 0 18px rgba(245,243,236,.50);
+    }
+
+    .hero-grid,
+    .hero-bottom{
+      position:relative;
+      z-index:1;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.04fr 1fr;
+      align-items:center;
+      gap:clamp(16px,3vw,40px);
+      min-height:560px;
+    }
+
+    .hero h1{
+      font-size:clamp(46px,5.8vw,84px);
+      line-height:1.02;
+      letter-spacing:-.062em;
+      margin:26px 0 26px;
+      position:relative;z-index:2;
+    }
+    .hero h1 .line{
+      display:block;
+      overflow:hidden;
+      padding-bottom:.06em;
+    }
+    .hero h1 .line > span{
+      display:block;
+    }
+    html.js .hero h1 .line > span{
+      transform:translateY(110%);
+      transition:transform 1.05s var(--ease-out);
+      transition-delay:calc(var(--l,0) * 110ms + 120ms);
+    }
+    html.js .hero.is-ready h1 .line > span{transform:translateY(0)}
+    .hero h1 em{
+      font-family:var(--serif);
+      font-style:italic;
+      font-weight:400;
+      color:var(--orange);
+      letter-spacing:-.015em;
+      font-size:1.02em;
+    }
+
+    .hero-intro{
+      max-width:520px;
+      font-size:clamp(17px,1.35vw,19.5px);
+      line-height:1.72;
+      color:var(--ink-2);
+      font-weight:400;
+      letter-spacing:-.005em;
+    }
+    .hero-actions{
+      display:flex;align-items:center;gap:28px;
+      margin-top:32px;
+    }
+    .hero-actions .text-link{
+      border:0;
+      font-size:16px;
+      font-weight:600;
+      gap:10px;
+      padding-block:12px;
+    }
+
+    .hero-note{
+      display:flex;
+      align-items:center;
+      gap:11px;
+      margin-top:34px;
+      font-size:clamp(13.5px,1.05vw,15px);
+      line-height:1.5;
+      font-weight:500;
+      letter-spacing:-.005em;
+      color:var(--ink-2);
+    }
+    .hero-note span{
+      width:8px;height:8px;background:var(--green);
+      border-radius:50%;
+      flex-shrink:0;
+      box-shadow:0 0 0 4px rgba(77,96,77,.14);
+      animation:pulse 2.8s ease-in-out infinite;
+    }
+    @keyframes pulse{
+      0%,100%{box-shadow:0 0 0 3px rgba(77,96,77,.14)}
+      50%{box-shadow:0 0 0 7px rgba(77,96,77,.05)}
+    }
+
+    .hero-art{
+      height:560px;
+      position:relative;
+      perspective:1200px;
+    }
+    .art-orbit{
+      position:absolute;
+      inset:32px 6px 36px 14px;
+      border:1px solid var(--line-strong);
+      border-radius:50%;
+      transform:rotate(-22deg);
+      opacity:.9;
+    }
+    .art-orbit::before{
+      content:'';
+      position:absolute;inset:25px -22px;
+      border:1px solid var(--line-strong);
+      border-radius:50%;
+      opacity:.7;
+    }
+    .art-cross{
+      position:absolute;right:8px;top:2px;
+      font-size:76px;font-weight:400;
+      color:var(--orange);line-height:1;
+      transform:rotate(12deg);
+      animation:spinSlow 26s linear infinite;
+      transform-origin:center;
+    }
+    @keyframes spinSlow{to{transform:rotate(372deg)}}
+
+    .hero-project{
+      position:absolute;left:22px;top:34px;
+      width:76%;
+      padding:12px;
+      background:var(--white);
+      border:1px solid #e6e7dd;
+      border-radius:8px;
+      transform:rotate(-7deg);
+      box-shadow:var(--shadow-md);
+      transition:transform .65s var(--ease),box-shadow .65s var(--ease);
+      text-align:left;
+      color:var(--ink);
+      will-change:transform;
+    }
+    .hero-project:hover{
+      transform:rotate(-3.5deg) translateY(-6px);
+      box-shadow:var(--shadow-lg);
+    }
+    .hero-project img{
+      width:100%;height:340px;
+      object-fit:cover;border-radius:4px;
+    }
+    .hero-project-caption{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:15px 4px 5px;
+    }
+    .hero-project-caption strong{
+      display:block;
+      font-family:var(--display);
+      font-size:19px;font-weight:500;letter-spacing:-.02em;
+    }
+    .hero-project-caption small{font-size:10px;color:var(--muted)}
+
+    .mini-project{
+      position:absolute;right:0;bottom:17px;
+      width:39%;
+      padding:8px;
+      background:var(--white);
+      border:1px solid #e6e7dd;
+      box-shadow:var(--shadow-md);
+      border-radius:7px;
+      transform:rotate(9deg);
+      transition:transform .55s var(--ease),box-shadow .55s var(--ease);
+      text-align:left;
+      color:var(--ink);
+      will-change:transform;
+    }
+    .mini-project:hover{
+      transform:rotate(4deg) translateY(-6px);
+      box-shadow:var(--shadow-lg);
+    }
+    .mini-project img{
+      width:100%;height:205px;
+      object-fit:cover;border-radius:4px;
+    }
+    .mini-project span{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:11px 4px 3px;
+      font-size:11px;font-weight:600;
+    }
+
+    .art-stamp{
+      position:absolute;left:-10px;bottom:-24px;
+      width:92px;height:92px;
+      background:var(--orange);
+      color:#fff;
+      border-radius:50%;
+      display:flex;flex-direction:column;
+      align-items:center;justify-content:center;
+      transform:rotate(-12deg);
+      font-size:8px;line-height:1.5;
+      text-align:center;letter-spacing:.09em;
+      text-transform:uppercase;
+      pointer-events:none;
+      box-shadow:0 12px 30px rgba(217,68,38,.28);
+    }
+    .art-stamp b{font-size:30px;font-weight:400;line-height:1.1;margin:1px 0}
+
+    .hero-bottom{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      border-top:1px solid var(--line);
+      padding-top:23px;
+      margin-top:clamp(32px,4vw,48px);
+      font-size:clamp(12.5px,0.95vw,14px);
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:var(--ink-2);
+      line-height:1.5;
+    }
+
+    .hero-bottom a{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      color:#ffffff;
+      background:var(--ink);
+      padding:10px 18px;
+      border-radius:999px;
+      text-shadow:none;
+      box-shadow:0 6px 18px rgba(26,28,25,.18);
+      transition:background .3s var(--ease),color .3s var(--ease),gap .3s var(--ease),transform .3s var(--ease);
+    }
+    .hero-bottom a:hover{
+      background:var(--orange);
+      color:#ffffff;
+      gap:14px;
+      transform:translateY(-2px);
+    }
+    .hero-bottom a .arrow{font-size:1em}
+
+    .hero-bottom .disciplines{
+      display:flex;
+      gap:25px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .hero-bottom .disciplines span+span::before{
+      content:'✳';
+      color:var(--orange);
+      margin-right:25px;
+      font-size:.95em;
+    }
+
+    /* =========================================================
+       WORK
+       ========================================================= */
+
+    .work{
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:
+        radial-gradient(1000px 600px at 92% -8%, rgba(217,68,38,.16), transparent 60%),
+        radial-gradient(900px 550px at -5% 105%, rgba(77,96,77,.13), transparent 62%),
+        radial-gradient(700px 500px at 50% 55%, rgba(228,237,184,.10), transparent 70%),
+        linear-gradient(180deg, #fbf8f0 0%, #f6efe1 38%, #f1e7d4 68%, #ebdfc9 100%);
+    }
+
+    .work::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      z-index:-1;
+      pointer-events:none;
+      background-image:
+        linear-gradient(to right, rgba(26,28,25,.028) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(26,28,25,.028) 1px, transparent 1px);
+      background-size:88px 88px;
+      -webkit-mask-image:radial-gradient(70% 60% at 50% 40%, #000, transparent 78%);
+      mask-image:radial-gradient(70% 60% at 50% 40%, #000, transparent 78%);
+    }
+
+    /* ---------- Work intro ---------- */
+
+    .work-intro{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:clamp(28px,4vw,64px);
+      align-items:end;
+      margin-bottom:clamp(38px,4.5vw,58px);
+    }
+    .work-intro h2{margin-top:18px}
+    .work-intro-side > p{
+      font-size:14px;
+      line-height:1.8;
+      color:var(--muted);
+      max-width:430px;
+    }
+    .work-meta{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:clamp(14px,2vw,28px);
+      margin-top:26px;
+      padding-top:22px;
+      border-top:1px solid var(--line-strong);
+    }
+    .work-meta li{display:flex;flex-direction:column;gap:5px}
+    .work-meta strong{
+      font-family:var(--display);
+      font-size:clamp(22px,2.2vw,28px);
+      font-weight:500;
+      letter-spacing:-.045em;
+      line-height:1;
+      font-variant-numeric:tabular-nums;
+    }
+    .work-meta span{
+      font-size:9px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--muted);
+      font-weight:600;
+      line-height:1.4;
+    }
+
+    /* ---------- Project grid ---------- */
+
+    .project-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:clamp(18px,2.2vw,28px);
+    }
+
+    .project-card{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:12px;
+      overflow:hidden;
+      color:var(--ink);
+      box-shadow:0 2px 4px rgba(122,74,32,.06),0 14px 34px rgba(122,74,32,.08);
+      transition:border-color .4s var(--ease),transform .6s var(--ease),box-shadow .6s var(--ease);
+      transform-style:preserve-3d;
+      will-change:transform;
+    }
+    .project-card:hover,
+    .project-card:focus-visible{
+      border-color:var(--line-strong);
+      box-shadow:0 4px 10px rgba(122,74,32,.08),0 28px 60px rgba(122,74,32,.16);
+    }
+
+    .project-card--feature{
+      grid-column:1 / -1;
+      display:grid;
+      grid-template-columns:1.06fr .94fr;
+      align-items:stretch;
+    }
+
+    /* ---------- Browser-frame preview ---------- */
+
+    .site-preview{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      aspect-ratio:16/10;
+      background:var(--paper-2);
+      border-bottom:1px solid var(--line);
+      overflow:hidden;
+    }
+    .project-card--feature .site-preview{
+      aspect-ratio:auto;
+      min-height:390px;
+      border-bottom:0;
+      border-right:1px solid var(--line);
+    }
+
+    .site-preview-bar{
+      position:relative;
+      z-index:3;
+      display:flex;
+      align-items:center;
+      gap:6px;
+      padding:9px 12px;
+      background:rgba(255,254,250,.82);
+      border-bottom:1px solid var(--line);
+      backdrop-filter:blur(6px);
+      -webkit-backdrop-filter:blur(6px);
+    }
+    .site-preview-bar i{
+      display:block;
+      width:6px;height:6px;
+      border-radius:50%;
+      background:#cfd1c4;
+      flex-shrink:0;
+    }
+    .site-preview-bar em{
+      font-style:normal;
+      margin-left:8px;
+      font-size:9px;
+      letter-spacing:.04em;
+      color:var(--muted);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .site-preview-body{
+      position:relative;
+      flex:1;
+      display:grid;
+      place-items:center;
+      align-content:center;
+      gap:9px;
+      background:linear-gradient(160deg,#f9f7ef,#e8ebdd);
+      overflow:hidden;
+    }
+    .site-preview-body::before{
+      content:'';
+      position:absolute;
+      inset:-25%;
+      background:radial-gradient(circle at 50% 42%, var(--accent,#4d604d), transparent 58%);
+      opacity:.30;
+      transition:opacity .6s var(--ease),transform .9s var(--ease);
+    }
+    .site-preview-body::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      background-image:
+        linear-gradient(to right, rgba(26,28,25,.055) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(26,28,25,.055) 1px, transparent 1px);
+      background-size:34px 34px;
+      -webkit-mask-image:radial-gradient(75% 75% at 50% 50%, #000, transparent 78%);
+      mask-image:radial-gradient(75% 75% at 50% 50%, #000, transparent 78%);
+    }
+
+    .site-monogram{
+      position:relative;
+      z-index:1;
+      font-family:var(--display);
+      font-weight:700;
+      font-size:clamp(44px,5.4vw,72px);
+      letter-spacing:-.07em;
+      line-height:1;
+      color:var(--ink);
+      transition:transform .8s var(--ease);
+    }
+    .project-card--feature .site-monogram{font-size:clamp(64px,8vw,116px)}
+
+    .site-preview-label{
+      position:relative;
+      z-index:1;
+      font-size:9px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-weight:600;
+      color:var(--ink-2);
+      opacity:.65;
+    }
+
+    /* Live-site screenshot inside the preview frame */
+    .site-preview-body > img.site-shot{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:top center;
+      z-index:2;
+      transition:transform 1.2s var(--ease), filter .6s var(--ease);
+      filter:saturate(1.02) contrast(1.02);
+      will-change:transform;
+      background:transparent;
+    }
+    .project-card:hover .site-preview-body > img.site-shot,
+    .project-card:focus-visible .site-preview-body > img.site-shot{
+      transform:scale(1.045);
+      filter:saturate(1.08) contrast(1.03);
+    }
+
+    .project-card:hover .site-preview-body::before{opacity:.44;transform:scale(1.07)}
+    .project-card:hover .site-monogram{transform:scale(1.04)}
+
+    /* ---------- Card content ---------- */
+
+    .project-card-body{
+      display:flex;
+      flex-direction:column;
+      flex:1;
+      padding:clamp(20px,2.2vw,30px);
+    }
+
+    .project-card-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .project-card-index{
+      font-size:9.5px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      color:var(--muted-2);
+      font-weight:650;
+      font-variant-numeric:tabular-nums;
+    }
+    .project-card-tag{
+      font-size:9px;
+      letter-spacing:.1em;
+      text-transform:uppercase;
+      font-weight:650;
+      padding:5px 10px;
+      border:1px solid var(--line-strong);
+      border-radius:30px;
+      color:var(--ink-2);
+      white-space:nowrap;
+      transition:background .35s var(--ease),color .35s var(--ease),border-color .35s var(--ease);
+    }
+    .project-card:hover .project-card-tag{
+      background:var(--ink);
+      border-color:var(--ink);
+      color:#fff;
+    }
+
+    .project-card h3{
+      font-size:clamp(20px,1.9vw,24px);
+      letter-spacing:-.04em;
+      margin:14px 0 10px;
+      transition:color .3s var(--ease);
+    }
+    .project-card--feature h3{font-size:clamp(24px,2.6vw,34px)}
+    .project-card:hover h3{color:var(--orange)}
+
+    .project-card p{
+      font-size:13px;
+      line-height:1.75;
+      color:var(--muted);
+      flex:1;
+      max-width:52ch;
+    }
+    .project-card--feature p{font-size:14px;max-width:44ch}
+
+    .project-card-foot{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-top:22px;
+      padding-top:18px;
+      border-top:1px solid var(--line);
+      font-size:11px;
+      font-weight:600;
+      letter-spacing:.02em;
+    }
+    .project-visit{display:inline-flex;align-items:center;gap:9px}
+    .project-card:hover .project-visit .arrow{transform:translate(3px,-3px)}
+
+    .project-live{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      font-size:9px;
+      font-weight:650;
+      text-transform:uppercase;
+      letter-spacing:.13em;
+      color:var(--muted);
+    }
+    .project-live i{
+      width:6px;height:6px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 0 0 3px rgba(77,96,77,.14);
+      flex-shrink:0;
+    }
+    .project-live.is-case{color:var(--muted-2)}
+    .project-live.is-case i{background:var(--orange);box-shadow:0 0 0 3px rgba(217,68,38,.12)}
+
+    /* ---------- Closing CTA band ---------- */
+
+    .work-cta{
+      position:relative;
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
+      background:linear-gradient(180deg,var(--paper) 0%,var(--paper-3) 100%);
+      padding:clamp(58px,7vw,92px) 0;
+    }
+    .work-cta::after{
+      content:'';
+      position:absolute;
+      width:560px;height:560px;
+      right:-200px;bottom:-280px;
+      background:radial-gradient(circle,rgba(217,68,38,.12),transparent 64%);
+      pointer-events:none;
+    }
+    .work-cta-inner{
+      position:relative;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:clamp(28px,5vw,70px);
+    }
+    .work-cta h2{
+      font-size:clamp(32px,4.2vw,56px);
+      max-width:680px;
+      margin-top:20px;
+    }
+    .work-cta h2 em{font-family:var(--serif);font-style:italic;font-weight:400}
+    .work-cta-actions{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      gap:16px;
+      flex-shrink:0;
+      padding-bottom:6px;
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+
+    .site-footer{padding:56px 0 26px}
+    .footer-top{
+      display:grid;
+      grid-template-columns:1.2fr 1fr auto;
+      gap:clamp(24px,4vw,60px);
+      align-items:start;
+      padding-bottom:40px;
+      border-bottom:1px solid var(--line);
+    }
+    .footer-brand .brand{margin-bottom:14px}
+    .footer-tagline{font-size:12px;color:var(--muted);margin-top:4px}
+
+    .footer-links{
+      display:flex;
+      gap:clamp(24px,4vw,54px);
+      flex-wrap:wrap;
+    }
+    .footer-col h4{
+      font-family:var(--body);
+      font-size:10px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:650;
+      color:var(--muted-2);
+      margin-bottom:14px;
+    }
+    .footer-col nav{display:flex;flex-direction:column;gap:9px}
+    .footer-col a{
+      font-size:12px;
+      color:var(--ink);
+      position:relative;
+      width:fit-content;
+      transition:color .3s var(--ease);
+    }
+    .footer-col a:hover{color:var(--orange)}
+
+    .footer-newsletter{max-width:280px}
+    .footer-newsletter h4{
+      font-family:var(--body);
+      font-size:10px;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      font-weight:650;
+      color:var(--muted-2);
+      margin-bottom:14px;
+    }
+    .footer-newsletter p{
+      font-size:11px;
+      color:var(--muted);
+      margin-bottom:14px;
+      line-height:1.6;
+    }
+    .newsletter-form{
+      display:flex;
+      align-items:center;
+      gap:0;
+      border:1px solid var(--line);
+      border-radius:6px;
+      overflow:hidden;
+      background:var(--white);
+      transition:border-color .3s var(--ease),box-shadow .3s var(--ease);
+    }
+    .newsletter-form:focus-within{
+      border-color:var(--orange);
+      box-shadow:0 0 0 3px rgba(217,68,38,.10);
+    }
+    .newsletter-form input{
+      flex:1;
+      border:0;
+      background:transparent;
+      padding:11px 14px;
+      font-size:12px;
+      outline:none;
+      color:var(--ink);
+      min-width:0;
+    }
+    .newsletter-form input::placeholder{color:var(--muted-2)}
+    .newsletter-form button{
+      background:var(--ink);
+      color:#fff;
+      padding:11px 16px;
+      font-size:11px;
+      font-weight:600;
+      border:0;
+      transition:background .3s var(--ease);
+    }
+    .newsletter-form button:hover{background:var(--orange)}
+
+    .footer-bottom{
+      padding-top:24px;
+      display:flex;justify-content:space-between;gap:24px;
+      font-size:10px;color:var(--muted);
+    }
+    .footer-bottom a{
+      display:inline-flex;align-items:center;gap:8px;
+      transition:color .3s var(--ease),gap .3s var(--ease);
+    }
+    .footer-bottom a:hover{color:var(--orange);gap:12px}
+
+    /* =========================================================
+       PROJECT DIALOG
+       ========================================================= */
+
+    .project-dialog{
+      padding:0;border:0;
+      border-radius:10px;
+      width:min(1020px,calc(100% - 40px));
+      max-height:88vh;
+      max-height:88dvh;
+      background:var(--paper);
+      color:var(--ink);
+      overflow:auto;
+      box-shadow:var(--shadow-lg);
+    }
+    .project-dialog[open]{animation:dialogIn .5s var(--ease)}
+    @keyframes dialogIn{
+      from{opacity:0;transform:translateY(18px) scale(.985)}
+      to{opacity:1;transform:none}
+    }
+    .project-dialog::backdrop{
+      background:rgba(18,21,17,.78);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+    }
+    .dialog-top{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:25px;
+      padding:20px 28px;
+      border-bottom:1px solid var(--line);
+      position:sticky;top:0;
+      background:rgba(245,243,236,.94);
+      backdrop-filter:blur(14px);
+      z-index:2;
+    }
+    .dialog-top h2{font-size:25px}
+    .dialog-close{
+      width:44px;height:44px;
+      border:1px solid var(--line);
+      background:transparent;
+      border-radius:50%;
+      font-size:23px;line-height:1;
+      flex-shrink:0;
+      display:grid;place-items:center;
+      transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease),transform .4s var(--ease);
+    }
+    .dialog-close:hover{
+      background:var(--ink);color:#fff;border-color:var(--ink);
+      transform:rotate(90deg);
+    }
+    .dialog-content{display:grid;grid-template-columns:1.2fr 1fr}
+    .dialog-image-wrap{
+      background:#e0e2d7;
+      display:grid;place-items:center;
+      padding:20px;
+    }
+    .dialog-image-wrap img{
+      max-height:65vh;
+      width:100%;object-fit:contain;
+      border-radius:4px;
+    }
+    .dialog-description{padding:38px;align-self:center}
+    .dialog-description h3{font-size:28px;margin:18px 0}
+    .dialog-description > p:not(.eyebrow){font-size:14px;color:var(--muted)}
+    .dialog-description dl{margin:28px 0;font-size:12px}
+    .dialog-description dt{font-weight:600;margin-top:16px}
+    .dialog-description dd{margin:4px 0;color:var(--muted)}
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    @media (min-width:1500px){
+      .hero-grid{min-height:600px}
+      .hero-art{height:590px}
+      .hero-project img{height:370px}
+    }
+
+    @media (max-width:1100px){
+      :root{--gutter:64px}
+      .nav{gap:22px}
+      .hero h1{font-size:64px}
+      .hero-art{height:490px}
+      .hero-project img{height:300px}
+      .mini-project img{height:172px}
+      .hero-actions{gap:20px}
+      .project-card--feature .site-preview{min-height:330px}
+    }
+
+    @media (max-width:900px){
+      .header-inner{height:78px}
+      .site-header.is-scrolled .header-inner{height:70px}
+      .nav{gap:17px}
+      .nav .button{margin-left:0;padding:10px 14px;gap:12px}
+      .brand-name{font-size:25px}
+      .brand img{width:40px;height:40px}
+      .hero{padding-top:44px}
+      .hero h1{font-size:54px}
+      .hero-art{height:430px}
+      .hero-project{left:8px;width:82%}
+      .hero-project img{height:255px}
+      .mini-project{width:42%;bottom:0}
+      .mini-project img{height:152px}
+      .art-stamp{width:84px;height:84px;bottom:-18px;left:-4px}
+      .hero-intro{font-size:17.5px;max-width:500px;line-height:1.7}
+      .hero-note{font-size:14px}
+      .hero-bottom{font-size:12.5px;letter-spacing:.09em}
+      .hero-bottom .disciplines{gap:18px}
+      .hero-bottom .disciplines span+span::before{margin-right:18px}
+      .hero-bottom a{padding:9px 15px}
+      .hero-actions{gap:14px}
+      .hero-actions .button{padding:13px 18px;gap:16px}
+      .hero-actions .text-link{gap:10px;font-size:15px}
+      .section{padding-block:76px}
+
+      .work-intro{grid-template-columns:1fr;align-items:start;gap:24px}
+      .work-intro-side > p{max-width:560px}
+      .project-card--feature{grid-template-columns:1fr}
+      .project-card--feature .site-preview{
+        min-height:0;
+        aspect-ratio:16/9;
+        border-right:0;
+        border-bottom:1px solid var(--line);
+      }
+      .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+      .footer-newsletter{grid-column:1 / -1;max-width:none}
+    }
+
+    @media (max-width:760px){
+      :root{--gutter:40px}
+      .menu-toggle{display:block}
+
+      .header-inner{
+        height:auto;min-height:77px;
+        flex-wrap:wrap;gap:0;
+        position:relative;
+      }
+      .brand{min-height:77px}
+
+      .js .nav{
+        position:fixed;
+        inset:0;
+        z-index:-1;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:flex-start;
+        gap:6px;
+        padding:110px var(--gutter) 60px;
+        background:var(--paper);
+        opacity:0;
+        visibility:hidden;
+        transform:translateY(-12px);
+        transition:opacity .45s var(--ease),transform .55s var(--ease),visibility .45s;
+        pointer-events:none;
+      }
+      .js .nav.is-open{
+        opacity:1;
+        visibility:visible;
+        transform:none;
+        pointer-events:auto;
+      }
+      .js .nav > a{
+        font-family:var(--display);
+        font-size:clamp(28px,7vw,38px);
+        font-weight:500;
+        letter-spacing:-.04em;
+        padding:10px 0;
+        opacity:0;
+        transform:translateY(18px);
+        transition:opacity .5s var(--ease),transform .5s var(--ease),color .3s;
+      }
+      .js .nav.is-open > a{
+        opacity:1;
+        transform:none;
+      }
+      .js .nav.is-open > a:nth-child(1){transition-delay:.08s}
+      .js .nav.is-open > a:nth-child(2){transition-delay:.14s}
+      .js .nav.is-open > a:nth-child(3){transition-delay:.20s}
+      .js .nav.is-open > a:nth-child(4){transition-delay:.26s}
+      .js .nav .button{
+        margin-top:22px;
+        font-size:13px;
+        font-family:var(--body);
+        letter-spacing:0;
+        padding:15px 24px;
+        min-height:54px;
+      }
+      .js .nav > a::after{display:none}
+
+      .hero{padding:38px 0 25px}
+
+      .hero-video-scrim{
+        background:
+          linear-gradient(90deg,
+            rgba(245,243,236,.70) 0%,
+            rgba(245,243,236,.44) 60%,
+            rgba(245,243,236,.20) 100%),
+          linear-gradient(180deg,
+            rgba(245,243,236,.78) 0%,
+            rgba(245,243,236,.62) 45%,
+            rgba(245,243,236,.82) 100%);
+      }
+
+      .hero-grid{grid-template-columns:1fr;gap:20px;min-height:0}
+      .hero h1{
+        font-size:clamp(48px,11.4vw,76px);
+        margin-top:22px;
+        max-width:620px;
+      }
+      .hero-intro{max-width:560px;font-size:17.5px;line-height:1.7}
+      .hero-note{font-size:14.5px;margin-top:22px}
+      .hero-actions{gap:25px;margin-top:28px}
+      .hero-actions .button{padding:15px 22px;gap:24px}
+      .hero-art{width:min(460px,100%);height:460px;margin:8px auto 0}
+      .hero-project{left:15px;width:77%;top:30px}
+      .hero-project img{height:288px}
+      .mini-project{bottom:0;width:38%;right:3px}
+      .mini-project img{height:172px}
+      .art-stamp{bottom:-20px;left:0;width:84px;height:84px}
+      .art-cross{font-size:66px;right:9px;top:8px}
+      .hero-bottom{
+        margin-top:36px;
+        padding-top:20px;
+        font-size:11.5px;
+        letter-spacing:.05em;
+        gap:12px;
+      }
+      .hero-bottom > a{display:none}
+      .hero-bottom .disciplines{
+        width:100%;justify-content:space-between;
+        gap:10px;
+        font-size:11.5px;
+        letter-spacing:.05em;
+      }
+      .hero-bottom .disciplines span+span::before{margin-right:10px}
+
+      .section{padding-block:64px}
+
+      .project-grid{grid-template-columns:1fr}
+      .project-card--feature .site-preview{aspect-ratio:16/10}
+      .work-meta{grid-template-columns:repeat(3,1fr);gap:12px}
+      .work-meta span{font-size:8px;letter-spacing:.1em}
+
+      .work-cta-inner{flex-direction:column;align-items:flex-start;gap:26px}
+      .work-cta-actions{flex-direction:row;align-items:center;flex-wrap:wrap;gap:22px}
+
+      .footer-top{grid-template-columns:1fr;gap:28px;padding-bottom:32px}
+      .site-footer{padding-top:40px}
+      .footer-links{gap:32px}
+      .footer-bottom{font-size:9px;gap:15px;flex-wrap:wrap}
+
+      .dialog-content{grid-template-columns:1fr}
+      .dialog-top{padding:14px 20px}
+      .dialog-top h2{font-size:21px}
+      .dialog-image-wrap img{max-height:45vh}
+      .dialog-description{padding:26px}
+      .project-dialog{width:calc(100% - 24px)}
+    }
+
+    @media (max-width:420px){
+      .hero h1{font-size:clamp(34px,10.6vw,46px)}
+      .hero-intro{font-size:16px;line-height:1.7;max-width:none}
+      .hero-note{font-size:14px}
+      .hero-art{height:400px}
+      .hero-project img{height:248px}
+      .hero-project-caption strong{font-size:17px}
+      .hero-project-caption small{font-size:9px}
+      .mini-project img{height:144px}
+      .art-stamp{width:78px;height:78px;font-size:7px;bottom:-16px}
+      .mini-project span{font-size:9px}
+      .art-cross{font-size:56px}
+      .hero-bottom{font-size:10.5px;letter-spacing:.04em}
+      .hero-bottom .disciplines{font-size:10.5px;letter-spacing:.04em;gap:6px}
+      .hero-bottom .disciplines span+span::before{margin-right:6px}
+      .hero-actions{gap:18px}
+      .hero-actions .button{font-size:12px;padding:15px 17px;gap:18px;white-space:nowrap}
+      .hero-actions .text-link{font-size:14px;white-space:nowrap}
+
+      .work-meta strong{font-size:20px}
+      .project-card-foot{font-size:10px}
+      .work-cta h2{font-size:30px}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{
+        animation-duration:.001ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.001ms !important;
+        scroll-behavior:auto !important;
+      }
+      html.js .reveal{opacity:1;transform:none}
+      html.js .hero h1 .line > span{transform:none}
+      .hero-video,
+      .hero-video-scrim{display:none}
+    }
+
+    /* =========================================================
+       HERO PROJECT CARD — REDESIGN
+       ========================================================= */
+
+    .hero-project{
+      --rot:-7deg;
+      --tx:0px;
+      --ty:0px;
+      --img-h:382px;
+
+      position:absolute;
+      left:22px;
+      top:34px;
+      width:76%;
+      padding:0;
+      border:1px solid rgba(26,28,25,.10);
+      border-radius:20px;
+      overflow:hidden;
+      background:var(--ink);
+      color:#fff;
+      text-align:left;
+      cursor:pointer;
+      isolation:isolate;
+      transform:translate(var(--tx),var(--ty)) rotate(var(--rot));
+      box-shadow:
+        0 2px 6px rgba(26,28,25,.10),
+        0 26px 56px -18px rgba(26,28,25,.38);
+      transition:
+        transform .5s var(--ease),
+        box-shadow .7s var(--ease),
+        border-color .4s var(--ease);
+      will-change:transform;
+    }
+
+    .hero-project:hover,
+    .hero-project:focus-visible{
+      transform:translate(var(--tx),calc(var(--ty) - 8px)) rotate(calc(var(--rot) + 3.5deg));
+      border-color:rgba(217,68,38,.45);
+      box-shadow:
+        0 3px 8px rgba(26,28,25,.12),
+        0 40px 80px -20px rgba(26,28,25,.46);
+    }
+    .hero-project:focus-visible{
+      outline:2px solid var(--orange);
+      outline-offset:6px;
+    }
+
+    .hero-project img{
+      width:100%;
+      height:var(--img-h);
+      object-fit:cover;
+      border-radius:0;
+      transform:scale(1.015);
+      transition:transform 1.2s var(--ease), filter .6s var(--ease);
+      filter:saturate(1.02);
+    }
+    .hero-project:hover img{
+      transform:scale(1.075);
+      filter:saturate(1.08) contrast(1.03);
+    }
+
+    .hero-project::after{
+      content:'';
+      position:absolute;
+      inset:auto 0 0 0;
+      height:66%;
+      z-index:1;
+      pointer-events:none;
+      background:linear-gradient(180deg,
+        rgba(14,16,13,0)   0%,
+        rgba(14,16,13,.24) 34%,
+        rgba(14,16,13,.62) 66%,
+        rgba(14,16,13,.90) 100%);
+    }
+
+    .hero-project-tag{
+      position:absolute;
+      top:14px;
+      left:14px;
+      z-index:3;
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      padding:6px 11px 6px 9px;
+      border-radius:999px;
+      background:rgba(14,16,13,.42);
+      border:1px solid rgba(255,254,250,.26);
+      -webkit-backdrop-filter:blur(12px) saturate(1.5);
+      backdrop-filter:blur(12px) saturate(1.5);
+      color:#fff;
+      font-size:9px;
+      font-weight:650;
+      letter-spacing:.15em;
+      line-height:1;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+    .hero-project-tag::before{
+      content:'';
+      width:5px;
+      height:5px;
+      flex-shrink:0;
+      border-radius:50%;
+      background:var(--orange);
+      box-shadow:0 0 0 3px rgba(217,68,38,.28);
+    }
+
+    .hero-project-caption{
+      position:absolute;
+      inset:auto 0 0 0;
+      z-index:2;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:14px;
+      padding:18px 18px 16px;
+    }
+    .hero-project-caption > span:first-child{min-width:0}
+
+    .hero-project-caption strong{
+      display:block;
+      font-family:var(--display);
+      font-size:clamp(17px,1.55vw,21px);
+      font-weight:500;
+      line-height:1.12;
+      letter-spacing:-.035em;
+      color:#fff;
+    }
+    .hero-project-caption small{
+      display:block;
+      margin-top:7px;
+      font-size:9.5px;
+      font-weight:600;
+      letter-spacing:.13em;
+      line-height:1.4;
+      text-transform:uppercase;
+      color:rgba(255,254,250,.66);
+    }
+
+    .hero-project-arrow{
+      flex-shrink:0;
+      display:grid;
+      place-items:center;
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      background:rgba(255,254,250,.12);
+      border:1px solid rgba(255,254,250,.34);
+      -webkit-backdrop-filter:blur(10px);
+      backdrop-filter:blur(10px);
+      color:#fff;
+      font-size:15px;
+      line-height:1;
+      transition:background .45s var(--ease), border-color .45s var(--ease), transform .55s var(--ease);
+    }
+    .hero-project:hover .hero-project-arrow,
+    .hero-project:focus-visible .hero-project-arrow{
+      background:var(--orange);
+      border-color:var(--orange);
+      transform:scale(1.08);
+    }
+    .hero-project:hover .hero-project-arrow .arrow{
+      transform:translate(2px,-2px);
+    }
+
+    /* ---------- Mini project — var-driven parallax ---------- */
+
+    .mini-project{
+      --mrot:9deg;
+      --mtx:0px;
+      --mty:0px;
+      transform:translate(var(--mtx),var(--mty)) rotate(var(--mrot));
+    }
+    .mini-project:hover,
+    .mini-project:focus-visible{
+      transform:translate(var(--mtx),calc(var(--mty) - 6px)) rotate(calc(var(--mrot) - 5deg));
+      box-shadow:var(--shadow-lg);
+    }
+    .mini-project:focus-visible{
+      outline:2px solid var(--orange);
+      outline-offset:6px;
+    }
+
+    /* responsive heights (replaces the old img heights) */
+    @media (max-width:1100px){ .hero-project{--img-h:336px} }
+    @media (max-width:900px){
+      .hero-project{--img-h:288px;border-radius:16px}
+      .hero-project-caption{padding:16px 16px 14px}
+      .hero-project-arrow{width:38px;height:38px;font-size:14px}
+    }
+    @media (max-width:760px){
+      .hero-project{--img-h:322px;border-radius:18px}
+      .hero-project-caption{padding:15px 15px 14px;gap:10px}
+      .hero-project-arrow{width:36px;height:36px;font-size:13px}
+      .hero-project-tag{top:11px;left:11px;font-size:8px;padding:5px 9px 5px 8px}
+    }
+    @media (max-width:420px){
+      .hero-project{--img-h:280px;border-radius:16px}
+      .hero-project-caption strong{font-size:16px}
+      .hero-project-caption small{font-size:8.5px;letter-spacing:.1em}
+    }
+
+    /* =========================================================
+       IMAGE GALLERY
+       ========================================================= */
+
+    .gallery{
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:
+        radial-gradient(1000px 600px at 0% 0%, rgba(217,68,38,.06), transparent 60%),
+        linear-gradient(180deg,var(--paper) 0%,var(--paper-2) 100%);
+    }
+
+    .gallery-intro{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:clamp(28px,4vw,64px);
+      align-items:end;
+      margin-bottom:clamp(38px,4.5vw,58px);
+    }
+    .gallery-intro h2{margin-top:18px}
+    .gallery-intro-side > p{
+      font-size:14px;
+      line-height:1.8;
+      color:var(--muted);
+      max-width:430px;
+    }
+
+    .gallery-grid{
+      columns:3;
+      column-gap:clamp(14px,1.6vw,22px);
+    }
+
+    .gallery-item{
+      position:relative;
+      break-inside:avoid;
+      margin-bottom:clamp(14px,1.6vw,22px);
+      aspect-ratio:4/3;
+      border-radius:12px;
+      overflow:hidden;
+      background:var(--paper-3);
+      border:1px solid var(--line);
+      box-shadow:0 2px 6px rgba(122,74,32,.06),0 14px 34px rgba(122,74,32,.07);
+      transition:box-shadow .5s var(--ease),border-color .4s var(--ease),transform .6s var(--ease);
+      will-change:transform;
+    }
+    .gallery-item:nth-child(6n+2){aspect-ratio:3/4}
+    .gallery-item:nth-child(6n+3){aspect-ratio:1/1}
+    .gallery-item:nth-child(6n+4){aspect-ratio:3/4}
+    .gallery-item:nth-child(6n+6){aspect-ratio:1/1}
+
+    .gallery-item:hover{
+      transform:translateY(-4px);
+      border-color:var(--line-strong);
+      box-shadow:0 4px 10px rgba(122,74,32,.08),0 28px 60px rgba(122,74,32,.16);
+    }
+    .gallery-item img{
+      width:100%;height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform 1.1s var(--ease),filter .6s var(--ease);
+      will-change:transform;
+    }
+    .gallery-item:hover img{
+      transform:scale(1.05);
+      filter:saturate(1.06);
+    }
+
+    .gallery-item::after{
+      content:'';
+      position:absolute;
+      inset:auto 0 0 0;
+      height:55%;
+      z-index:1;
+      pointer-events:none;
+      background:linear-gradient(180deg,
+        rgba(14,16,13,0)   0%,
+        rgba(14,16,13,.24) 38%,
+        rgba(14,16,13,.82) 100%);
+      opacity:0;
+      transition:opacity .5s var(--ease);
+    }
+    .gallery-item:hover::after{opacity:1}
+
+    .gallery-caption{
+      position:absolute;
+      inset:auto 0 0 0;
+      z-index:2;
+      padding:16px 18px;
+      color:#fff;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      opacity:0;
+      transform:translateY(12px);
+      transition:opacity .45s var(--ease),transform .45s var(--ease);
+    }
+    .gallery-item:hover .gallery-caption{opacity:1;transform:none}
+    .gallery-caption strong{
+      font-family:var(--display);
+      font-size:15px;
+      font-weight:500;
+      letter-spacing:-.02em;
+      line-height:1.2;
+    }
+    .gallery-caption small{
+      font-size:9px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-weight:650;
+      color:rgba(255,254,250,.75);
+    }
+
+    .gallery-tag{
+      position:absolute;
+      top:12px;left:12px;
+      z-index:3;
+      display:inline-flex;
+      align-items:center;
+      padding:5px 10px;
+      border-radius:999px;
+      background:rgba(14,16,13,.42);
+      border:1px solid rgba(255,254,250,.26);
+      -webkit-backdrop-filter:blur(10px) saturate(1.4);
+      backdrop-filter:blur(10px) saturate(1.4);
+      color:#fff;
+      font-size:8.5px;
+      font-weight:650;
+      letter-spacing:.14em;
+      line-height:1;
+      text-transform:uppercase;
+    }
+
+    @media (hover:none){
+      .gallery-item::after{opacity:1}
+      .gallery-caption{opacity:1;transform:none}
+    }
+    @media (max-width:900px){.gallery-grid{columns:2}}
+    @media (max-width:760px){
+      .gallery-intro{grid-template-columns:1fr;align-items:start;gap:24px}
+      .gallery-grid{columns:2;column-gap:14px}
+      .gallery-item{margin-bottom:14px}
+    }
+    @media (max-width:520px){.gallery-grid{columns:1}}
+
+
+    /* =========================================================
+       SOCIAL MEDIA POST
+       ========================================================= */
+
+    .social{
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
+      background:
+        radial-gradient(900px 500px at 100% 0%, rgba(217,68,38,.10), transparent 60%),
+        radial-gradient(700px 500px at 0% 100%, rgba(77,96,77,.10), transparent 60%),
+        var(--paper);
+    }
+
+    .social-intro{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:clamp(28px,4vw,64px);
+      align-items:end;
+      margin-bottom:clamp(38px,4.5vw,58px);
+    }
+    .social-intro h2{margin-top:18px}
+    .social-intro-side > p{
+      font-size:14px;
+      line-height:1.8;
+      color:var(--muted);
+      max-width:430px;
+    }
+
+    .social-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:clamp(18px,2.2vw,28px);
+    }
+
+    .social-card{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:0 2px 4px rgba(122,74,32,.06),0 14px 34px rgba(122,74,32,.08);
+      transition:border-color .4s var(--ease),transform .6s var(--ease),box-shadow .6s var(--ease);
+      will-change:transform;
+    }
+    .social-card:hover{
+      transform:translateY(-6px);
+      border-color:var(--line-strong);
+      box-shadow:0 4px 10px rgba(122,74,32,.08),0 30px 60px rgba(122,74,32,.18);
+    }
+
+    .social-head{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      border-bottom:1px solid var(--line);
+      background:rgba(255,254,250,.82);
+    }
+    .social-avatar{
+      width:32px;height:32px;
+      border-radius:50%;
+      background:var(--ink);
+      color:#fff;
+      display:grid;
+      place-items:center;
+      font-family:var(--display);
+      font-size:12px;
+      font-weight:600;
+      flex-shrink:0;
+    }
+    .social-meta{display:flex;flex-direction:column;min-width:0;flex:1}
+    .social-meta strong{
+      font-size:11.5px;
+      font-weight:600;
+      letter-spacing:-.005em;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .social-meta small{
+      font-size:9px;
+      color:var(--muted);
+      letter-spacing:.04em;
+    }
+    .social-platform{
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+      padding:4px 8px;
+      border-radius:999px;
+      font-size:8.5px;
+      font-weight:650;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      background:var(--paper-2);
+      color:var(--ink-2);
+      flex-shrink:0;
+    }
+    .social-platform i{
+      width:5px;height:5px;
+      border-radius:50%;
+      background:var(--orange);
+      flex-shrink:0;
+    }
+
+    .social-shot{
+      position:relative;
+      aspect-ratio:4/5;
+      overflow:hidden;
+      background:var(--paper-2);
+    }
+    .social-shot img{
+      width:100%;height:100%;
+      object-fit:cover;
+      transition:transform 1.1s var(--ease),filter .6s var(--ease);
+      will-change:transform;
+    }
+    .social-card:hover .social-shot img{
+      transform:scale(1.05);
+      filter:saturate(1.06);
+    }
+
+    .social-body{
+      padding:14px 16px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      flex:1;
+    }
+    .social-body p{
+      font-size:12px;
+      line-height:1.65;
+      color:var(--muted);
+    }
+    .social-body p strong{color:var(--ink);font-weight:600}
+    .social-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-top:2px;
+    }
+    .social-tags span{
+      font-size:9.5px;
+      font-weight:600;
+      color:var(--orange);
+      letter-spacing:.01em;
+    }
+    .social-foot{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:11px 16px;
+      border-top:1px solid var(--line);
+      font-size:10px;
+      color:var(--muted);
+      letter-spacing:.04em;
+      font-weight:600;
+    }
+    .social-foot span{display:inline-flex;align-items:center;gap:5px}
+    .social-foot .heart{color:var(--orange)}
+
+    @media (max-width:900px){.social-grid{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:760px){
+      .social-intro{grid-template-columns:1fr;align-items:start;gap:24px}
+    }
+    @media (max-width:520px){.social-grid{grid-template-columns:1fr}}
+
+    /* =========================================================
+       SOCIAL CAROUSEL
+       ========================================================= */
+
+    .social-carousel{
+      position:relative;
+      margin-bottom:clamp(38px,4.5vw,58px);
+    }
+    .social-carousel-viewport{
+      overflow:hidden;
+      border-radius:14px;
+      margin-inline:-4px;
+      padding-inline:4px;
+    }
+    .social-carousel-track{
+      display:flex;
+      gap:clamp(14px,1.6vw,22px);
+      overflow-x:auto;
+      overflow-y:hidden;
+      scroll-snap-type:x mandatory;
+      scroll-behavior:smooth;
+      padding-bottom:6px;
+      scrollbar-width:none;
+      -ms-overflow-style:none;
+      outline:none;
+    }
+    .social-carousel-track::-webkit-scrollbar{display:none}
+    .social-carousel-track:focus-visible{
+      outline:2px solid var(--orange);
+      outline-offset:6px;
+      border-radius:14px;
+    }
+
+    .carousel-card{
+      flex:0 0 clamp(230px,26vw,320px);
+      scroll-snap-align:start;
+      display:flex;
+      flex-direction:column;
+      background:var(--white);
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:0 2px 4px rgba(122,74,32,.06),0 14px 34px rgba(122,74,32,.08);
+      transition:border-color .4s var(--ease),transform .6s var(--ease),box-shadow .6s var(--ease);
+      will-change:transform;
+    }
+    .carousel-card:hover{
+      transform:translateY(-5px);
+      border-color:var(--line-strong);
+      box-shadow:0 4px 10px rgba(122,74,32,.08),0 28px 60px rgba(122,74,32,.16);
+    }
+
+    .carousel-card-media{
+      position:relative;
+      aspect-ratio:4 / 5;
+      overflow:hidden;
+      background:var(--paper-2);
+    }
+    .carousel-card-media img{
+      width:100%;height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform 1.1s var(--ease),filter .6s var(--ease);
+      will-change:transform;
+    }
+    .carousel-card:hover .carousel-card-media img{
+      transform:scale(1.04);
+      filter:saturate(1.06);
+    }
+
+    .carousel-card-meta{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:13px 15px;
+      border-top:1px solid var(--line);
+      background:rgba(255,254,250,.9);
+    }
+    .carousel-card-brand{
+      font-family:var(--display);
+      font-size:12.5px;
+      font-weight:600;
+      letter-spacing:-.015em;
+      color:var(--ink);
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .carousel-card-tag{
+      flex-shrink:0;
+      font-size:8.5px;
+      font-weight:650;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      padding:4px 9px;
+      border-radius:30px;
+      background:var(--paper-2);
+      color:var(--ink-2);
+      line-height:1.2;
+    }
+
+    .social-carousel-controls{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-top:20px;
+      padding-top:16px;
+      border-top:1px solid var(--line);
+    }
+    .carousel-counter{
+      font-family:var(--display);
+      font-size:12px;
+      font-weight:500;
+      letter-spacing:.06em;
+      color:var(--muted);
+      font-variant-numeric:tabular-nums;
+    }
+    .carousel-counter em{
+      font-style:normal;
+      color:var(--line-strong);
+      margin:0 2px;
+    }
+    .carousel-nav-group{display:flex;gap:8px}
+    .carousel-btn{
+      width:44px;height:44px;
+      border:1px solid var(--line-strong);
+      background:var(--white);
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      font-size:15px;
+      line-height:1;
+      color:var(--ink);
+      transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease),transform .3s var(--ease);
+    }
+    .carousel-btn:hover:not(:disabled){
+      background:var(--ink);
+      color:#fff;
+      border-color:var(--ink);
+      transform:translateY(-1px);
+    }
+    .carousel-btn:disabled{
+      opacity:.35;
+      cursor:not-allowed;
+    }
+    .carousel-btn:focus-visible{
+      outline:2px solid var(--orange);
+      outline-offset:3px;
+    }
+
+    /* Responsive carousel sizing */
+    @media (max-width:900px){
+      .carousel-card{flex-basis:clamp(220px,38vw,280px)}
+    }
+    @media (max-width:760px){
+      .carousel-card{flex-basis:clamp(200px,62vw,260px)}
+      .social-carousel-viewport{margin-inline:-2px;padding-inline:2px}
+    }
+    @media (max-width:420px){
+      .carousel-card{flex-basis:78vw}
+      .social-carousel-controls{margin-top:14px;padding-top:12px}
+      .carousel-btn{width:40px;height:40px}
+    }
+
+    /* =========================================================
+       SOCIAL CAROUSEL — AUTO-SNAP
+       progress indicator + play/pause control
+       ========================================================= */
+
+    .social-carousel-progress{
+      position:relative;
+      height:3px;
+      margin-top:16px;
+      border-radius:999px;
+      background:var(--line);
+      overflow:hidden;
+      transition:opacity .4s var(--ease);
+    }
+    .social-carousel:not(.is-autoplay) .social-carousel-progress{opacity:.4}
+
+    .social-carousel-progress-fill{
+      display:block;
+      height:100%;
+      width:100%;
+      border-radius:inherit;
+      background:var(--orange);
+      transform:scaleX(0);
+      transform-origin:left center;
+      will-change:transform;
+    }
+    .social-carousel.is-autoplay .social-carousel-progress-fill{
+      animation:carouselProgress var(--autoplay-ms,5200ms) linear forwards;
+    }
+    .social-carousel.is-paused .social-carousel-progress-fill{
+      animation-play-state:paused;
+    }
+    @keyframes carouselProgress{
+      from{transform:scaleX(0)}
+      to{transform:scaleX(1)}
+    }
+
+    .carousel-play{
+      margin-right:4px;
+      color:var(--ink-2);
+      border-color:var(--line-strong);
+    }
+    .carousel-play svg{display:block;pointer-events:none}
+    .carousel-play .carousel-play-pause{display:none}
+    .social-carousel.is-autoplay .carousel-play{
+      color:var(--orange);
+      border-color:var(--orange);
+    }
+    .social-carousel.is-autoplay .carousel-play .carousel-play-pause{display:block}
+    .social-carousel.is-autoplay .carousel-play .carousel-play-start{display:none}
+    .social-carousel.is-autoplay .carousel-play:hover:not(:disabled){
+      background:var(--orange);
+      border-color:var(--orange);
+      color:#fff;
+      transform:translateY(-1px);
+    }
+
+    @media (max-width:760px){
+      .social-carousel-progress{margin-top:12px}
+    }
+    @media (max-width:420px){
+      .carousel-play{margin-right:2px}
+    }
+
+    /* keep the progress animation alive if a reduced-motion user opts into autoplay */
+    @media (prefers-reduced-motion:reduce){
+      .social-carousel.is-autoplay .social-carousel-progress-fill{
+        animation-duration:var(--autoplay-ms,5200ms) !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient layers -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="ambient-orb ambient-orb-1" aria-hidden="true"></div>
+  <div class="ambient-orb ambient-orb-2" aria-hidden="true"></div>
+  <div class="progress-rail" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html" aria-label="Raqeem home" data-cursor>
+        <img src="images/Raqeem-Advertising-Logo.png" alt="" width="46" height="46">
+        <span>
+          <span class="brand-name">Raqeem<i></i></span>
+          <span class="brand-sub">Advertising Services</span>
+        </span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+
+      <nav class="nav" id="main-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="our work.html" aria-current="page">Our work</a>
+        <a href="our clients.html">Our clients</a>
+        <a class="button" href="contact.html" data-magnetic>
+          Let's talk <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260912_104303_0c6d60b2-9353-408e-9449-585108a22fb5.mp4" type="video/mp4">
+      </video>
+      <div class="hero-video-scrim" aria-hidden="true"></div>
+
+      <div class="wrap">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Creative minds. Digital impact.</p>
+            <h1 id="hero-title">
+              <span class="line" style="--l:0"><span>We turn brands</span></span>
+              <span class="line" style="--l:1"><span>into <em>something</em></span></span>
+              <span class="line" style="--l:2"><span><em>worth noticing.</em></span></span>
+            </h1>
+            <p class="hero-intro">Strategy, design, and digital marketing that connect your brand with the right people. Thoughtfully created. Made to make a difference.</p>
+            <div class="hero-actions">
+              <a class="button orange" href="#work" data-magnetic>
+                Explore our work <span class="arrow" aria-hidden="true">↗</span>
+              </a>
+              <a class="text-link" href="contact.html">Let's talk <span class="arrow" aria-hidden="true">↗</span></a>
+            </div>
+            <p class="hero-note"><span aria-hidden="true"></span>Your next chapter starts with a conversation.</p>
+          </div>
+
+          <div class="hero-art" role="group" aria-label="Featured creative projects" id="hero-art">
+            <div class="art-orbit" aria-hidden="true"></div>
+            <span class="art-cross" aria-hidden="true">✳</span>
+
+            <button
+              type="button"
+              class="hero-project"
+              data-project="coffee"
+              aria-haspopup="dialog"
+              aria-label="Open project preview: Coffee and Juice Holder">
+              <span class="hero-project-tag">Product creative</span>
+              <img
+                src="posters%20images/Coffee-%26-Juice-Holder.jpg"
+                alt="Coffee and Juice Holder product creative"
+                width="3508"
+                height="2480"
+                fetchpriority="high"
+                draggable="false">
+              <span class="hero-project-caption">
+                <span>
+                  <strong>A fresh perspective.</strong>
+                  <small>Coffee and Juice Holder</small>
+                </span>
+                <span class="hero-project-arrow" aria-hidden="true">
+                  <span class="arrow">↗</span>
+                </span>
+              </span>
+            </button>
+
+            <button
+              type="button"
+              class="mini-project"
+              data-project="albarq"
+              aria-haspopup="dialog"
+              aria-label="Open project preview: Al Barq Building">
+              <img
+                src="posters%20images/Social-Media-Poster-01.jpg"
+                alt="Al Barq Building project creative"
+                width="4900"
+                height="7000"
+                draggable="false">
+              <span>Made to be remembered <b aria-hidden="true">↗</b></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-bottom">
+          <div class="disciplines">
+            <span>Strategy</span><span>Creativity</span><span>Digital experiences</span>
+          </div>
+          <a href="#work">Scroll to discover <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section class="section work" id="work" aria-labelledby="work-title">
+      <div class="wrap">
+
+        <header class="work-intro reveal">
+          <div>
+            <p class="eyebrow">Our work / Selected projects</p>
+            <h2 id="work-title">Brands we've helped<br>build, launch, and grow.</h2>
+          </div>
+          <div class="work-intro-side">
+            <p>Nine live projects — websites, brand platforms, and hospitality experiences made for clients across the UAE and beyond. Every one of them is online right now. Take a look.</p>
+            <ul class="work-meta">
+              <li><strong>09</strong><span>Live projects</span></li>
+              <li><strong>07</strong><span>Industries</span></li>
+              <li><strong>100%</strong><span>Made in-house</span></li>
+            </ul>
+          </div>
+        </header>
+
+        <div class="project-grid">
+
+          <!-- 01 · Featured -->
+          <a class="project-card project-card--feature reveal"
+             style="--accent:#c8402a"
+             href="https://aboriginalenergy.net/"
+             target="_blank" rel="noopener noreferrer"
+             data-tilt>
+            <div class="site-preview">
+              <div class="site-preview-bar" aria-hidden="true">
+                <i></i><i></i><i></i><em>aboriginalenergy.net</em>
+              </div>
+              <div class="site-preview-body" aria-hidden="true">
+                <img class="site-shot"
+                     src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Faboriginalenergy.net?w=1200&h=750"
+                     alt=""
+                     loading="lazy"
+                     decoding="async"
+                     onerror="this.style.display='none'">
+                <span class="site-monogram">AE</span>
+                <span class="site-preview-label">Energy · Corporate website</span>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <div class="project-card-top">
+                <span class="project-card-index">01 / Featured</span>
+                <span class="project-card-tag">Energy</span>
+              </div>
+              <h3>Aboriginal Energy</h3>
+              <p>A confident digital home for an energy company — clear structure, strong typography, and a brand story you can follow at a glance.</p>
+              <div class="project-card-foot">
+                <span class="project-visit">Visit live site <span class="arrow" aria-hidden="true">↗</span></span>
+                <span class="project-live"><i aria-hidden="true"></i>Live</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- 02 -->
+          <a class="project-card reveal" style="--accent:#3a7c74;--i:1"
+             href="https://lighthousemindsoul.org/"
+             target="_blank" rel="noopener noreferrer">
+            <div class="site-preview">
+              <div class="site-preview-bar" aria-hidden="true">
+                <i></i><i></i><i></i><em>lighthousemindsoul.org</em>
+              </div>
+              <div class="site-preview-body" aria-hidden="true">
+                <img class="site-shot"
+                     src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Flighthousemindsoul.org?w=1200&h=750"
+                     alt=""
+                     loading="lazy"
+                     decoding="async"
+                     onerror="this.style.display='none'">
+                <span class="site-monogram">LH</span>
+                <span class="site-preview-label">Wellbeing · Website</span>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <div class="project-card-top">
+                <span class="project-card-index">02</span>
+                <span class="project-card-tag">Wellbeing</span>
+              </div>
+              <h3>Lighthouse Mind &amp; Soul</h3>
+              <p>A calm, welcoming website for a mind and soul practice, built around soft rhythm, readable type, and an easy enquiry path.</p>
+              <div class="project-card-foot">
+                <span class="project-visit">Visit live site <span class="arrow" aria-hidden="true">↗</span></span>
+                <span class="project-live"><i aria-hidden="true"></i>Live</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- 03 -->
+          <a class="project-card reveal" style="--accent:#c9772a;--i:2"
+             href="https://fillmore-woad.vercel.app/"
+             target="_blank" rel="noopener noreferrer">
+            <div class="site-preview">
+              <div class="site-preview-bar" aria-hidden="true">
+                <i></i><i></i><i></i><em>fillmore-woad.vercel.app</em>
+              </div>
+              <div class="site-preview-body" aria-hidden="true">
+                <img class="site-shot"
+                     src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Ffillmore-woad.vercel.app?w=1200&h=750"
+                     alt=""
+                     loading="lazy"
+                     decoding="async"
+                     onerror="this.style.display='none'">
+                <span class="site-monogram">FB</span>
+                <span class="site-preview-label">Food &amp; beverage · Website</span>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <div class="project-card-top">
+                <span class="project-card-index">03</span>
+                <span class="project-card-tag">F&amp;B</span>
+              </div>
+              <h3>Fillmore Burger</h3>
+              <p>Appetite-first design for a burger brand — bold type, warm colour, and a menu that's simple to browse on any screen.</p>
+              <div class="project-card-foot">
+                <span class="project-visit">Visit live site <span class="arrow" aria-hidden="true">↗</span></span>
+                <span class="project-live"><i aria-hidden="true"></i>Live</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- 04 -->
+          <a class="project-card reveal" style="--accent:#4d604d;--i:3"
+             href="https://upperroomvellore.vercel.app/"
+             target="_blank" rel="noopener noreferrer">
+            <div class="site-preview">
+              <div class="site-preview-bar" aria-hidden="true">
+                <i></i><i></i><i></i><em>upperroomvellore.vercel.app</em>
+              </div>
+              <div class="site-preview-body" aria-hidden="true">
+                <img class="site-shot"
+                     src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fupperroomvellore.vercel.app?w=1200&h=750"
+                     alt=""
+                     loading="lazy"
+                     decoding="async"
+                     onerror="this.style.display='none'">
+                <span class="site-monogram">UR</span>
+                <span class="site-preview-label">Community · Website</span>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <div class="project-card-top">
+                <span class="project-card-index">04</span>
+                <span class="project-card-tag">Community</span>
+              </div>
+              <h3>UpperRoom Community</h3>
+              <p>A community site that puts people first: gatherings, stories, and a clear invitation to belong.</p>
+              <div class="project-card-foot">
+                <span class="project-visit">Visit live site <span class="arrow" aria-hidden="true">↗</span></span>
+                <span class="project-live"><i aria-hidden="true"></i>Live</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- 05 -->
+          <a class="project-card reveal" style="--accent:#b5341a;--i:4"
+             href="https://jackdamon124555-ctrl.github.io/FlashPoint-Fire-and-Safety.github.io/"
+             target="_blank" rel="noopener noreferrer">
+            <div class="site-preview">
+              <div class="site-preview-bar" aria-hidden="true">
+                <i></i><i></i><i></i><em>flashpoint-fire-and-safety</em>
+              </div>
+              <div class="site-preview-body" aria-hidden="true">
+                <img class="site-shot"
+                     src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fjackdamon124555-ctrl.github.io%2FFlashPoint-Fire-and-Safety.github.io%2F?w=1200&h=750"
+                     alt=""
+                     loading="lazy"
+                     decoding="async"
+                     onerror="this.style.display='none'">
+                <span class="site-monogram">FP</span>
+                <span class="site-preview-label">Safety services · Website</span>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <div class="project-card-top">
+                <span class="project-card-index">05</span>
+                <span class="project-card-tag">Safety</span>
+              </div>
+              <h3>FlashPoint Fire &amp; Safety</h3>
+              <p>A practical, trustworthy site for fire and safety services, with services, credentials, and contact routes made obvious.</p>
+              <div class="project-card-foot">
+                <span class="project-visit">Visit live site <span class="arrow" aria-hidden="true">↗</span></span>
+                <span class="project-live"><i aria-hidden="true"></i>Live</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- 06 -->
+          <a class="project-card reveal" style="--accent:#6d5aa8;--i:5"
+             href="https://mindaurawebsite.lovable.app/"
+             target="_blank" rel="noopener noreferrer">
+            <div class="site-preview">
+              <div class="site-preview-bar" aria-hidden="true">
+                <i></i><i></i><i></i><em>mindaurawebsite.lovable.app</em>
+              </div>
+              <div class="site-preview-body" aria-hidden="true">
+                <img class="site-shot"
+                     src="images/Luminous Mind Over Still Waters.jpg"
+                     alt=""
+                     loading="lazy"
+                     decoding="async"
+                     onerror="this.style.display='none'">
+                <span class="site-monogram">MA</span>
+                <span class="site-preview-label">Wellness · Platform</span>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <div class="project-card-top">
+                <span class="project-card-index">06</span>
+                <span class="project-card-tag">Wellness</span>
+              </div>
+              <h3>MindAura</h3>
+              <p>A modern wellbeing platform with a light, focused interface that keeps the content — and the calm — centre stage.</p>
+              <div class="project-card-foot">
+                <span class="project-visit">Visit live site <span class="arrow" aria-hidden="true">↗</span></span>
+                <span class="project-live"><i aria-hidden="true"></i>Live</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- 07 -->
+          <a class="project-card reveal" style="--accent:#37688a;--i:6"
+             href="https://gulf-brand-builder.lovable.app/"
+             target="_blank" rel="noopener noreferrer">
+            <div class="site-preview">
+              <div class="site-preview-bar" aria-hidden="true">
+                <i></i><i></i><i></i><em>gulf-brand-builder.lovable.app</em>
+              </div>
+              <div class="site-preview-body" aria-hidden="true">
+                <img class="site-shot"
+                     src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fgulf-brand-builder.lovable.app?w=1200&h=750"
+                     alt=""
+                     loading="lazy"
+                     decoding="async"
+                     onerror="this.style.display='none'">
+                <span class="site-monogram">GB</span>
+                <span class="site-preview-label">Branding · Platform</span>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <div class="project-card-top">
+                <span class="project-card-index">07</span>
+                <span class="project-card-tag">Branding</span>
+              </div>
+              <h3>Gulf Brand Builder</h3>
+              <p>A brand-building platform that presents its services with structure, confidence, and a clean editorial layout.</p>
+              <div class="project-card-foot">
+                <span class="project-visit">Visit live site <span class="arrow" aria-hidden="true">↗</span></span>
+                <span class="project-live"><i aria-hidden="true"></i>Live</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- 08 · internal page -->
+          <a class="project-card reveal" style="--accent:#8a6a3f;--i:7"
+             href="almas.html"
+             target="_blank" rel="noopener noreferrer">
+            <div class="site-preview">
+              <div class="site-preview-bar" aria-hidden="true">
+                <i></i><i></i><i></i><em>almas.html</em>
+              </div>
+              <div class="site-preview-body" aria-hidden="true">
+                <img class="site-shot"
+                     src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&h=750&q=80"
+                     alt=""
+                     loading="lazy"
+                     decoding="async"
+                     onerror="this.style.display='none'">
+                <span class="site-monogram">AL</span>
+                <span class="site-preview-label">Identity · Case page</span>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <div class="project-card-top">
+                <span class="project-card-index">08</span>
+                <span class="project-card-tag">Identity</span>
+              </div>
+              <h3>Almas</h3>
+              <p>A refined, identity-led website that balances elegance with clarity in every section.</p>
+              <div class="project-card-foot">
+                <span class="project-visit">View project <span class="arrow" aria-hidden="true">↗</span></span>
+                <span class="project-live is-case"><i aria-hidden="true"></i>Case page</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- 09 · internal page -->
+          <a class="project-card reveal" style="--accent:#9c5a2c;--i:8"
+             href="Mirage%20Dining.html"
+             target="_blank" rel="noopener noreferrer">
+            <div class="site-preview">
+              <div class="site-preview-bar" aria-hidden="true">
+                <i></i><i></i><i></i><em>Mirage Dining.html</em>
+              </div>
+              <div class="site-preview-body" aria-hidden="true">
+                <img class="site-shot"
+                     src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&h=750&q=80"
+                     alt=""
+                     loading="lazy"
+                     decoding="async"
+                     onerror="this.style.display='none'">
+                <span class="site-monogram">MD</span>
+                <span class="site-preview-label">Hospitality · Website</span>
+              </div>
+            </div>
+            <div class="project-card-body">
+              <div class="project-card-top">
+                <span class="project-card-index">09</span>
+                <span class="project-card-tag">Hospitality</span>
+              </div>
+              <h3>Mirage Dining</h3>
+              <p>An atmospheric dining experience online — menu, mood, and booking in one considered flow.</p>
+              <div class="project-card-foot">
+                <span class="project-visit">View project <span class="arrow" aria-hidden="true">↗</span></span>
+                <span class="project-live is-case"><i aria-hidden="true"></i>Case page</span>
+              </div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ IMAGE GALLERY ============ -->
+    <section class="section gallery" id="gallery" aria-labelledby="gallery-title">
+      <div class="wrap">
+        <header class="gallery-intro reveal">
+          <div>
+            <p class="eyebrow">Image gallery / Visual archive</p>
+            <h2 id="gallery-title">A closer look at the<br>work behind the work.</h2>
+          </div>
+          <div class="gallery-intro-side">
+            <p>Photography, art direction, and campaign visuals from recent projects — the frames that shaped the brands we build. Hover to see the context.</p>
+          </div>
+        </header>
+
+        <div class="gallery-grid">
+          <figure class="gallery-item reveal" style="--i:0">
+            <span class="gallery-tag">Product</span>
+            <img src="posters images/Aqua-Dropa-Water-Bottle-Mockup (1).jpeg"
+                 alt="Coffee and Juice Holder product creative"
+                 loading="lazy" decoding="async">
+            <figcaption class="gallery-caption">
+              <strong>Coffee &amp; Juice Holder</strong>
+              <small>Product creative</small>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item reveal" style="--i:1">
+            <span class="gallery-tag">Campaign</span>
+            <img src="posters images/Social-Media-Poster-01.jpg"
+                 alt="Al Barq Building campaign creative"
+                 loading="lazy" decoding="async">
+            <figcaption class="gallery-caption">
+              <strong>Al Barq Building</strong>
+              <small>Campaign creative</small>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item reveal" style="--i:2">
+  <span class="gallery-tag">Design</span>
+  <img src="https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=1200&q=80"
+       alt="Rippling blue water surface"
+       loading="lazy" decoding="async">
+  <figcaption class="gallery-caption">
+    <strong>Ripples in Blue</strong>
+    <small>Water surface study</small>
+  </figcaption>
+</figure>
+
+          <figure class="gallery-item reveal" style="--i:3">
+            <span class="gallery-tag">Identity</span>
+            <img src="posters images/Coffee-&-Juice-Holder.jpg"
+                 alt="Coffee &amp; Juice Holder branding"
+                 loading="lazy" decoding="async">
+            <figcaption class="gallery-caption">
+              <strong>Coffee &amp; Juice Holder</strong>
+              <small>Logo &amp; Branding</small>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item reveal" style="--i:4">
+            <span class="gallery-tag">F&amp;B</span>
+            <img src="posters images/Kingdom dates.jpeg"
+                 alt="Kingdom Dates photography"
+                 loading="lazy" decoding="async">
+            <figcaption class="gallery-caption">
+              <strong>Kingdom Dates</strong>
+              <small>Appetite photography</small>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-item reveal" style="--i:5">
+            <span class="gallery-tag">Brand</span>
+            <img src="posters images/Coffee-Cup-Mockup.jpg"
+                 alt="Brand campaign still life"
+                 loading="lazy" decoding="async">
+            <figcaption class="gallery-caption">
+              <strong>Brand still life</strong>
+              <small>Campaign photography</small>
+            </figcaption>
+          </figure>
+
+          <!-- ── Added: 07 ── -->
+          <figure class="gallery-item reveal" style="--i:6">
+            <span class="gallery-tag">Campaign</span>
+            <img src="posters images/Social-Media-Poster-02.jpg"
+                 alt="Al Barq Building campaign creative"
+                 loading="lazy" decoding="async">
+            <figcaption class="gallery-caption">
+              <strong>Al Barq Building</strong>
+              <small>Campaign creative</small>
+            </figcaption>
+          </figure>
+
+          <!-- ── Added: 08 ── -->
+          <figure class="gallery-item reveal" style="--i:7">
+            <span class="gallery-tag">Wellbeing</span>
+            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=900&q=80"
+                 alt="Lighthouse Mind and Soul calm wellbeing visual"
+                 loading="lazy" decoding="async">
+            <figcaption class="gallery-caption">
+              <strong>Lighthouse Mind &amp; Soul</strong>
+              <small>Calm brand visual</small>
+            </figcaption>
+          </figure>
+
+          <!-- ── Added: 09 ── -->
+          <figure class="gallery-item reveal" style="--i:8">
+            <span class="gallery-tag">Campaign</span>
+            <img src="posters images/Social-Media-Poster-03.jpg"
+                 alt="Al Barq Building community campaign creative"
+                 loading="lazy" decoding="async">
+            <figcaption class="gallery-caption">
+              <strong>Al Barq Building</strong>
+              <small>Community campaign creative</small>
+            </figcaption>
+          </figure>
+
+          <!-- ── Added: 10 ── -->
+          <figure class="gallery-item reveal" style="--i:9">
+            <span class="gallery-tag">Safety</span>
+            <img src="posters images/FlashPoint Fire Safety Poster.jpg"
+                 alt="FlashPoint Fire and Safety industrial photography"
+                 loading="lazy" decoding="async">
+            <figcaption class="gallery-caption">
+              <strong>FlashPoint Fire &amp; Safety</strong>
+              <small>Industrial photography</small>
+            </figcaption>
+          </figure>
+
+          <!-- ── Added: 11 ── -->
+          <figure class="gallery-item reveal" style="--i:10">
+            <span class="gallery-tag">Hospitality</span>
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&h=750&q=80"
+                 alt="Mirage Dining atmosphere and art direction"
+                 loading="lazy" decoding="async">
+            <figcaption class="gallery-caption">
+              <strong>Mirage Dining</strong>
+              <small>Atmosphere &amp; art direction</small>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SOCIAL MEDIA POST ============ -->
+    <section class="section social" id="social" aria-labelledby="social-title">
+      <div class="wrap">
+        <header class="social-intro reveal">
+          <div>
+            <p class="eyebrow">Social media / Campaign posts</p>
+            <h2 id="social-title">Posts built to stop<br>the scroll.</h2>
+          </div>
+          <div class="social-intro-side">
+            <p>Social-first creative for our clients — thumb-stopping compositions, tuned copy, and a visual system that carries the brand voice from feed to story.</p>
+          </div>
+        </header>
+
+        <!-- ============ SOCIAL CAROUSEL ============ -->
+        <div class="social-carousel reveal" id="social-carousel" aria-roledescription="carousel" aria-label="Social media campaign posts">
+          <div class="social-carousel-viewport">
+            <div class="social-carousel-track" id="social-carousel-track" tabindex="0">
+
+              <!-- ── Raqeem (15) ── -->
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="1 of 44">
+                <div class="carousel-card-media"><img src="Carosaul images/1.jpg" alt="Top benefits of digital marketing — Raqeem cover" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Raqeem</span><span class="carousel-card-tag">Digital marketing</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="2 of 44">
+                <div class="carousel-card-media"><img src="Carosaul images/2.jpg" alt="Why your business needs digital marketing — Q&amp;A" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Raqeem</span><span class="carousel-card-tag">Q&amp;A</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="3 of 44">
+                <div class="carousel-card-media"><img src="Carosaul images/3.jpg" alt="01. Reach global audiences" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Raqeem</span><span class="carousel-card-tag">Reach</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="4 of 44">
+                <div class="carousel-card-media"><img src="Carosaul images/4.jpg" alt="02. Cost-effective compared to traditional ads" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Raqeem</span><span class="carousel-card-tag">Value</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="5 of 44">
+                <div class="carousel-card-media"><img src="Carosaul images/5.jpg" alt="04. Track results in real-time" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Raqeem</span><span class="carousel-card-tag">Analytics</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="6 of 44">
+                <div class="carousel-card-media"><img src="Carosaul images/6.jpg" alt="05. Build stronger customer relationships" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Raqeem</span><span class="carousel-card-tag">Loyalty</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="7 of 44">
+                <div class="carousel-card-media"><img src="Carosaul images/7.jpg" alt="Are you using digital marketing yet?" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Raqeem</span><span class="carousel-card-tag">Hook</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="8 of 44">
+                <div class="carousel-card-media"><img src="Carosaul images/8.jpg" alt="03. Target specific customers" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Raqeem</span><span class="carousel-card-tag">Targeting</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="9 of 44">
+                <div class="carousel-card-media"><img src="Raqeem Advertisment Services/1.jpg" alt="Benefits of digital marketing — Page 01" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Raqeem</span><span class="carousel-card-tag">Series · 01</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="10 of 44">
+                <div class="carousel-card-media"><img src="Raqeem Advertisment Services/2.jpg" alt="Page 02 — Reach a wider audience" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Raqeem</span><span class="carousel-card-tag">Series · 02</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="11 of 44">
+                <div class="carousel-card-media"><img src="Raqeem Advertisment Services/3.jpg" alt="Page 03 — Effective marketing" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Raqeem</span><span class="carousel-card-tag">Series · 03</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="12 of 44">
+                <div class="carousel-card-media"><img src="Raqeem Advertisment Services/4.jpg" alt="Page 04 — Target the right audience" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Raqeem</span><span class="carousel-card-tag">Series · 04</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="13 of 44">
+                <div class="carousel-card-media"><img src="Raqeem Advertisment Services/5.jpg" alt="Page 05 — Increase brand awareness" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Raqeem</span><span class="carousel-card-tag">Series · 05</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="14 of 44">
+                <div class="carousel-card-media"><img src="Raqeem Advertisment Services/6.jpg" alt="Page 06 — Better customer engagement" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Raqeem</span><span class="carousel-card-tag">Series · 06</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="15 of 44">
+                <div class="carousel-card-media"><img src="Raqeem Advertisment Services/7.jpg" alt="Page 07 — Start digital marketing today" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Raqeem</span><span class="carousel-card-tag">Series · 07</span></div>
+              </article>
+
+              <!-- ── Pond's (5) ── -->
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="16 of 44">
+                <div class="carousel-card-media"><img src="Ponds/The art of everyday radiance-1.png" alt="Pond's Age Miracle — The art of everyday radiance" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Pond's</span><span class="carousel-card-tag">Beauty</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="17 of 44">
+                <div class="carousel-card-media"><img src="Ponds/Elegant POND’S serum in burgundy-2.png" alt="Pond's Age Miracle — Small ritual, beautiful intention" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Pond's</span><span class="carousel-card-tag">Serum</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="18 of 44">
+                <div class="carousel-card-media"><img src="ponds/A little moment of luxury-3.png" alt="Pond's Age Miracle — A little moment of luxury" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Pond's</span><span class="carousel-card-tag">Night cream</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="19 of 44">
+                <div class="carousel-card-media"><img src="ponds/POND'S Age Miracle evening ritual-4.png" alt="Pond's Age Miracle — Make time for yourself" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Pond's</span><span class="carousel-card-tag">Ritual</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="20 of 44">
+                <div class="carousel-card-media"><img src="ponds/Oxblood radiance on sculptural plinths-5.png" alt="Pond's Age Miracle — Make room for radiance" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Pond's</span><span class="carousel-card-tag">Campaign</span></div>
+              </article>
+
+              <!-- ── Nexora (9) ── -->
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="21 of 44">
+                <div class="carousel-card-media"><img src="NEXORA_Premium_Carousel/01_Build_Brands.png" alt="Nexora — Build brands. Drive growth." loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Nexora</span><span class="carousel-card-tag">01 / 09</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="22 of 44">
+                <div class="carousel-card-media"><img src="NEXORA_Premium_Carousel/02_Better_Websites.png" alt="Nexora — Better websites. Better experiences." loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Nexora</span><span class="carousel-card-tag">02 / 09</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="23 of 44">
+                <div class="carousel-card-media"><img src="NEXORA_Premium_Carousel/03_Creative_Campaigns.png" alt="Nexora — Creative that gets noticed." loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Nexora</span><span class="carousel-card-tag">03 / 09</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="24 of 44">
+                <div class="carousel-card-media"><img src="NEXORA_Premium_Carousel/04_Made_to_Fit.png" alt="Nexora — Made to fit your brand." loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Nexora</span><span class="carousel-card-tag">04 / 09</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="25 of 44">
+                <div class="carousel-card-media"><img src="NEXORA_Premium_Carousel/05_Launch_and_Grow.png" alt="Nexora — Launch with clarity. Grow with purpose." loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Nexora</span><span class="carousel-card-tag">05 / 09</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="26 of 44">
+                <div class="carousel-card-media"><img src="NEXORA_Premium_Carousel/06_Strategy_and_Storytelling.png" alt="Nexora — Strategy meets storytelling." loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Nexora</span><span class="carousel-card-tag">06 / 09</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="27 of 44">
+                <div class="carousel-card-media"><img src="NEXORA_Premium_Carousel/07_Creative_Team.png" alt="Nexora — Your next creative team." loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Nexora</span><span class="carousel-card-tag">07 / 09</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="28 of 44">
+                <div class="carousel-card-media"><img src="NEXORA_Premium_Carousel/08_More_Impact.png" alt="Nexora — Less noise. More impact." loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Nexora</span><span class="carousel-card-tag">08 / 09</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="29 of 44">
+                <div class="carousel-card-media"><img src="NEXORA_Premium_Carousel/09_Lets_Build.png" alt="Nexora — Let's build something great." loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Nexora</span><span class="carousel-card-tag">09 / 09</span></div>
+              </article>
+
+              <!-- ── Walkthrough9ja (9) ── -->
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="30 of 44">
+                <div class="carousel-card-media"><img src="Walkthrough9ja_Premium_Carousel/01_Cover.png" alt="Walkthrough9ja — Every journey beautifully planned" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Walkthrough9ja</span><span class="carousel-card-tag">01 / 09</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="31 of 44">
+                <div class="carousel-card-media"><img src="Walkthrough9ja_Premium_Carousel/02_Flights.png" alt="Walkthrough9ja — Your next stop starts here" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Walkthrough9ja</span><span class="carousel-card-tag">02 / 09</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="32 of 44">
+                <div class="carousel-card-media"><img src="Walkthrough9ja_Premium_Carousel/03_Travel_Planning.png" alt="Walkthrough9ja — A travel plan built around you" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Walkthrough9ja</span><span class="carousel-card-tag">03 / 09</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="33 of 44">
+                <div class="carousel-card-media"><img src="Walkthrough9ja_Premium_Carousel/04_Hotel_Stays.png" alt="Walkthrough9ja — Stay somewhere worth remembering" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Walkthrough9ja</span><span class="carousel-card-tag">04 / 09</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="34 of 44">
+                <div class="carousel-card-media"><img src="Walkthrough9ja_Premium_Carousel/05_Airport_Assistance.png" alt="Walkthrough9ja — A smoother start to your journey" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Walkthrough9ja</span><span class="carousel-card-tag">05 / 09</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="35 of 44">
+                <div class="carousel-card-media"><img src="Walkthrough9ja_Premium_Carousel/06_Domestic_Travel.png" alt="Walkthrough9ja — Closer to home. Just as memorable." loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Walkthrough9ja</span><span class="carousel-card-tag">06 / 09</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="36 of 44">
+                <div class="carousel-card-media"><img src="Walkthrough9ja_Premium_Carousel/07_Holidays.png" alt="Walkthrough9ja — Make room for a little escape" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Walkthrough9ja</span><span class="carousel-card-tag">07 / 09</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="37 of 44">
+                <div class="carousel-card-media"><img src="Walkthrough9ja_Premium_Carousel/08_Travel_Inspiration.png" alt="Walkthrough9ja — Don't just dream it. Plan it." loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Walkthrough9ja</span><span class="carousel-card-tag">08 / 09</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="38 of 44">
+                <div class="carousel-card-media"><img src="Walkthrough9ja_Premium_Carousel/09_Book_Your_Journey.png" alt="Walkthrough9ja — Ready for your next chapter?" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Walkthrough9ja</span><span class="carousel-card-tag">09 / 09</span></div>
+              </article>
+
+              <!-- ── Kiva (6) ── -->
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="39 of 44">
+                <div class="carousel-card-media"><img src="Kiva_Instagram_Carousel/Kiva 1 .jpg" alt="Kiva — Hydration elevated" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Kiva</span><span class="carousel-card-tag">01 / 06</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="40 of 44">
+                <div class="carousel-card-media"><img src="Kiva_Instagram_Carousel/Kiva 2.jpg" alt="Kiva — Aloe, pure by nature" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Kiva</span><span class="carousel-card-tag">02 / 06</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="41 of 44">
+                <div class="carousel-card-media"><img src="Kiva_Instagram_Carousel/Kiva 3.jpg" alt="Kiva — Light. Fresh." loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Kiva</span><span class="carousel-card-tag">03 / 06</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="42 of 44">
+                <div class="carousel-card-media"><img src="Kiva_Instagram_Carousel/Kiva 4.jpg" alt="Kiva — What your skin loves" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Kiva</span><span class="carousel-card-tag">04 / 06</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="43 of 44">
+                <div class="carousel-card-media"><img src="Kiva_Instagram_Carousel/Kiva 5.jpg" alt="Kiva — Everyday essential" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Kiva</span><span class="carousel-card-tag">05 / 06</span></div>
+              </article>
+              <article class="carousel-card" role="group" aria-roledescription="slide" aria-label="44 of 44">
+                <div class="carousel-card-media"><img src="Kiva_Instagram_Carousel/Kiva 6.jpg" alt="Kiva — Rooted in nature" loading="lazy" decoding="async"></div>
+                <div class="carousel-card-meta"><span class="carousel-card-brand">Kiva</span><span class="carousel-card-tag">06 / 06</span></div>
+              </article>
+
+            </div>
+          </div>
+
+          <div class="social-carousel-controls">
+            <span class="carousel-counter"><span id="carousel-current">01</span> <em>/</em> <span id="carousel-total">44</span></span>
+            <div class="carousel-nav-group">
+              <button class="carousel-btn carousel-play" type="button" data-carousel-play aria-label="Pause autoplay" title="Pause autoplay">
+                <svg class="carousel-play-icon carousel-play-pause" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" focusable="false"><rect x="6.5" y="5" width="4" height="14" rx="1.2" fill="currentColor"/><rect x="13.5" y="5" width="4" height="14" rx="1.2" fill="currentColor"/></svg>
+                <svg class="carousel-play-icon carousel-play-start" viewBox="0 0 24 24" width="13" height="13" aria-hidden="true" focusable="false"><path d="M8 5.2v13.6a.7.7 0 0 0 1.05.6l11-6.8a.7.7 0 0 0 0-1.2l-11-6.8A.7.7 0 0 0 8 5.2Z" fill="currentColor"/></svg>
+              </button>
+              <button class="carousel-btn" type="button" data-carousel-prev aria-label="Previous post">
+                <span aria-hidden="true">←</span>
+              </button>
+              <button class="carousel-btn" type="button" data-carousel-next aria-label="Next post">
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+          <div class="social-carousel-progress" aria-hidden="true">
+            <span class="social-carousel-progress-fill"></span>
+          </div>
+        </div>
+        <!-- ============ END SOCIAL CAROUSEL ============ -->
+
+        <div class="social-grid">
+          <article class="social-card reveal" style="--i:0">
+            <header class="social-head">
+              <span class="social-avatar" aria-hidden="true">FB</span>
+              <span class="social-meta">
+                <strong>fillmore.burger</strong>
+                <small>Dubai, UAE</small>
+              </span>
+              <span class="social-platform"><i aria-hidden="true"></i>Instagram</span>
+            </header>
+            <div class="social-shot">
+              <img src="images/Burger-MNHQqLNEvow-unsplash.jpg"
+                   alt="Fillmore Burger social media post"
+                   loading="lazy" decoding="async">
+            </div>
+            <div class="social-body">
+              <p><strong>fillmore.burger</strong> New drop, same obsession. Smashed, stacked, and served with zero apologies. 🍔🔥</p>
+              <div class="social-tags">
+                <span>#FillmoreBurger</span><span>#DubaiEats</span><span>#SmashBurger</span>
+              </div>
+            </div>
+            <footer class="social-foot">
+              <span><span class="heart">♥</span> 1,248</span>
+              <span>24 comments</span>
+            </footer>
+          </article>
+
+          <article class="social-card reveal" style="--i:1">
+            <header class="social-head">
+              <span class="social-avatar" aria-hidden="true">CJ</span>
+              <span class="social-meta">
+                <strong>coffee.and.juice</strong>
+                <small>Brand campaign</small>
+              </span>
+              <span class="social-platform"><i aria-hidden="true"></i>Instagram</span>
+            </header>
+            <div class="social-shot">
+              <img src="posters%20images/Coffee-%26-Juice-Holder.jpg"
+                   alt="Coffee and Juice Holder social media post"
+                   loading="lazy" decoding="async">
+            </div>
+            <div class="social-body">
+              <p><strong>coffee.and.juice</strong> One holder, two moods. The cup and the bottle finally agree on something. ☕🧃</p>
+              <div class="social-tags">
+                <span>#CoffeeAndJuice</span><span>#ProductDesign</span><span>#StudioShot</span>
+              </div>
+            </div>
+            <footer class="social-foot">
+              <span><span class="heart">♥</span> 892</span>
+              <span>16 comments</span>
+            </footer>
+          </article>
+
+          <article class="social-card reveal" style="--i:2">
+            <header class="social-head">
+              <span class="social-avatar" aria-hidden="true">AL</span>
+              <span class="social-meta">
+                <strong>almas.studio</strong>
+                <small>Identity &amp; brand</small>
+              </span>
+              <span class="social-platform"><i aria-hidden="true"></i>LinkedIn</span>
+            </header>
+            <div class="social-shot">
+              <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&h=750&q=80"
+                   alt="Almas brand strategy LinkedIn post"
+                   loading="lazy" decoding="async">
+            </div>
+            <div class="social-body">
+              <p><strong>almas.studio</strong> A brand isn't a logo — it's a point of view. Behind the scenes of how we built Almas from the ground up.</p>
+              <div class="social-tags">
+                <span>#BrandStrategy</span><span>#IdentityDesign</span><span>#Almas</span>
+              </div>
+            </div>
+            <footer class="social-foot">
+              <span><span class="heart">♥</span> 2,104</span>
+              <span>48 comments</span>
+            </footer>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CLOSING CTA ============ -->
+    <section class="work-cta" aria-labelledby="cta-title">
+      <div class="wrap work-cta-inner">
+        <div class="reveal">
+          <p class="eyebrow">Next</p>
+          <h2 id="cta-title">Your brand could be the next one<br><em>on this page.</em></h2>
+        </div>
+        <div class="work-cta-actions reveal" style="--i:1">
+          <a class="button orange" href="contact.html" data-magnetic>
+            Start a project <span class="arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="text-link" href="clients.html">Meet our clients <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a class="brand" href="index.html" aria-label="Raqeem home">
+            <img src="images/Raqeem-Advertising-Logo.png" alt="" width="46" height="46">
+            <span>
+              <span class="brand-name">raqeem<i>.</i></span>
+              <span class="brand-sub">Advertisement Services</span>
+            </span>
+          </a>
+          <p class="footer-tagline">Ideas that connect. Brands that grow.</p>
+        </div>
+
+        <div class="footer-links">
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <nav aria-label="Explore">
+              <a href="our%20work.html">Our work</a>
+              <a href="clients.html">Our clients</a>
+              <a href="index.html#services">Services</a>
+              <a href="index.html#about">About us</a>
+            </nav>
+          </div>
+          <div class="footer-col">
+            <h4>Connect</h4>
+            <nav aria-label="Connect">
+              <a href="contact.html">Get in touch ↗</a>
+              <a href="mailto:info@raqeemuae.com">info@raqeemuae.com</a>
+              <a href="#home">Back to top ↑</a>
+            </nav>
+          </div>
+        </div>
+
+        <div class="footer-newsletter">
+          <h4>Newsletter</h4>
+          <p>Occasional notes on brand, design, and the work we make.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('input').value=''; this.querySelector('button').textContent='Thanks!';">
+            <input type="email" placeholder="you@company.com" aria-label="Email address" required>
+            <button type="submit">Join</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span id="year">2026</span> Raqeem Advertisement Services. All rights reserved.</p>
+        <a href="#home">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ PROJECT DIALOG (used by the hero cards) ============ -->
+  <dialog class="project-dialog" id="project-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-top">
+      <h2 id="dialog-title">Project preview</h2>
+      <button class="dialog-close" type="button" aria-label="Close project preview">×</button>
+    </div>
+    <div class="dialog-content">
+      <div class="dialog-image-wrap"><img id="dialog-image" alt=""></div>
+      <div class="dialog-description">
+        <p class="eyebrow" id="dialog-category"></p>
+        <h3 id="dialog-heading"></h3>
+        <p id="dialog-copy"></p>
+        <dl>
+          <dt>Creative focus</dt><dd id="dialog-focus"></dd>
+          <dt>In the portfolio</dt><dd id="dialog-deliverables"></dd>
+        </dl>
+        <a class="button" href="contact.html" id="dialog-contact" data-magnetic>
+          Discuss a similar project <span class="arrow" aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const root = document.documentElement;
+      root.classList.add('js');
+
+      const $  = (sel, ctx = document) => ctx.querySelector(sel);
+      const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+      const yearEl = $('#year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      /* ---------------------------------------------------------
+         0. Hero background video
+         --------------------------------------------------------- */
+      const heroVideo = $('.hero-video');
+      if (heroVideo) {
+        if (prefersReduced) {
+          heroVideo.removeAttribute('autoplay');
+          heroVideo.pause();
+        } else if ('IntersectionObserver' in window) {
+          const videoObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const p = heroVideo.play();
+                if (p && typeof p.catch === 'function') p.catch(() => {});
+              } else {
+                heroVideo.pause();
+              }
+            });
+          }, { threshold: 0.05 });
+          videoObserver.observe(heroVideo);
+        }
+      }
+
+      /* ---------------------------------------------------------
+         1. Hero reveal
+         --------------------------------------------------------- */
+      const hero = $('.hero');
+      if (hero) {
+        requestAnimationFrame(() => setTimeout(() => hero.classList.add('is-ready'), 120));
+      }
+
+      /* ---------------------------------------------------------
+         2. Scroll progress + sticky header
+         --------------------------------------------------------- */
+      const progressBar = $('#progress-bar');
+      const header = $('#site-header');
+      let scrollQueued = false;
+
+      function onScroll() {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+        if (progressBar) progressBar.style.width = pct + '%';
+        if (header) header.classList.toggle('is-scrolled', window.scrollY > 12);
+        scrollQueued = false;
+      }
+      window.addEventListener('scroll', () => {
+        if (!scrollQueued) {
+          scrollQueued = true;
+          requestAnimationFrame(onScroll);
+        }
+      }, { passive: true });
+      onScroll();
+
+      /* ---------------------------------------------------------
+         3. Custom cursor + magnetic + tilt + hero parallax
+         --------------------------------------------------------- */
+      if (finePointer && !prefersReduced) {
+        const dot = $('.cursor-dot');
+        const ring = $('.cursor-ring');
+
+        if (dot && ring) {
+          let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+          let rx = mx, ry = my;
+          let raf = null;
+
+          const tick = () => {
+            rx += (mx - rx) * 0.16;
+            ry += (my - ry) * 0.16;
+            ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+            raf = requestAnimationFrame(tick);
+          };
+
+          window.addEventListener('pointermove', e => {
+            mx = e.clientX; my = e.clientY;
+            dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+            if (!raf) raf = requestAnimationFrame(tick);
+            document.body.classList.add('cursor-on');
+          }, { passive: true });
+
+          document.addEventListener('pointerleave', () => {
+            document.body.classList.remove('cursor-on');
+            if (raf) { cancelAnimationFrame(raf); raf = null; }
+          });
+
+          const hoverTargets = 'a, button, [data-cursor], [data-tilt], summary, .project-card';
+          document.addEventListener('pointerover', e => {
+            if (e.target.closest(hoverTargets)) document.body.classList.add('cursor-hover');
+          });
+          document.addEventListener('pointerout', e => {
+            if (e.target.closest(hoverTargets)) document.body.classList.remove('cursor-hover');
+          });
+        }
+
+        // Magnetic buttons
+        $$('[data-magnetic]').forEach(el => {
+          el.addEventListener('pointermove', e => {
+            const r = el.getBoundingClientRect();
+            const relX = e.clientX - (r.left + r.width / 2);
+            const relY = e.clientY - (r.top + r.height / 2);
+            el.style.transform = `translate(${relX * 0.16}px, ${relY * 0.22}px)`;
+          });
+          el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+        });
+
+        // 3D tilt on the featured project card
+        $$('[data-tilt]').forEach(card => {
+          card.addEventListener('pointermove', e => {
+            const r = card.getBoundingClientRect();
+            const px = (e.clientX - r.left) / r.width - 0.5;
+            const py = (e.clientY - r.top) / r.height - 0.5;
+            card.style.transform =
+              `perspective(1200px) rotateY(${px * 3}deg) rotateX(${-py * 3}deg) translateY(-4px)`;
+          });
+          card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+        });
+
+        // Hero composition parallax
+        const art = $('#hero-art');
+        if (art) {
+          const big  = art.querySelector('.hero-project');
+          const mini = art.querySelector('.mini-project');
+
+          art.addEventListener('pointermove', e => {
+            const r  = art.getBoundingClientRect();
+            const px = (e.clientX - r.left) / r.width  - 0.5;
+            const py = (e.clientY - r.top)  / r.height - 0.5;
+
+            if (big) {
+              big.style.setProperty('--rot', `${-7 + px * 2.4}deg`);
+              big.style.setProperty('--tx',  `${px * 10}px`);
+              big.style.setProperty('--ty',  `${py * 8}px`);
+            }
+            if (mini) {
+              mini.style.setProperty('--mrot', `${9 + px * 3}deg`);
+              mini.style.setProperty('--mtx',  `${px * -8}px`);
+              mini.style.setProperty('--mty',  `${py * -6}px`);
+            }
+          });
+
+          art.addEventListener('pointerleave', () => {
+            if (big) {
+              big.style.setProperty('--rot', '-7deg');
+              big.style.setProperty('--tx',  '0px');
+              big.style.setProperty('--ty',  '0px');
+            }
+            if (mini) {
+              mini.style.setProperty('--mrot', '9deg');
+              mini.style.setProperty('--mtx',  '0px');
+              mini.style.setProperty('--mty',  '0px');
+            }
+          });
+        }
+      }
+
+      /* ---------------------------------------------------------
+         4. Scroll reveal
+         --------------------------------------------------------- */
+      if ('IntersectionObserver' in window && !prefersReduced) {
+        const revealObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+
+        $$('.reveal').forEach(el => revealObserver.observe(el));
+      } else {
+        $$('.reveal').forEach(el => el.classList.add('is-visible'));
+      }
+
+      /* ---------------------------------------------------------
+         5. Mobile navigation
+         --------------------------------------------------------- */
+      const menu = $('.menu-toggle');
+      const nav = $('#main-nav');
+
+      function closeMenu(returnFocus = false) {
+        if (!nav || !nav.classList.contains('is-open')) return;
+        nav.classList.remove('is-open');
+        menu.setAttribute('aria-expanded', 'false');
+        menu.textContent = 'Menu';
+        document.body.classList.remove('is-locked');
+        if (returnFocus) menu.focus({ preventScroll: true });
+      }
+      function openMenu() {
+        if (!nav) return;
+        nav.classList.add('is-open');
+        menu.setAttribute('aria-expanded', 'true');
+        menu.textContent = 'Close';
+        document.body.classList.add('is-locked');
+      }
+
+      if (menu) {
+        menu.addEventListener('click', () => {
+          if (nav.classList.contains('is-open')) closeMenu();
+          else openMenu();
+        });
+      }
+      if (nav) {
+        nav.addEventListener('click', e => {
+          if (e.target.closest('a')) closeMenu();
+        });
+      }
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') closeMenu(true);
+      });
+      window.matchMedia('(min-width: 761px)').addEventListener('change', e => {
+        if (e.matches) closeMenu();
+      });
+
+      /* ---------------------------------------------------------
+         5b. Social carousel — infinite auto-sliding gallery
+         --------------------------------------------------------- */
+      const socialCarousel = $('#social-carousel');
+      if (socialCarousel) {
+        const track        = $('#social-carousel-track', socialCarousel);
+        const prevBtn      = $('[data-carousel-prev]', socialCarousel);
+        const nextBtn      = $('[data-carousel-next]', socialCarousel);
+        const playBtn      = $('[data-carousel-play]', socialCarousel);
+        const curEl        = $('#carousel-current', socialCarousel);
+        const totalEl      = $('#carousel-total', socialCarousel);
+        const progressFill = $('.social-carousel-progress-fill', socialCarousel);
+        const pad          = n => String(n).padStart(2, '0');
+
+        const originalCards  = track ? Array.from(track.querySelectorAll('.carousel-card')) : [];
+        const ORIGINAL_COUNT = originalCards.length;
+
+        if (track && ORIGINAL_COUNT > 0) {
+          const AUTOPLAY_MS = 5200;
+          const MANUAL_HOLD = 3800;
+          const TOUCH_HOLD  = 3000;
+          const CLONE_COUNT = Math.min(8, ORIGINAL_COUNT);
+
+          /* ---- Build the seamless loop: clone a few slides on each end ---- */
+          const makeClone = (card) => {
+            const clone = card.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            clone.removeAttribute('role');
+            clone.removeAttribute('aria-roledescription');
+            clone.setAttribute('tabindex', '-1');
+            clone.classList.add('carousel-clone');
+            clone.querySelectorAll('img').forEach(img => {
+              img.loading = 'eager';
+              img.decoding = 'async';
+            });
+            return clone;
+          };
+
+          const prependFrag = document.createDocumentFragment();
+          originalCards.slice(-CLONE_COUNT).forEach(c => prependFrag.appendChild(makeClone(c)));
+          track.insertBefore(prependFrag, track.firstChild);
+
+          const appendFrag = document.createDocumentFragment();
+          originalCards.slice(0, CLONE_COUNT).forEach(c => appendFrag.appendChild(makeClone(c)));
+          track.appendChild(appendFrag);
+
+          const allCards    = Array.from(track.querySelectorAll('.carousel-card'));
+          const TOTAL_CARDS = allCards.length;
+          const REAL_START  = CLONE_COUNT;
+          const REAL_END    = CLONE_COUNT + ORIGINAL_COUNT - 1;
+
+          let displayIndex  = REAL_START;
+          let autoplayOn    = !prefersReduced && TOTAL_CARDS > 1;
+          let autoplayTimer = null;
+          let manualTimer   = null;
+          let touchTimer    = null;
+          let keyboardMode  = false;
+
+          const pauseReasons = new Set();
+          const isPaused     = () => pauseReasons.size > 0;
+          const toRealIndex  = d => ((d - REAL_START) % ORIGINAL_COUNT + ORIGINAL_COUNT) % ORIGINAL_COUNT;
+
+          socialCarousel.style.setProperty('--autoplay-ms', AUTOPLAY_MS + 'ms');
+          socialCarousel.classList.toggle('is-autoplay', autoplayOn);
+          if (totalEl) totalEl.textContent = ORIGINAL_COUNT;
+
+          const setPlayLabel = () => {
+            if (!playBtn) return;
+            const label = autoplayOn ? 'Pause autoplay' : 'Play autoplay';
+            playBtn.setAttribute('aria-label', label);
+            playBtn.setAttribute('title', label);
+          };
+          setPlayLabel();
+
+          /* ---- Measurements ---- */
+          const stepSize = () => {
+            const style = getComputedStyle(track);
+            const gap = parseFloat(style.columnGap || style.gap || 0) || 0;
+            return allCards[0].getBoundingClientRect().width + gap;
+          };
+
+          const sync = () => {
+            const step = stepSize();
+            if (step <= 0) return;
+            const rawIndex = Math.round(track.scrollLeft / step);
+            displayIndex = Math.max(0, Math.min(rawIndex, TOTAL_CARDS - 1));
+            if (curEl) curEl.textContent = pad(toRealIndex(displayIndex) + 1);
+          };
+
+          const goTo = (i, opts = {}) => {
+            const clamped = Math.max(0, Math.min(i, TOTAL_CARDS - 1));
+            const left = stepSize() * clamped;
+            if (opts.instant || prefersReduced) {
+              const prev = track.style.scrollBehavior;
+              track.style.scrollBehavior = 'auto';
+              track.scrollLeft = left;
+              requestAnimationFrame(() => { track.style.scrollBehavior = prev; });
+            } else {
+              track.scrollTo({ left, behavior: 'smooth' });
+            }
+            displayIndex = clamped;
+            if (curEl) curEl.textContent = pad(toRealIndex(clamped) + 1);
+          };
+
+          /* ---- Progress bar ---- */
+          const restartProgress = () => {
+            if (!progressFill) return;
+            progressFill.style.animation = 'none';
+            void progressFill.offsetWidth;
+            progressFill.style.animation = '';
+          };
+
+          /* ---- Autoplay engine ---- */
+          const clearAutoplay = () => {
+            clearTimeout(autoplayTimer);
+            autoplayTimer = null;
+          };
+
+          function armAutoplay() {
+            clearAutoplay();
+            if (!autoplayOn || isPaused() || document.hidden) return;
+            restartProgress();
+            autoplayTimer = setTimeout(tick, AUTOPLAY_MS);
+          }
+
+          function tick() {
+            if (!autoplayOn || isPaused() || document.hidden) return;
+
+            // If we've entered the appended clone region, snap back to the
+            // equivalent real slide (visually identical — zero flicker).
+            if (displayIndex > REAL_END) {
+              const realEquiv = REAL_START + toRealIndex(displayIndex);
+              goTo(realEquiv, { instant: true });
+            }
+
+            // Advance one slide. Clones at the end mirror the start, so the
+            // transition from "last real" to "first clone" looks seamless.
+            const next = displayIndex + 1;
+            if (next >= TOTAL_CARDS) {
+              goTo(REAL_START, { instant: true });
+            } else {
+              goTo(next);
+            }
+            armAutoplay();
+          }
+
+          const pauseFor = reason => {
+            pauseReasons.add(reason);
+            socialCarousel.classList.add('is-paused');
+            clearAutoplay();
+          };
+
+          const resumeFor = reason => {
+            if (!pauseReasons.delete(reason)) return;
+            if (pauseReasons.size) return;
+            socialCarousel.classList.remove('is-paused');
+            if (autoplayOn) armAutoplay();
+          };
+
+          const manualGo = (delta) => {
+            let next = displayIndex + delta;
+
+            // When stepping past either end, wrap to the real equivalent.
+            if (next < 0 || next >= TOTAL_CARDS) {
+              const realTarget = REAL_START + ((toRealIndex(displayIndex) + delta + ORIGINAL_COUNT) % ORIGINAL_COUNT);
+              goTo(realTarget, { instant: true });
+            } else {
+              goTo(next);
+            }
+
+            pauseFor('manual');
+            clearTimeout(manualTimer);
+            manualTimer = setTimeout(() => resumeFor('manual'), MANUAL_HOLD);
+          };
+
+          /* ---- Controls ---- */
+          if (prevBtn) prevBtn.addEventListener('click', () => manualGo(-1));
+          if (nextBtn) nextBtn.addEventListener('click', () => manualGo(1));
+
+          if (playBtn) {
+            playBtn.addEventListener('click', () => {
+              autoplayOn = !autoplayOn;
+              socialCarousel.classList.toggle('is-autoplay', autoplayOn);
+              setPlayLabel();
+              if (autoplayOn) armAutoplay();
+              else clearAutoplay();
+            });
+          }
+
+          /* ---- Scroll → position sync ---- */
+          let carouselRaf = null;
+          track.addEventListener('scroll', () => {
+            if (carouselRaf) return;
+            carouselRaf = requestAnimationFrame(() => {
+              sync();
+              carouselRaf = null;
+            });
+          }, { passive: true });
+
+          /* ---- Keyboard navigation ---- */
+          track.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') { e.preventDefault(); manualGo(1); }
+            else if (e.key === 'ArrowLeft') { e.preventDefault(); manualGo(-1); }
+            else if (e.key === 'Home') { e.preventDefault(); goTo(REAL_START); }
+            else if (e.key === 'End') { e.preventDefault(); goTo(REAL_END); }
+          });
+
+          /* ---- Pause on hover / keyboard focus ---- */
+          document.addEventListener('keydown', () => { keyboardMode = true; }, true);
+          document.addEventListener('pointerdown', () => { keyboardMode = false; }, true);
+
+          socialCarousel.addEventListener('pointerenter', e => {
+            if (e.pointerType === 'mouse' || e.pointerType === 'pen') pauseFor('hover');
+          });
+          socialCarousel.addEventListener('pointerleave', e => {
+            if (e.pointerType === 'mouse' || e.pointerType === 'pen') resumeFor('hover');
+          });
+
+          track.addEventListener('focusin', () => {
+            if (keyboardMode) pauseFor('focus');
+          });
+          track.addEventListener('focusout', e => {
+            if (!track.contains(e.relatedTarget)) resumeFor('focus');
+          });
+
+          /* ---- Touch: pause while interacting, resume shortly after ---- */
+          const releaseTouch = () => {
+            clearTimeout(touchTimer);
+            touchTimer = setTimeout(() => resumeFor('touch'), TOUCH_HOLD);
+          };
+          track.addEventListener('pointerdown', e => {
+            if (e.pointerType === 'mouse') return;
+            pauseFor('touch');
+            clearTimeout(touchTimer);
+          }, { passive: true });
+          track.addEventListener('pointerup', releaseTouch, { passive: true });
+          track.addEventListener('pointercancel', releaseTouch, { passive: true });
+
+          /* ---- Pause while the tab is hidden ---- */
+          document.addEventListener('visibilitychange', () => {
+            if (document.hidden) clearAutoplay();
+            else if (autoplayOn && !isPaused()) armAutoplay();
+          });
+
+          /* ---- Pause while the carousel is off-screen ---- */
+          if ('IntersectionObserver' in window) {
+            const io = new IntersectionObserver(entries => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) resumeFor('offscreen');
+                else pauseFor('offscreen');
+              });
+            }, { threshold: 0.12 });
+            io.observe(socialCarousel);
+          }
+
+          /* ---- Preload neighbours on hover ---- */
+          if (finePointer && !prefersReduced) {
+            allCards.forEach((card, i) => {
+              card.addEventListener('pointerenter', () => {
+                [i - 1, i + 1].forEach(n => {
+                  const neighbour = allCards[n];
+                  if (!neighbour) return;
+                  const img = neighbour.querySelector('img');
+                  if (img && img.loading === 'lazy') img.loading = 'eager';
+                });
+              });
+            });
+          }
+
+          /* ---- Initial positioning ---- */
+          const setInitialPosition = () => {
+            const step = stepSize();
+            if (step > 0) {
+              const prev = track.style.scrollBehavior;
+              track.style.scrollBehavior = 'auto';
+              track.scrollLeft = step * REAL_START;
+              track.style.scrollBehavior = prev;
+              displayIndex = REAL_START;
+              if (curEl) curEl.textContent = pad(1);
+            }
+          };
+
+          setInitialPosition();
+          sync();
+
+          requestAnimationFrame(() => {
+            setInitialPosition();
+            sync();
+            if (autoplayOn && !isPaused()) armAutoplay();
+          });
+
+          window.addEventListener('load', () => {
+            goTo(displayIndex, { instant: true });
+            sync();
+          }, { once: true });
+
+          if ('ResizeObserver' in window) {
+            let resizeTimer = null;
+            new ResizeObserver(() => {
+              if (resizeTimer) clearTimeout(resizeTimer);
+              resizeTimer = setTimeout(() => {
+                goTo(displayIndex, { instant: true });
+                sync();
+              }, 150);
+            }).observe(track);
+          }
+        }
+      }
+
+      /* ---------------------------------------------------------
+         6. Project dialog (hero cards)
+         --------------------------------------------------------- */
+      const projects = {
+        coffee: {
+          title: 'Coffee & Juice Holder',
+          category: 'Branding / Product creative',
+          heading: 'A fresh perspective.',
+          image: 'posters%20images/Coffee-%26-Juice-Holder.jpg',
+          alt: 'Coffee and Juice Holder product creative',
+          copy: 'A dual-purpose presentation for a drinks holder that needed to feel as refreshing as the product. Warm colour, crisp photography, and a clean typographic frame put the cup and the bottle on equal footing.',
+          focus: 'Product presentation, composition, and colour.',
+          deliverables: 'Product mockups and advertising visuals for print and social.'
+        },
+        albarq: {
+          title: 'Al Barq Building',
+          category: 'Social media / Campaign creative',
+          heading: 'Made to be remembered.',
+          image: 'posters%20images/Social-Media-Poster-01.jpg',
+          alt: 'Al Barq Building campaign creative',
+          copy: 'A residential campaign that needed to feel established without feeling static. Architectural imagery carries the message, while a structured information hierarchy keeps the offer clear at every size.',
+          focus: 'Campaign layout, property imagery, and visual hierarchy.',
+          deliverables: 'Real estate promotional artwork and social media posters.'
+        }
+      };
+
+      const dialog = $('#project-dialog');
+      const dialogImage = $('#dialog-image');
+      const dialogClose = $('.dialog-close');
+      let projectTrigger = null;
+
+      if (dialog) {
+        $$('[data-project]').forEach(trigger => {
+          trigger.addEventListener('click', () => {
+            if (typeof dialog.showModal !== 'function') {
+              window.location.href = '#work';
+              return;
+            }
+            const project = projects[trigger.dataset.project];
+            if (!project) return;
+
+            projectTrigger = trigger;
+            $('#dialog-title').textContent = project.title;
+            $('#dialog-category').textContent = project.category;
+            $('#dialog-heading').textContent = project.heading;
+            $('#dialog-copy').textContent = project.copy;
+            $('#dialog-focus').textContent = project.focus;
+            $('#dialog-deliverables').textContent = project.deliverables;
+            dialogImage.src = project.image;
+            dialogImage.alt = project.alt;
+
+            dialog.showModal();
+            dialog.scrollTop = 0;
+            document.body.classList.add('modal-open');
+            if (dialogClose) dialogClose.focus({ preventScroll: true });
+          });
+        });
+
+        if (dialogClose) {
+          dialogClose.addEventListener('click', () => dialog.close());
+        }
+
+        dialog.addEventListener('click', event => {
+          if (event.target !== dialog) return;
+          const bounds = dialog.getBoundingClientRect();
+          if (
+            event.clientX < bounds.left || event.clientX > bounds.right ||
+            event.clientY < bounds.top  || event.clientY > bounds.bottom
+          ) dialog.close();
+        });
+
+        dialog.addEventListener('close', () => {
+          document.body.classList.remove('modal-open');
+          if (projectTrigger) projectTrigger.focus({ preventScroll: true });
+        });
+      }
+
+    })();
+  </script>
+</body>
+</html>

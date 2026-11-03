@@ -1,0 +1,1919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Almas Resort — Where the Desert Meets the Divine</title>
+<meta name="description" content="Almas Resort & Spa — a private coastal sanctuary of quiet luxury, desert silence and ocean air." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   0. TOKENS
+   ============================================================ */
+:root{
+  --ink:        #07100d;
+  --ink-2:      #0b1712;
+  --ink-3:      #102019;
+  --cream:      #f2ece1;
+  --sand:       #d9cbb3;
+  --gold:       #c8a45c;
+  --gold-lt:    #e6cf9c;
+  --gold-dk:    #8f6f2f;
+  --muted:      rgba(242,236,225,.60);
+  --muted-2:    rgba(242,236,225,.38);
+  --line:       rgba(200,164,92,.16);
+
+  --ease:       cubic-bezier(.16,1,.3,1);
+  --ease-io:    cubic-bezier(.76,0,.24,1);
+
+  --pad:        clamp(20px, 5vw, 76px);
+  --wrap:       1320px;
+}
+
+/* ============================================================
+   1. RESET
+   ============================================================ */
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+  background:var(--ink);
+  color:var(--cream);
+  font-family:'Jost', system-ui, sans-serif;
+  font-weight:300;
+  font-size:16px;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+img{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; }
+::selection{ background:var(--gold); color:var(--ink); }
+
+/* Scrollbar */
+::-webkit-scrollbar{ width:9px; }
+::-webkit-scrollbar-track{ background:var(--ink); }
+::-webkit-scrollbar-thumb{ background:linear-gradient(var(--gold-dk),var(--gold)); border-radius:9px; }
+
+section{ scroll-margin-top:90px; position:relative; }
+
+/* ============================================================
+   2. UTILITIES
+   ============================================================ */
+.wrap{
+  width:100%;
+  max-width:var(--wrap);
+  margin-inline:auto;
+  padding-inline:var(--pad);
+}
+
+.eyebrow{
+  display:flex; align-items:center; gap:14px;
+  font-size:.68rem; font-weight:400;
+  letter-spacing:.34em; text-transform:uppercase;
+  color:var(--gold);
+}
+.eyebrow .rule{
+  width:38px; height:1px; flex:none;
+  background:linear-gradient(90deg,transparent,var(--gold));
+}
+
+.h2{
+  font-family:'Cormorant Garamond', serif;
+  font-weight:300;
+  font-size:clamp(2rem, 4.4vw, 3.9rem);
+  line-height:1.08;
+  letter-spacing:-.015em;
+}
+.h2 em{
+  font-style:italic;
+  background:linear-gradient(100deg, var(--gold-lt), var(--gold) 45%, var(--gold-dk) 75%, var(--gold-lt));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+
+.lede{
+  font-size:clamp(1.02rem, 1.4vw, 1.22rem);
+  color:rgba(242,236,225,.82);
+  line-height:1.75;
+  font-weight:300;
+}
+.body-txt{
+  font-size:.98rem;
+  color:var(--muted);
+  line-height:1.85;
+}
+
+/* Reveal-on-scroll */
+[data-reveal]{
+  opacity:0;
+  transform:translateY(42px);
+  transition:opacity 1.1s var(--ease), transform 1.1s var(--ease);
+  transition-delay:var(--d, 0s);
+  will-change:opacity, transform;
+}
+[data-reveal].in{ opacity:1; transform:none; }
+
+/* ============================================================
+   3. PRELOADER
+   ============================================================ */
+.loader{
+  position:fixed; inset:0; z-index:9999;
+  display:grid; place-items:center;
+  pointer-events:none;
+}
+.loader__panel{
+  position:absolute; left:0; width:100%; height:50.4%;
+  background:var(--ink);
+  transition:transform 1.15s var(--ease-io);
+}
+.loader__panel--top{ top:0; }
+.loader__panel--bot{ bottom:0; }
+
+.loader__mark{
+  position:relative; z-index:2;
+  display:flex; overflow:hidden;
+  font-family:'Cormorant Garamond', serif;
+  font-size:clamp(2.2rem, 7vw, 5rem);
+  font-weight:300;
+  letter-spacing:.28em;
+  color:var(--cream);
+  padding-left:.28em;
+  transition:opacity .5s ease, transform .8s var(--ease);
+}
+.loader__mark span{
+  display:inline-block;
+  transform:translateY(120%);
+  opacity:0;
+  animation:letterUp .95s var(--ease) forwards;
+}
+.loader__mark span:nth-child(1){ animation-delay:.08s; }
+.loader__mark span:nth-child(2){ animation-delay:.16s; }
+.loader__mark span:nth-child(3){ animation-delay:.24s; }
+.loader__mark span:nth-child(4){ animation-delay:.32s; }
+.loader__mark span:nth-child(5){ animation-delay:.40s; }
+
+@keyframes letterUp{ to{ transform:translateY(0); opacity:1; } }
+
+.loader__line{
+  position:absolute; z-index:2;
+  bottom:calc(50% - 3.6rem);
+  width:min(220px, 40vw); height:1px;
+  background:rgba(200,164,92,.18);
+  overflow:hidden;
+}
+.loader__line i{
+  display:block; height:100%; width:100%;
+  background:linear-gradient(90deg,var(--gold-dk),var(--gold-lt));
+  transform:scaleX(0); transform-origin:left;
+  animation:loadBar 1.5s var(--ease-io) .2s forwards;
+}
+@keyframes loadBar{ to{ transform:scaleX(1); } }
+
+body.loaded .loader__mark{ opacity:0; transform:translateY(-16px); }
+body.loaded .loader__panel--top{ transform:translateY(-100%); }
+body.loaded .loader__panel--bot{ transform:translateY(100%); }
+body.loaded .loader__line{ opacity:0; transition:opacity .3s; }
+body.loaded .loader{ pointer-events:none; }
+.loader.is-done{ display:none; }
+
+/* ============================================================
+   4. CURSOR
+   ============================================================ */
+.cursor, .cursor-ring{
+  position:fixed; top:0; left:0; z-index:9998;
+  pointer-events:none; border-radius:50%;
+  transform:translate(-50%,-50%);
+  will-change:transform;
+}
+.cursor{
+  width:7px; height:7px; margin:-3.5px 0 0 -3.5px;
+  background:var(--gold-lt);
+  transition:width .3s var(--ease), height .3s var(--ease), opacity .3s;
+}
+.cursor-ring{
+  width:42px; height:42px; margin:-21px 0 0 -21px;
+  border:1px solid rgba(200,164,92,.45);
+  transition:width .4s var(--ease), height .4s var(--ease),
+             margin .4s var(--ease), border-color .4s, background .4s, opacity .3s;
+}
+.cursor-ring.is-hover{
+  width:76px; height:76px; margin:-38px 0 0 -38px;
+  border-color:rgba(200,164,92,.9);
+  background:rgba(200,164,92,.07);
+}
+@media (hover:none), (pointer:coarse){
+  .cursor,.cursor-ring{ display:none; }
+}
+
+/* ============================================================
+   5. SCROLL PROGRESS
+   ============================================================ */
+.progress{
+  position:fixed; top:0; left:0; z-index:900;
+  height:2px; width:0%;
+  background:linear-gradient(90deg, var(--gold-dk), var(--gold-lt));
+  box-shadow:0 0 14px rgba(200,164,92,.6);
+}
+
+/* ============================================================
+   6. NAVIGATION
+   ============================================================ */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:800;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:24px;
+  padding:30px var(--pad);
+  transition:padding .5s var(--ease), background .5s var(--ease),
+             backdrop-filter .5s, border-color .5s;
+  border-bottom:1px solid transparent;
+}
+.nav.is-scrolled{
+  padding:15px var(--pad);
+  background:rgba(7,16,13,.72);
+  backdrop-filter:blur(20px) saturate(150%);
+  -webkit-backdrop-filter:blur(20px) saturate(150%);
+  border-bottom-color:var(--line);
+}
+
+.brand{
+  display:flex; align-items:center; gap:11px;
+  font-family:'Cormorant Garamond', serif;
+  font-size:1.32rem; font-weight:500;
+  letter-spacing:.34em; text-transform:uppercase;
+  color:var(--cream);
+}
+.brand .gem{
+  width:9px; height:9px; flex:none;
+  background:linear-gradient(135deg,var(--gold-lt),var(--gold-dk));
+  transform:rotate(45deg);
+  box-shadow:0 0 12px rgba(200,164,92,.55);
+}
+.brand small{
+  display:block;
+  font-family:'Jost',sans-serif;
+  font-size:.44rem; font-weight:300;
+  letter-spacing:.5em;
+  color:var(--muted-2);
+  margin-top:3px;
+}
+
+.nav__links{
+  display:flex; align-items:center; gap:clamp(18px, 2.6vw, 42px);
+  list-style:none;
+}
+.nav__links a{
+  position:relative;
+  font-size:.72rem; font-weight:400;
+  letter-spacing:.22em; text-transform:uppercase;
+  color:rgba(242,236,225,.76);
+  padding:6px 0;
+  transition:color .35s;
+}
+.nav__links a::after{
+  content:'';
+  position:absolute; left:0; bottom:0;
+  width:100%; height:1px;
+  background:var(--gold);
+  transform:scaleX(0); transform-origin:right;
+  transition:transform .5s var(--ease);
+}
+.nav__links a:hover{ color:var(--cream); }
+.nav__links a:hover::after{ transform:scaleX(1); transform-origin:left; }
+
+.nav__right{ display:flex; align-items:center; gap:16px; }
+
+.btn-reserve{
+  position:relative; overflow:hidden;
+  display:inline-flex; align-items:center; gap:10px;
+  padding:13px 26px;
+  border:1px solid rgba(200,164,92,.5);
+  border-radius:100px;
+  font-size:.68rem; font-weight:400;
+  letter-spacing:.24em; text-transform:uppercase;
+  color:var(--gold-lt);
+  transition:color .45s var(--ease), border-color .45s;
+}
+.btn-reserve span{ position:relative; z-index:2; }
+.btn-reserve::before{
+  content:'';
+  position:absolute; inset:0; z-index:1;
+  background:linear-gradient(120deg,var(--gold-dk),var(--gold-lt));
+  transform:translateY(101%);
+  transition:transform .55s var(--ease);
+}
+.btn-reserve:hover{ color:var(--ink); border-color:transparent; }
+.btn-reserve:hover::before{ transform:translateY(0); }
+
+.burger{
+  display:none;
+  width:44px; height:44px;
+  position:relative;
+  border:1px solid var(--line);
+  border-radius:50%;
+}
+.burger i{
+  position:absolute; left:50%; width:17px; height:1px;
+  background:var(--cream);
+  transform:translateX(-50%);
+  transition:transform .45s var(--ease), opacity .3s, top .45s var(--ease);
+}
+.burger i:nth-child(1){ top:19px; }
+.burger i:nth-child(2){ top:24px; }
+.burger.open i:nth-child(1){ top:21.5px; transform:translateX(-50%) rotate(45deg); }
+.burger.open i:nth-child(2){ top:21.5px; transform:translateX(-50%) rotate(-45deg); }
+
+@media (max-width: 1000px){
+  .nav__links{ display:none; }
+  .burger{ display:block; }
+  .btn-reserve{ display:none; }
+}
+
+/* ============================================================
+   7. FULLSCREEN MENU
+   ============================================================ */
+.menu{
+  position:fixed; inset:0; z-index:790;
+  background:linear-gradient(160deg, var(--ink) 0%, var(--ink-3) 100%);
+  clip-path:circle(0% at calc(100% - 46px) 46px);
+  transition:clip-path .95s var(--ease-io);
+  display:flex; flex-direction:column; justify-content:center;
+  padding:110px var(--pad) 50px;
+}
+.menu.open{ clip-path:circle(160% at calc(100% - 46px) 46px); }
+
+.menu__nav{ display:flex; flex-direction:column; gap:6px; }
+.menu__nav a{
+  font-family:'Cormorant Garamond', serif;
+  font-size:clamp(2.1rem, 9vw, 4rem);
+  font-weight:300;
+  line-height:1.15;
+  color:var(--cream);
+  opacity:0; transform:translateY(34px);
+  transition:opacity .6s var(--ease), transform .6s var(--ease), color .35s;
+}
+.menu.open .menu__nav a{ opacity:1; transform:none; }
+.menu.open .menu__nav a:nth-child(1){ transition-delay:.16s; }
+.menu.open .menu__nav a:nth-child(2){ transition-delay:.22s; }
+.menu.open .menu__nav a:nth-child(3){ transition-delay:.28s; }
+.menu.open .menu__nav a:nth-child(4){ transition-delay:.34s; }
+.menu.open .menu__nav a:nth-child(5){ transition-delay:.40s; }
+.menu__nav a:hover{ color:var(--gold); font-style:italic; }
+
+.menu__meta{
+  margin-top:auto; padding-top:40px;
+  border-top:1px solid var(--line);
+  display:flex; flex-wrap:wrap; gap:26px;
+  font-size:.72rem; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--muted-2);
+  opacity:0; transition:opacity .6s ease .5s;
+}
+.menu.open .menu__meta{ opacity:1; }
+
+/* ============================================================
+   8. HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  min-height:100vh;
+  min-height:100svh;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  isolation:isolate;
+  background:var(--ink);
+}
+
+/* --- background layers --- */
+.hero__bg{
+  position:absolute; inset:-8%;
+  z-index:0;
+  will-change:transform;
+}
+.hero__zoom{
+  position:absolute; inset:0;
+  animation:kenburns 26s ease-in-out infinite alternate;
+}
+@keyframes kenburns{
+  from{ transform:scale(1.0) translate3d(0,0,0); }
+  to  { transform:scale(1.09) translate3d(-1.4%, -1.2%, 0); }
+}
+.hero__zoom img{
+  width:100%; height:100%;
+  object-fit:cover;
+  object-position:center 55%;
+  transform:scale(1.22);
+  transition:transform 3s var(--ease);
+  filter:saturate(.82) contrast(1.05) brightness(.72);
+}
+body.loaded .hero__zoom img{ transform:scale(1.02); }
+
+/* --- scrims --- */
+.hero__scrim{
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:
+    linear-gradient(180deg, rgba(7,16,13,.85) 0%, rgba(7,16,13,.18) 32%, rgba(7,16,13,.30) 62%, rgba(7,16,13,.97) 100%),
+    linear-gradient(100deg, rgba(7,16,13,.88) 0%, rgba(7,16,13,.42) 42%, rgba(7,16,13,.05) 72%),
+    radial-gradient(120% 80% at 78% 34%, rgba(200,164,92,.14) 0%, transparent 55%);
+}
+
+/* --- grain --- */
+.grain{
+  position:absolute; inset:-200%;
+  z-index:2; pointer-events:none;
+  opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grainShift 8s steps(6) infinite;
+}
+@keyframes grainShift{
+  0%{ transform:translate(0,0); }
+  20%{ transform:translate(-3%,2%); }
+  40%{ transform:translate(2%,-3%); }
+  60%{ transform:translate(-2%,-2%); }
+  80%{ transform:translate(3%,1%); }
+  100%{ transform:translate(0,0); }
+}
+
+/* --- giant watermark type --- */
+.hero__giant{
+  position:absolute; left:0; right:0;
+  bottom:-.155em;
+  z-index:3;
+  text-align:center;
+  font-family:'Cormorant Garamond', serif;
+  font-weight:300;
+  font-size:clamp(5.5rem, 23.5vw, 25rem);
+  line-height:.78;
+  letter-spacing:.03em;
+  white-space:nowrap;
+  pointer-events:none;
+  user-select:none;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(200,164,92,.30);
+  will-change:transform;
+  opacity:0;
+  transition:opacity 1.6s ease .9s;
+}
+body.loaded .hero__giant{ opacity:1; }
+
+/* --- content --- */
+.hero__inner{
+  position:relative; z-index:5;
+  width:100%;
+  max-width:var(--wrap);
+  margin-inline:auto;
+  padding:150px var(--pad) 190px;
+}
+
+.hero__eyebrow{
+  display:flex; align-items:center; gap:16px;
+  font-size:.66rem; font-weight:400;
+  letter-spacing:.4em; text-transform:uppercase;
+  color:var(--gold-lt);
+  margin-bottom:30px;
+}
+.hero__eyebrow .rule{
+  width:0; height:1px;
+  background:linear-gradient(90deg, transparent, var(--gold));
+  transition:width 1.4s var(--ease) .55s;
+}
+body.loaded .hero__eyebrow .rule{ width:64px; }
+
+.hero__eyebrow,
+.hero__lede,
+.hero__cta,
+.hero__meta{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity 1.2s var(--ease), transform 1.2s var(--ease);
+}
+body.loaded .hero__eyebrow{ opacity:1; transform:none; transition-delay:.55s; }
+body.loaded .hero__lede{ opacity:1; transform:none; transition-delay:1.05s; }
+body.loaded .hero__cta{ opacity:1; transform:none; transition-delay:1.2s; }
+body.loaded .hero__meta{ opacity:1; transform:none; transition-delay:1.35s; }
+
+.hero__title{
+  font-family:'Cormorant Garamond', serif;
+  font-weight:300;
+  font-size:clamp(2.9rem, 7.6vw, 7.2rem);
+  line-height:.98;
+  letter-spacing:-.025em;
+  max-width:15ch;
+  margin-bottom:34px;
+}
+.hero__title .line{
+  display:block;
+  overflow:hidden;
+  padding-bottom:.09em;
+}
+.hero__title .line > span{
+  display:block;
+  transform:translateY(115%);
+  transition:transform 1.4s var(--ease);
+}
+body.loaded .hero__title .line:nth-child(1) > span{ transform:none; transition-delay:.65s; }
+body.loaded .hero__title .line:nth-child(2) > span{ transform:none; transition-delay:.80s; }
+
+.hero__title em{
+  font-style:italic;
+  background:linear-gradient(100deg, var(--gold-lt) 0%, var(--gold) 40%, var(--gold-dk) 68%, var(--gold-lt) 100%);
+  background-size:220% 100%;
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:shimmer 7s ease-in-out infinite;
+}
+@keyframes shimmer{
+  0%,100%{ background-position:0% 50%; }
+  50%{ background-position:100% 50%; }
+}
+
+.hero__lede{
+  max-width:46ch;
+  font-size:clamp(1rem, 1.35vw, 1.16rem);
+  line-height:1.8;
+  color:rgba(242,236,225,.78);
+  margin-bottom:44px;
+}
+
+.hero__cta{
+  display:flex; flex-wrap:wrap; align-items:center;
+  gap:16px;
+  margin-bottom:70px;
+}
+
+/* --- buttons --- */
+.btn{
+  position:relative; overflow:hidden;
+  display:inline-flex; align-items:center; gap:12px;
+  padding:17px 34px;
+  border-radius:100px;
+  font-size:.7rem; font-weight:400;
+  letter-spacing:.24em; text-transform:uppercase;
+  transition:color .45s var(--ease), border-color .45s var(--ease), transform .3s var(--ease);
+  will-change:transform;
+}
+.btn > span{ position:relative; z-index:2; }
+.btn svg{ position:relative; z-index:2; transition:transform .5s var(--ease); }
+
+.btn--gold{
+  color:var(--ink);
+  background:linear-gradient(120deg, var(--gold-lt), var(--gold) 55%, var(--gold-dk));
+  box-shadow:0 18px 45px -18px rgba(200,164,92,.75);
+}
+.btn--gold::before{
+  content:''; position:absolute; inset:0; z-index:1;
+  background:linear-gradient(120deg, var(--gold-dk), var(--gold-lt));
+  opacity:0; transition:opacity .5s;
+}
+.btn--gold:hover::before{ opacity:1; }
+.btn--gold:hover svg{ transform:translateX(5px); }
+
+.btn--ghost{
+  color:var(--cream);
+  border:1px solid rgba(242,236,225,.28);
+}
+.btn--ghost::before{
+  content:''; position:absolute; inset:0; z-index:1;
+  background:var(--cream);
+  transform:translateY(101%);
+  transition:transform .55s var(--ease);
+}
+.btn--ghost:hover{ color:var(--ink); border-color:var(--cream); }
+.btn--ghost:hover::before{ transform:translateY(0); }
+
+/* --- hero bottom meta bar --- */
+.hero__meta{
+  position:absolute; left:0; right:0; bottom:0;
+  z-index:6;
+  border-top:1px solid rgba(200,164,92,.20);
+  background:rgba(7,16,13,.30);
+  backdrop-filter:blur(16px) saturate(140%);
+  -webkit-backdrop-filter:blur(16px) saturate(140%);
+}
+.hero__meta-inner{
+  max-width:var(--wrap);
+  margin-inline:auto;
+  padding:22px var(--pad);
+  display:flex; align-items:center; justify-content:space-between;
+  gap:24px;
+  flex-wrap:wrap;
+}
+
+.scroll-cue{
+  display:flex; align-items:center; gap:14px;
+  font-size:.62rem; letter-spacing:.34em; text-transform:uppercase;
+  color:var(--muted);
+}
+.scroll-cue .track{
+  position:relative;
+  width:64px; height:1px;
+  background:rgba(242,236,225,.18);
+  overflow:hidden;
+}
+.scroll-cue .track::after{
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(90deg, transparent, var(--gold-lt));
+  transform:translateX(-100%);
+  animation:cueSlide 2.4s var(--ease-io) infinite;
+}
+@keyframes cueSlide{
+  0%{ transform:translateX(-100%); }
+  55%{ transform:translateX(0); }
+  100%{ transform:translateX(100%); }
+}
+
+.hero__facts{
+  display:flex; align-items:center; gap:clamp(20px,3.4vw,52px);
+  list-style:none;
+  flex-wrap:wrap;
+}
+.hero__facts li{
+  display:flex; flex-direction:column; gap:2px;
+}
+.hero__facts b{
+  font-family:'Cormorant Garamond', serif;
+  font-size:1.35rem; font-weight:400;
+  color:var(--gold-lt);
+  line-height:1;
+}
+.hero__facts span{
+  font-size:.6rem; letter-spacing:.26em; text-transform:uppercase;
+  color:var(--muted-2);
+}
+
+.hero__tour{
+  display:flex; align-items:center; gap:14px;
+  font-size:.62rem; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--cream);
+}
+.hero__tour .ring{
+  position:relative;
+  width:46px; height:46px; flex:none;
+  border:1px solid rgba(200,164,92,.5);
+  border-radius:50%;
+  display:grid; place-items:center;
+  transition:background .45s var(--ease), border-color .45s;
+}
+.hero__tour .ring::after{
+  content:'';
+  position:absolute; inset:-1px;
+  border-radius:50%;
+  border:1px solid var(--gold);
+  opacity:0;
+  transform:scale(.85);
+  transition:opacity .5s, transform .5s var(--ease);
+}
+.hero__tour:hover .ring{ background:rgba(200,164,92,.14); border-color:var(--gold); }
+.hero__tour:hover .ring::after{ opacity:.6; transform:scale(1.18); }
+.hero__tour .ring svg{ margin-left:2px; }
+
+/* --- side vertical label --- */
+.hero__side{
+  position:absolute; z-index:5;
+  right:calc(var(--pad) * .42);
+  top:50%;
+  transform:translateY(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:18px;
+  opacity:0;
+  transition:opacity 1.2s ease 1.5s;
+}
+body.loaded .hero__side{ opacity:1; }
+.hero__side span{
+  writing-mode:vertical-rl;
+  font-size:.6rem; letter-spacing:.42em; text-transform:uppercase;
+  color:var(--muted-2);
+}
+.hero__side i{
+  width:1px; height:64px;
+  background:linear-gradient(180deg, transparent, rgba(200,164,92,.55), transparent);
+}
+@media (max-width: 1180px){ .hero__side{ display:none; } }
+
+/* ============================================================
+   9. MARQUEE BAND
+   ============================================================ */
+.marquee{
+  position:relative;
+  z-index:10;
+  background:linear-gradient(90deg, var(--ink-2), var(--ink-3) 50%, var(--ink-2));
+  border-block:1px solid var(--line);
+  padding:30px 0;
+  overflow:hidden;
+  transform:rotate(-1.15deg) scale(1.03);
+  margin-block:-1px;
+}
+.marquee__track{
+  display:flex;
+  width:max-content;
+  animation:marquee 42s linear infinite;
+}
+.marquee:hover .marquee__track{ animation-play-state:paused; }
+.marquee__track > div{
+  display:flex; align-items:center;
+  font-family:'Cormorant Garamond', serif;
+  font-size:clamp(1.3rem, 2.6vw, 2.1rem);
+  font-weight:300;
+  letter-spacing:.12em;
+  color:rgba(242,236,225,.55);
+  white-space:nowrap;
+}
+.marquee__track em{
+  font-style:italic;
+  color:var(--gold);
+}
+.marquee__track i{
+  display:inline-block;
+  margin:0 34px;
+  font-style:normal;
+  font-size:.55em;
+  color:var(--gold);
+  opacity:.6;
+}
+@keyframes marquee{
+  to{ transform:translateX(-50%); }
+}
+
+/* ============================================================
+   10. STORY
+   ============================================================ */
+.story{
+  background:var(--ink);
+  padding:clamp(90px, 13vw, 175px) 0;
+}
+.story__grid{
+  display:grid;
+  grid-template-columns:1.02fr .98fr;
+  gap:clamp(40px, 7vw, 110px);
+  align-items:center;
+}
+@media (max-width: 960px){
+  .story__grid{ grid-template-columns:1fr; }
+}
+
+.story__media{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:auto auto;
+  gap:20px;
+}
+.story__fig{
+  overflow:hidden;
+  border-radius:2px;
+  background:linear-gradient(150deg, var(--ink-3), var(--ink-2));
+}
+.story__fig img{
+  width:100%; height:100%;
+  object-fit:cover;
+  transition:transform 1.4s var(--ease), filter .8s;
+  filter:saturate(.85) brightness(.9);
+}
+.story__fig:hover img{ transform:scale(1.06); filter:saturate(1) brightness(1); }
+
+.story__fig--a{
+  grid-column:1 / 2;
+  aspect-ratio:3/4.1;
+  margin-top:52px;
+}
+.story__fig--b{
+  grid-column:2 / 3;
+  aspect-ratio:3/4.6;
+}
+
+.story__badge{
+  position:absolute;
+  left:-6%;
+  bottom:6%;
+  z-index:3;
+  width:clamp(112px, 13vw, 152px);
+  aspect-ratio:1;
+  border-radius:50%;
+  display:grid; place-content:center; text-align:center;
+  gap:2px;
+  background:linear-gradient(150deg, rgba(200,164,92,.16), rgba(7,16,13,.92));
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(200,164,92,.4);
+  box-shadow:0 26px 60px -22px rgba(0,0,0,.85);
+}
+.story__badge b{
+  font-family:'Cormorant Garamond', serif;
+  font-size:clamp(2rem, 3.6vw, 2.9rem);
+  font-weight:400;
+  line-height:1;
+  color:var(--gold-lt);
+}
+.story__badge span{
+  font-size:.55rem; letter-spacing:.26em; text-transform:uppercase;
+  color:var(--muted);
+  line-height:1.5;
+}
+@media (max-width: 520px){
+  .story__badge{ left:auto; right:-4%; bottom:-4%; }
+}
+
+.story__copy .eyebrow{ margin-bottom:26px; }
+.story__copy .h2{ margin-bottom:30px; }
+.story__copy .lede{ margin-bottom:22px; }
+.story__copy .body-txt + .body-txt{ margin-top:16px; }
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:26px;
+  margin-top:46px;
+  padding-top:34px;
+  border-top:1px solid var(--line);
+}
+.stat b{
+  display:block;
+  font-family:'Cormorant Garamond', serif;
+  font-size:clamp(1.9rem, 3.6vw, 2.9rem);
+  font-weight:400;
+  line-height:1;
+  color:var(--cream);
+}
+.stat b sup{ font-size:.45em; color:var(--gold); top:-.9em; }
+.stat span{
+  display:block;
+  margin-top:8px;
+  font-size:.6rem; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--muted-2);
+}
+
+/* ============================================================
+   11. SUITES
+   ============================================================ */
+.suites{
+  background:linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+  padding:clamp(90px, 13vw, 175px) 0;
+  border-top:1px solid rgba(200,164,92,.08);
+}
+.section-head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:36px;
+  flex-wrap:wrap;
+  margin-bottom:clamp(46px, 6vw, 82px);
+}
+.section-head__l{ max-width:620px; }
+.section-head .eyebrow{ margin-bottom:24px; }
+.section-head .h2{ margin-bottom:0; }
+.section-head__r{
+  max-width:340px;
+  color:var(--muted);
+  font-size:.95rem;
+  line-height:1.8;
+}
+
+.suite-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:clamp(18px, 2.2vw, 30px);
+}
+@media (max-width: 900px){ .suite-grid{ grid-template-columns:1fr; } }
+
+.suite{
+  position:relative;
+  overflow:hidden;
+  background:var(--ink-3);
+  border:1px solid rgba(200,164,92,.12);
+  border-radius:2px;
+  transition:border-color .6s var(--ease), transform .7s var(--ease);
+}
+.suite:hover{ border-color:rgba(200,164,92,.42); transform:translateY(-7px); }
+
+.suite__img{
+  position:relative;
+  aspect-ratio:4/4.4;
+  overflow:hidden;
+  background:linear-gradient(150deg, var(--ink-3), #060d0a);
+}
+.suite__img img{
+  width:100%; height:100%;
+  object-fit:cover;
+  filter:saturate(.8) brightness(.72);
+  transform:scale(1.02);
+  transition:transform 1.5s var(--ease), filter .9s;
+}
+.suite:hover .suite__img img{ transform:scale(1.1); filter:saturate(1) brightness(.95); }
+.suite__img::after{
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, transparent 40%, rgba(7,16,13,.9) 100%);
+}
+
+.suite__num{
+  position:absolute; top:20px; left:22px; z-index:2;
+  font-family:'Cormorant Garamond', serif;
+  font-size:.95rem;
+  letter-spacing:.2em;
+  color:rgba(242,236,225,.55);
+}
+
+.suite__tag{
+  position:absolute; top:20px; right:20px; z-index:2;
+  padding:7px 15px;
+  font-size:.55rem; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--gold-lt);
+  border:1px solid rgba(200,164,92,.42);
+  border-radius:100px;
+  background:rgba(7,16,13,.5);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+}
+
+.suite__body{
+  position:relative;
+  padding:26px 26px 30px;
+}
+.suite__body h3{
+  font-family:'Cormorant Garamond', serif;
+  font-size:1.62rem;
+  font-weight:400;
+  letter-spacing:.01em;
+  margin-bottom:10px;
+}
+.suite__body p{
+  font-size:.86rem;
+  color:var(--muted);
+  line-height:1.75;
+  margin-bottom:22px;
+}
+.suite__foot{
+  display:flex; align-items:center; justify-content:space-between;
+  padding-top:20px;
+  border-top:1px solid rgba(200,164,92,.14);
+}
+.suite__price{
+  font-size:.68rem; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--muted-2);
+}
+.suite__price b{
+  font-family:'Cormorant Garamond', serif;
+  font-size:1.28rem; font-weight:400;
+  letter-spacing:0;
+  color:var(--gold-lt);
+  text-transform:none;
+  margin-right:4px;
+}
+.suite__link{
+  display:inline-flex; align-items:center; gap:8px;
+  font-size:.6rem; letter-spacing:.26em; text-transform:uppercase;
+  color:var(--cream);
+  transition:color .4s;
+}
+.suite__link svg{ transition:transform .5s var(--ease); }
+.suite:hover .suite__link{ color:var(--gold-lt); }
+.suite:hover .suite__link svg{ transform:translateX(5px); }
+
+/* ============================================================
+   12. EXPERIENCES (bento)
+   ============================================================ */
+.exp{
+  background:var(--ink-2);
+  padding:clamp(90px, 13vw, 175px) 0;
+}
+.exp-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  grid-auto-rows:minmax(230px, 26vw);
+  gap:clamp(14px, 1.6vw, 22px);
+}
+.exp-grid > *:nth-child(1){ grid-column:span 2; grid-row:span 2; }
+.exp-grid > *:nth-child(2){ grid-column:span 2; }
+.exp-grid > *:nth-child(3){ grid-column:span 1; }
+.exp-grid > *:nth-child(4){ grid-column:span 1; }
+
+@media (max-width: 980px){
+  .exp-grid{ grid-template-columns:repeat(2,1fr); grid-auto-rows:minmax(210px, 32vw); }
+  .exp-grid > *:nth-child(1){ grid-column:span 2; grid-row:span 1; }
+  .exp-grid > *:nth-child(2){ grid-column:span 2; }
+  .exp-grid > *:nth-child(3),
+  .exp-grid > *:nth-child(4){ grid-column:span 1; }
+}
+
+.exp-card{
+  position:relative;
+  overflow:hidden;
+  border-radius:2px;
+  border:1px solid rgba(200,164,92,.1);
+  background:linear-gradient(150deg, var(--ink-3), #050b09);
+  display:flex;
+  align-items:flex-end;
+  transition:border-color .6s var(--ease);
+}
+.exp-card:hover{ border-color:rgba(200,164,92,.4); }
+.exp-card img{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover;
+  filter:saturate(.72) brightness(.55);
+  transition:transform 1.6s var(--ease), filter .9s;
+}
+.exp-card:hover img{ transform:scale(1.07); filter:saturate(1) brightness(.78); }
+.exp-card::after{
+  content:'';
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(7,16,13,.1) 0%, rgba(7,16,13,.86) 78%);
+  transition:opacity .6s;
+}
+.exp-card__body{
+  position:relative; z-index:2;
+  padding:clamp(20px, 2.4vw, 34px);
+  width:100%;
+}
+.exp-card__body span{
+  display:block;
+  font-size:.56rem; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:12px;
+}
+.exp-card__body h3{
+  font-family:'Cormorant Garamond', serif;
+  font-size:clamp(1.25rem, 2.1vw, 1.95rem);
+  font-weight:400;
+  line-height:1.2;
+  margin-bottom:10px;
+}
+.exp-card__body p{
+  font-size:.84rem;
+  color:var(--muted);
+  line-height:1.7;
+  max-width:38ch;
+  max-height:0;
+  opacity:0;
+  overflow:hidden;
+  transition:max-height .7s var(--ease), opacity .5s var(--ease), margin .5s;
+}
+.exp-card:hover .exp-card__body p{ max-height:100px; opacity:1; }
+
+/* ============================================================
+   13. QUOTE
+   ============================================================ */
+.quote{
+  background:var(--ink);
+  padding:clamp(90px, 14vw, 190px) 0;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.quote::before{
+  content:'';
+  position:absolute; left:50%; top:50%;
+  width:min(760px, 92vw); aspect-ratio:1;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle, rgba(200,164,92,.10) 0%, transparent 66%);
+  pointer-events:none;
+}
+.quote__mark{
+  font-family:'Cormorant Garamond', serif;
+  font-size:clamp(4rem, 9vw, 8rem);
+  line-height:.5;
+  color:rgba(200,164,92,.35);
+  margin-bottom:34px;
+}
+.quote blockquote{
+  position:relative;
+  max-width:22ch;
+  margin:0 auto;
+  font-family:'Cormorant Garamond', serif;
+  font-size:clamp(1.5rem, 3.4vw, 2.85rem);
+  font-weight:300;
+  font-style:italic;
+  line-height:1.32;
+  letter-spacing:-.01em;
+  color:var(--cream);
+}
+.quote blockquote em{
+  font-style:italic;
+  color:var(--gold-lt);
+}
+.quote__by{
+  margin-top:38px;
+  display:inline-flex; align-items:center; gap:16px;
+  font-size:.62rem; letter-spacing:.32em; text-transform:uppercase;
+  color:var(--muted-2);
+}
+.quote__by i{
+  display:block; width:44px; height:1px;
+  background:rgba(200,164,92,.4);
+}
+
+/* ============================================================
+   14. CTA + FOOTER
+   ============================================================ */
+.cta-band{
+  position:relative;
+  overflow:hidden;
+  padding:clamp(80px, 11vw, 140px) 0;
+  background:linear-gradient(120deg, var(--ink-3) 0%, var(--ink-2) 55%, var(--ink) 100%);
+  border-top:1px solid var(--line);
+  text-align:center;
+}
+.cta-band::before{
+  content:'';
+  position:absolute; inset:0;
+  background:radial-gradient(70% 120% at 50% 120%, rgba(200,164,92,.16), transparent 62%);
+  pointer-events:none;
+}
+.cta-band .h2{ max-width:20ch; margin:0 auto 22px; }
+.cta-band p{
+  max-width:52ch; margin:0 auto 40px;
+  color:var(--muted); font-size:.98rem; line-height:1.8;
+}
+.cta-band .btn{ margin-inline:auto; }
+
+.footer{
+  background:var(--ink);
+  border-top:1px solid rgba(200,164,92,.1);
+  padding:clamp(60px, 8vw, 100px) 0 34px;
+  position:relative;
+  overflow:hidden;
+}
+.footer__grid{
+  display:grid;
+  grid-template-columns:1.6fr 1fr 1fr 1.3fr;
+  gap:clamp(28px, 4vw, 56px);
+  padding-bottom:56px;
+  border-bottom:1px solid rgba(200,164,92,.1);
+}
+@media (max-width: 900px){
+  .footer__grid{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width: 560px){
+  .footer__grid{ grid-template-columns:1fr; }
+}
+
+.footer__brand .brand{ margin-bottom:20px; }
+.footer__brand p{
+  font-size:.88rem; color:var(--muted); line-height:1.8; max-width:34ch;
+}
+
+.footer h4{
+  font-size:.62rem; font-weight:400;
+  letter-spacing:.3em; text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:22px;
+}
+.footer ul{ list-style:none; display:flex; flex-direction:column; gap:13px; }
+.footer ul a{
+  font-size:.88rem; color:var(--muted);
+  transition:color .35s, padding-left .35s var(--ease);
+}
+.footer ul a:hover{ color:var(--gold-lt); padding-left:6px; }
+
+.news{
+  display:flex;
+  border:1px solid rgba(200,164,92,.24);
+  border-radius:100px;
+  overflow:hidden;
+  background:rgba(255,255,255,.02);
+  transition:border-color .4s;
+}
+.news:focus-within{ border-color:rgba(200,164,92,.65); }
+.news input{
+  flex:1; min-width:0;
+  background:none; border:0; outline:none;
+  padding:14px 20px;
+  color:var(--cream);
+  font-family:'Jost',sans-serif;
+  font-size:.84rem;
+  letter-spacing:.04em;
+}
+.news input::placeholder{ color:var(--muted-2); }
+.news button{
+  padding:0 24px;
+  font-size:.6rem; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--ink);
+  background:linear-gradient(120deg, var(--gold-lt), var(--gold));
+  transition:filter .4s;
+}
+.news button:hover{ filter:brightness(1.12); }
+
+.footer__bottom{
+  padding-top:28px;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:20px; flex-wrap:wrap;
+  font-size:.7rem; letter-spacing:.16em;
+  color:var(--muted-2);
+  text-transform:uppercase;
+}
+.footer__social{ display:flex; gap:22px; }
+.footer__social a{ transition:color .35s; }
+.footer__social a:hover{ color:var(--gold-lt); }
+
+.footer__watermark{
+  position:absolute;
+  left:50%; bottom:-.22em;
+  transform:translateX(-50%);
+  font-family:'Cormorant Garamond', serif;
+  font-size:clamp(6rem, 22vw, 20rem);
+  font-weight:300;
+  line-height:.75;
+  letter-spacing:.04em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(200,164,92,.07);
+  pointer-events:none;
+  user-select:none;
+  white-space:nowrap;
+}
+
+/* ============================================================
+   15. REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  html{ scroll-behavior:auto; }
+  [data-reveal]{ opacity:1; transform:none; }
+  .hero__title .line > span{ transform:none; }
+  .hero__eyebrow, .hero__lede, .hero__cta, .hero__meta, .hero__side, .hero__giant{ opacity:1; transform:none; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= PRELOADER ================= -->
+<div class="loader" id="loader">
+  <div class="loader__panel loader__panel--top"></div>
+  <div class="loader__panel loader__panel--bot"></div>
+  <div class="loader__mark">
+    <span>A</span><span>L</span><span>M</span><span>A</span><span>S</span>
+  </div>
+  <div class="loader__line"><i></i></div>
+</div>
+
+<!-- ================= CURSOR ================= -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- ================= PROGRESS ================= -->
+<div class="progress" id="progress"></div>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav">
+  <a href="#top" class="brand" data-magnetic>
+    <span class="gem"></span>
+    <span>Almas<small>Resort &amp; Spa</small></span>
+  </a>
+
+  <nav>
+    <ul class="nav__links">
+      <li><a href="#story">The Story</a></li>
+      <li><a href="#suites">Suites</a></li>
+      <li><a href="#experiences">Experiences</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="nav__right">
+    <a href="#contact" class="btn-reserve" data-magnetic data-cursor="hover"><span>Reserve</span></a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <i></i><i></i>
+    </button>
+  </div>
+</header>
+
+<!-- ================= FULLSCREEN MENU ================= -->
+<div class="menu" id="menu">
+  <nav class="menu__nav">
+    <a href="#story">The Story</a>
+    <a href="#suites">Suites &amp; Villas</a>
+    <a href="#experiences">Experiences</a>
+    <a href="#quote">Guest Voices</a>
+    <a href="#contact">Reservations</a>
+  </nav>
+  <div class="menu__meta">
+    <span>Almas Bay, Red Sea</span>
+    <span>+971 4 000 0000</span>
+    <span>stay@almasresort.com</span>
+  </div>
+</div>
+
+<!-- ================= HERO ================= -->
+<main id="top">
+<section class="hero" id="hero">
+
+  <!-- background layers -->
+  <div class="hero__bg" data-depth="0.022">
+    <div class="hero__zoom">
+      <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=2000&q=80"
+           alt="Almas Resort infinity pool at dusk" />
+    </div>
+  </div>
+
+  <div class="hero__scrim"></div>
+  <div class="grain"></div>
+
+  <!-- giant watermark -->
+  <div class="hero__giant" data-depth="-0.016" aria-hidden="true">ALMAS</div>
+
+  <!-- content -->
+  <div class="hero__inner">
+
+    <p class="hero__eyebrow">
+      <span class="rule"></span>
+      Almas Bay · Private Coastal Sanctuary · Est. 1998
+    </p>
+
+    <h1 class="hero__title">
+      <span class="line"><span>Where the desert</span></span>
+      <span class="line"><span><em>meets</em> the divine</span></span>
+    </h1>
+
+    <p class="hero__lede">
+      Sixty-two private villas suspended between ochre dunes and the quiet
+      of the Red Sea. A sanctuary built for those who measure luxury in
+      silence, salt air and unbroken horizons.
+    </p>
+
+    <div class="hero__cta">
+      <a href="#contact" class="btn btn--gold" data-magnetic data-cursor="hover">
+        <span>Reserve Your Escape</span>
+        <svg width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true">
+          <path d="M0 4.5h13M9.5 1l3.5 3.5L9.5 8" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
+      </a>
+      <a href="#suites" class="btn btn--ghost" data-magnetic data-cursor="hover">
+        <span>Explore the Resort</span>
+      </a>
+    </div>
+
+  </div>
+
+  <!-- vertical side label -->
+  <div class="hero__side" aria-hidden="true">
+    <i></i>
+    <span>Scroll to Discover</span>
+    <i></i>
+  </div>
+
+  <!-- bottom meta bar -->
+  <div class="hero__meta">
+    <div class="hero__meta-inner">
+
+      <div class="scroll-cue">
+        <span class="track"></span>
+        <span>Scroll</span>
+      </div>
+
+      <ul class="hero__facts">
+        <li><b>62</b><span>Private Villas</span></li>
+        <li><b>4.9</b><span>Guest Rating</span></li>
+        <li><b>1.2km</b><span>Private Shoreline</span></li>
+      </ul>
+
+      <a href="#experiences" class="hero__tour" data-cursor="hover">
+        <span class="ring">
+          <svg width="10" height="11" viewBox="0 0 10 11" fill="none" aria-hidden="true">
+            <path d="M1 .8l8 4.7-8 4.7V.8z" fill="currentColor"/>
+          </svg>
+        </span>
+        <span>Watch the film</span>
+      </a>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <div>
+      <em>Almas</em> Resort &amp; Spa <i>◆</i> Private Villas <i>◆</i> Desert Dining <i>◆</i> Ocean Spa <i>◆</i> Sunset Sailing <i>◆</i> Stargazing <i>◆</i>
+    </div>
+    <div>
+      <em>Almas</em> Resort &amp; Spa <i>◆</i> Private Villas <i>◆</i> Desert Dining <i>◆</i> Ocean Spa <i>◆</i> Sunset Sailing <i>◆</i> Stargazing <i>◆</i>
+    </div>
+  </div>
+</div>
+
+<!-- ================= STORY ================= -->
+<section class="story" id="story">
+  <div class="wrap story__grid">
+
+    <div class="story__media">
+      <figure class="story__fig story__fig--a" data-reveal>
+        <img loading="lazy" src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1000&q=80" alt="Villa terrace overlooking the water">
+      </figure>
+      <figure class="story__fig story__fig--b" data-reveal style="--d:.16s">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1000&q=80" alt="Suite interior at Almas Resort">
+      </figure>
+      <div class="story__badge" data-reveal style="--d:.32s">
+        <b>25</b>
+        <span>Years of<br>quiet luxury</span>
+      </div>
+    </div>
+
+    <div class="story__copy">
+      <p class="eyebrow" data-reveal><span class="rule"></span>The Almas Story</p>
+      <h2 class="h2" data-reveal style="--d:.08s">A diamond carved from <em>silence</em>, salt and stone.</h2>
+      <p class="lede" data-reveal style="--d:.16s">
+        In Arabic, <em style="color:var(--gold-lt);font-style:italic">almas</em> means diamond —
+        and like a diamond, this place was shaped slowly, under pressure, by forces far older than us.
+      </p>
+      <p class="body-txt" data-reveal style="--d:.24s">
+        What began as a single fishing lodge on a forgotten stretch of the Red Sea is now a
+        62-villa sanctuary where architecture bows to the landscape. Local limestone, reclaimed
+        timber, hand-thrown ceramics — nothing here shouts. Everything here endures.
+      </p>
+      <p class="body-txt" data-reveal style="--d:.3s">
+        No lobby music. No queues. No schedules unless you ask for one. Just the sound of the
+        tide, the smell of cardamom coffee, and a staff who remember your name before you do.
+      </p>
+
+      <div class="stats" data-reveal style="--d:.38s">
+        <div class="stat"><b data-count="62">0</b><span>Villas &amp; Suites</span></div>
+        <div class="stat"><b data-count="25">0</b><span>Years of Craft</span></div>
+        <div class="stat"><b data-count="9">0</b><span>Dining Venues</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= SUITES ================= -->
+<section class="suites" id="suites">
+  <div class="wrap">
+
+    <div class="section-head">
+      <div class="section-head__l">
+        <p class="eyebrow" data-reveal><span class="rule"></span>Stay With Us</p>
+        <h2 class="h2" data-reveal style="--d:.08s">Suites shaped by <em>horizon</em> and light.</h2>
+      </div>
+      <p class="section-head__r" data-reveal style="--d:.16s">
+        Every villa faces west. Every terrace has a plunge pool. Every evening ends
+        with the sun folding into the sea.
+      </p>
+    </div>
+
+    <div class="suite-grid">
+
+      <article class="suite" data-reveal>
+        <div class="suite__img">
+          <span class="suite__num">01</span>
+          <span class="suite__tag">Sea View</span>
+          <img loading="lazy" src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=1000&q=80" alt="Dune Suite">
+        </div>
+        <div class="suite__body">
+          <h3>The Dune Suite</h3>
+          <p>Low-slung, sand-toned and open to the west. A private courtyard, an outdoor rain shower and a bed that faces the sunset.</p>
+          <div class="suite__foot">
+            <span class="suite__price"><b>$680</b>/ night</span>
+            <a href="#contact" class="suite__link" data-cursor="hover">
+              Book
+              <svg width="13" height="8" viewBox="0 0 13 8" fill="none" aria-hidden="true">
+                <path d="M0 4h11M8.5 1L11.5 4l-3 3" stroke="currentColor" stroke-width="1.1"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="suite" data-reveal style="--d:.12s">
+        <div class="suite__img">
+          <span class="suite__num">02</span>
+          <span class="suite__tag">Signature</span>
+          <img loading="lazy" src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1000&q=80" alt="Almas Villa">
+        </div>
+        <div class="suite__body">
+          <h3>The Almas Villa</h3>
+          <p>Two bedrooms, a 14-metre infinity pool and a glass wall that disappears entirely, leaving nothing between you and the sea.</p>
+          <div class="suite__foot">
+            <span class="suite__price"><b>$1,240</b>/ night</span>
+            <a href="#contact" class="suite__link" data-cursor="hover">
+              Book
+              <svg width="13" height="8" viewBox="0 0 13 8" fill="none" aria-hidden="true">
+                <path d="M0 4h11M8.5 1L11.5 4l-3 3" stroke="currentColor" stroke-width="1.1"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="suite" data-reveal style="--d:.24s">
+        <div class="suite__img">
+          <span class="suite__num">03</span>
+          <span class="suite__tag">Adults Only</span>
+          <img loading="lazy" src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1000&q=80" alt="Horizon Penthouse">
+        </div>
+        <div class="suite__body">
+          <h3>Horizon Penthouse</h3>
+          <p>Perched above the bay with a rooftop plunge pool, a private chef on request and a telescope for the desert night sky.</p>
+          <div class="suite__foot">
+            <span class="suite__price"><b>$2,100</b>/ night</span>
+            <a href="#contact" class="suite__link" data-cursor="hover">
+              Book
+              <svg width="13" height="8" viewBox="0 0 13 8" fill="none" aria-hidden="true">
+                <path d="M0 4h11M8.5 1L11.5 4l-3 3" stroke="currentColor" stroke-width="1.1"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCES ================= -->
+<section class="exp" id="experiences">
+  <div class="wrap">
+
+    <div class="section-head">
+      <div class="section-head__l">
+        <p class="eyebrow" data-reveal><span class="rule"></span>Experiences</p>
+        <h2 class="h2" data-reveal style="--d:.08s">Days that ask nothing <em>of you</em>.</h2>
+      </div>
+      <p class="section-head__r" data-reveal style="--d:.16s">
+        Curated, never crowded. Each experience is limited to a handful of guests
+        so the silence stays intact.
+      </p>
+    </div>
+
+    <div class="exp-grid">
+
+      <article class="exp-card" data-reveal>
+        <img loading="lazy" src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=1400&q=80" alt="Desert spa ritual">
+        <div class="exp-card__body">
+          <span>Wellness</span>
+          <h3>The Salt &amp; Sand Ritual</h3>
+          <p>A 90-minute journey through warm dune sand, mineral salt and cold sea water, performed in an open-air pavilion at golden hour.</p>
+        </div>
+      </article>
+
+      <article class="exp-card" data-reveal style="--d:.1s">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1400&q=80" alt="Desert dunes at sunset">
+        <div class="exp-card__body">
+          <span>Private</span>
+          <h3>Dinner on the Dunes</h3>
+          <p>A single table, a private chef and a horizon turning amber. Reached by vintage Land Rover, returned by starlight.</p>
+        </div>
+      </article>
+
+      <article class="exp-card" data-reveal style="--d:.2s">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1000&q=80" alt="Diving in the Red Sea">
+        <div class="exp-card__body">
+          <span>Ocean</span>
+          <h3>Reef &amp; Silence</h3>
+          <p>Dawn dives on untouched coral with our resident marine biologist.</p>
+        </div>
+      </article>
+
+      <article class="exp-card" data-reveal style="--d:.3s">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=80" alt="Fine dining at Almas">
+        <div class="exp-card__body">
+          <span>Table</span>
+          <h3>Nine Kitchens</h3>
+          <p>From a seven-seat omakase counter to a wood-fired beach grill.</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUOTE ================= -->
+<section class="quote" id="quote">
+  <div class="wrap">
+    <div class="quote__mark" data-reveal>&ldquo;</div>
+    <blockquote data-reveal style="--d:.1s">
+      We arrived exhausted and left <em>reassembled</em>. Almas doesn't entertain you —
+      it restores you.
+    </blockquote>
+    <div class="quote__by" data-reveal style="--d:.2s">
+      <i></i>
+      Condé Nast Traveller · Gold List
+      <i></i>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA BAND ================= -->
+<section class="cta-band" id="contact">
+  <div class="wrap">
+    <p class="eyebrow" style="justify-content:center" data-reveal><span class="rule"></span>Reservations</p>
+    <h2 class="h2" data-reveal style="--d:.08s;margin-top:26px">Your villa is <em>waiting</em>.</h2>
+    <p data-reveal style="--d:.16s">
+      Tell us when you'd like to arrive. Our reservations team will handle everything
+      else — transfers, dining, and the quiet in between.
+    </p>
+    <a href="mailto:stay@almasresort.com" class="btn btn--gold" data-magnetic data-cursor="hover" data-reveal style="--d:.24s">
+      <span>Begin Your Reservation</span>
+      <svg width="15" height="9" viewBox="0 0 15 9" fill="none" aria-hidden="true">
+        <path d="M0 4.5h13M9.5 1l3.5 3.5L9.5 8" stroke="currentColor" stroke-width="1.2"/>
+      </svg>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="wrap">
+
+    <div class="footer__grid">
+
+      <div class="footer__brand">
+        <div class="brand">
+          <span class="gem"></span>
+          <span>Almas<small>Resort &amp; Spa</small></span>
+        </div>
+        <p>A private coastal sanctuary on the Red Sea. Sixty-two villas, one horizon, and nothing to interrupt it.</p>
+      </div>
+
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#story">The Story</a></li>
+          <li><a href="#suites">Suites &amp; Villas</a></li>
+          <li><a href="#experiences">Experiences</a></li>
+          <li><a href="#quote">Guest Voices</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+97140000000">+971 4 000 0000</a></li>
+          <li><a href="mailto:stay@almasresort.com">stay@almasresort.com</a></li>
+          <li><a href="#">Almas Bay, Red Sea</a></li>
+          <li><a href="#">Press &amp; Media</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>The Almas Letter</h4>
+        <form class="news" onsubmit="event.preventDefault(); this.reset();">
+          <input type="email" placeholder="Your email address" aria-label="Email address" required>
+          <button type="submit">Join</button>
+        </form>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <span>© 2025 Almas Resort &amp; Spa. All rights reserved.</span>
+      <div class="footer__social">
+        <a href="#">Instagram</a>
+        <a href="#">Pinterest</a>
+        <a href="#">Journal</a>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer__watermark" aria-hidden="true">ALMAS</div>
+</footer>
+
+<script>
+/* ============================================================
+   PRELOADER
+   ============================================================ */
+(function(){
+  const loader = document.getElementById('loader');
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.body.classList.add('loaded');
+      setTimeout(() => loader.classList.add('is-done'), 1400);
+    }, 1500);
+  });
+  // Safety net if load event is slow
+  setTimeout(() => {
+    if(!document.body.classList.contains('loaded')){
+      document.body.classList.add('loaded');
+      setTimeout(() => loader.classList.add('is-done'), 1400);
+    }
+  }, 4200);
+})();
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+(function(){
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+
+  const dot  = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+
+  let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+  let rx = mx, ry = my;
+
+  window.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.transform = `translate(${mx}px, ${my}px)`;
+  });
+
+  (function loop(){
+    rx += (mx - rx) * 0.16;
+    ry += (my - ry) * 0.16;
+    ring.style.transform = `translate(${rx}px, ${ry}px)`;
+    requestAnimationFrame(loop);
+  })();
+
+  const hoverables = 'a, button, [data-cursor="hover"]';
+  document.querySelectorAll(hoverables).forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('is-hover'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('is-hover'));
+  });
+
+  document.addEventListener('mouseleave', () => {
+    dot.style.opacity = 0; ring.style.opacity = 0;
+  });
+  document.addEventListener('mouseenter', () => {
+    dot.style.opacity = 1; ring.style.opacity = 1;
+  });
+})();
+
+/* ============================================================
+   SCROLL PROGRESS + NAV STATE
+   ============================================================ */
+(function(){
+  const bar = document.getElementById('progress');
+  const nav = document.getElementById('nav');
+
+  let ticking = false;
+  function onScroll(){
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    const p = h > 0 ? (window.scrollY / h) * 100 : 0;
+    bar.style.width = p + '%';
+    nav.classList.toggle('is-scrolled', window.scrollY > 60);
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if(!ticking){ requestAnimationFrame(onScroll); ticking = true; }
+  }, { passive:true });
+  onScroll();
+})();
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+(function(){
+  const burger = document.getElementById('burger');
+  const menu   = document.getElementById('menu');
+
+  function toggle(force){
+    const open = force !== undefined ? force : !menu.classList.contains('open');
+    menu.classList.toggle('open', open);
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  burger.addEventListener('click', () => toggle());
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggle(false)));
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape') toggle(false);
+  });
+})();
+
+/* ============================================================
+   REVEAL ON SCROLL
+   ============================================================ */
+(function(){
+  const items = document.querySelectorAll('[data-reveal]');
+  if(!('IntersectionObserver' in window)){
+    items.forEach(i => i.classList.add('in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+
+  items.forEach(i => io.observe(i));
+})();
+
+/* ============================================================
+   COUNTERS
+   ============================================================ */
+(function(){
+  const nums = document.querySelectorAll('[data-count]');
+  if(!nums.length) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.count, 10);
+      const dur = 1600;
+      const start = performance.now();
+
+      function step(now){
+        const t = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(target * eased);
+        if(t < 1) requestAnimationFrame(step);
+        else el.textContent = target;
+      }
+      requestAnimationFrame(step);
+      io.unobserve(el);
+    });
+  }, { threshold: 0.6 });
+
+  nums.forEach(n => io.observe(n));
+})();
+
+/* ============================================================
+   HERO POINTER PARALLAX
+   ============================================================ */
+(function(){
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const layers = Array.from(document.querySelectorAll('[data-depth]'));
+  if(!layers.length) return;
+
+  let tx = 0, ty = 0, cx = 0, cy = 0;
+
+  window.addEventListener('mousemove', e => {
+    tx = (e.clientX / window.innerWidth  - 0.5);
+    ty = (e.clientY / window.innerHeight - 0.5);
+  });
+
+  (function loop(){
+    cx += (tx - cx) * 0.055;
+    cy += (ty - cy) * 0.055;
+
+    layers.forEach(layer => {
+      const d = parseFloat(layer.dataset.depth) || 0;
+      const x = cx * d * 1000;
+      const y = cy * d * 1000;
+      layer.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0)`;
+    });
+
+    requestAnimationFrame(loop);
+  })();
+})();
+
+/* ============================================================
+   MAGNETIC BUTTONS
+   ============================================================ */
+(function(){
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+
+  document.querySelectorAll('[data-magnetic]').forEach(el => {
+    const strength = 0.32;
+
+    el.addEventListener('mousemove', e => {
+      const r = el.getBoundingClientRect();
+      const x = (e.clientX - r.left - r.width  / 2) * strength;
+      const y = (e.clientY - r.top  - r.height / 2) * strength;
+      el.style.transform = `translate(${x}px, ${y}px)`;
+    });
+
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = '';
+    });
+  });
+})();
+
+/* ============================================================
+   SUBTLE HERO FADE ON SCROLL
+   ============================================================ */
+(function(){
+  const hero = document.getElementById('hero');
+  const inner = hero.querySelector('.hero__inner');
+  const meta = hero.querySelector('.hero__meta');
+  const giant = hero.querySelector('.hero__giant');
+
+  let ticking = false;
+  function update(){
+    const y = window.scrollY;
+    const h = window.innerHeight;
+    if(y < h){
+      const p = y / h;
+      inner.style.opacity = String(1 - p * 1.15);
+      meta.style.opacity  = String(1 - p * 1.6);
+      giant.style.opacity = String(1 - p * 1.4);
+    }
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if(!ticking){ requestAnimationFrame(update); ticking = true; }
+  }, { passive:true });
+})();
+</script>
+</body>
+</html>
